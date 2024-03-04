@@ -1,0 +1,26 @@
+Routes:
+
+    Bookings
+        GET /bookings
+        POST /bookings
+        GET /bookings/:id
+        PUT /bookings/:id
+        DELETE /bookings/:id
+
+    Rooms
+        GET /rooms
+        POST /rooms
+        GET /rooms/:id
+        PUT /rooms/:id
+        DELETE /rooms/:id
+        
+    Users
+        GET /users
+        POST /users
+        GET /users/:id
+        PUT /users/:id
+        DELETE /users/:id
+        
+    Contact
+        GET /contact
+        GET /contact/:id
