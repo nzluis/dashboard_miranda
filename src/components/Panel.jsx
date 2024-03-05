@@ -14,8 +14,8 @@ export default function Panel() {
     return (
         <SideBar>
             <NavLink to='/'>Dashboard</NavLink>
-            <NavLink to='/rooms'>Rooms</NavLink>
             <NavLink to='/bookings'>Bookings</NavLink>
+            <NavLink to='/rooms'>Rooms</NavLink>
             <NavLink to='/users'>Users</NavLink>
             <NavLink to='/contact'>Contact</NavLink>
         </SideBar>
