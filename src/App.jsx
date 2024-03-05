@@ -8,6 +8,10 @@ import Users from "./pages/Users"
 import Contact from "./pages/Contact"
 import ProtectedRoute from "./components/ProtectedRoute"
 import { createContext, useState } from "react"
+import RoomDetail from "./pages/RoomDetail"
+import BookingDetail from "./pages/BookingDetail"
+import UserDetail from "./pages/UserDetail"
+import ContactDetail from "./pages/ContactDetail"
 
 export const AuthContext = createContext()
 
@@ -17,14 +21,15 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<ProtectedRoute />}>
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="rooms" element={<Rooms />} />
-      <Route path="rooms/:id" />
+      <Route path="rooms/:id" element={<RoomDetail />} />
       <Route path="bookings" element={<Bookings />} />
-      <Route path="bookings/id" />
+      <Route path="bookings/:id" element={<BookingDetail />} />
       <Route path="users" element={<Users />} />
-      <Route path="users/id" />
+      <Route path="users/:id" element={<UserDetail />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="contact/:id" element={<ContactDetail />} />
     </Route>
-    <Route path="/*" element={<Navigate to='/' />}></Route>
+    <Route path="/*" element={<Navigate to='/dashboard' />}></Route>
   </Route>
 ))
 
