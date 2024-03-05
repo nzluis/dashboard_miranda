@@ -7,7 +7,7 @@ export default function ProtectedRoute() {
 
     return (
         <>
-            {auth ? <Outlet /> : <Navigate to='/login' />}
+            {auth === '1' ? <Outlet /> : <Navigate to='/login' />}
         </>
     )
 }

@@ -4,12 +4,12 @@ import { Navigate } from "react-router-dom"
 
 export default function Login() {
     const { auth, setAuth } = useContext(AuthContext)
-    const result = auth ? (
-        <Navigate to='/dashboard' />
+    const result = auth === '1' ? (
+        <Navigate to='/' />
     ) : (
         <div>
             <div>Login</div>
-            <button onClick={() => setAuth(true)}>Log in as user</button>
+            <button onClick={() => setAuth('1')}>Log in as user</button>
         </div>
     )
 

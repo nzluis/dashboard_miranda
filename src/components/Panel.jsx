@@ -10,7 +10,7 @@ export default function Panel() {
             marginLeft: '25px',
             gridArea: 'panel'
         }}>
-            <NavLink to='/dashboard'>Dashboard</NavLink>
+            <NavLink to='/'>Dashboard</NavLink>
             <NavLink to='/rooms'>Rooms</NavLink>
             <NavLink to='/bookings'>Bookings</NavLink>
             <NavLink to='/users'>Users</NavLink>
