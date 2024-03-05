@@ -1,4 +1,5 @@
 import data from '../../data.json'
+import Table from '../components/Table'
 
 function Bookings() {
     const columns = [
@@ -29,29 +30,7 @@ function Bookings() {
     ]
 
     return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        {columns.map((column, index) => <th key={index}>{column.label}</th>)}
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {data.map((row, index) => {
-                        return <tr key={index}>
-                            {columns.map((column, i) => {
-                                return (
-                                    <td key={i}>
-                                        {row[column.property] ? row[column.property] : column.display(row)}
-                                    </td>
-                                )
-                            })}
-                        </tr>
-                    })}
-                </tbody>
-            </table>
-        </div>
+        <Table data={data} columns={columns} />
     )
 }
 
