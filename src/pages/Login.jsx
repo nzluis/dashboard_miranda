@@ -9,7 +9,7 @@ export default function Login() {
     ) : (
         <div>
             <div>Login</div>
-            <button onClick={() => setAuth('1')}>Log in as user</button>
+            <button onClick={() => setAuth('1')}>Log in as guest</button>
         </div>
     )
 
