@@ -25,13 +25,7 @@ table, th, td {
   border: 1px solid;
 }
 
-a:link {
-    text-decoration: inherit;
-    color: inherit;
-    cursor: pointer;
-}
-
-a:visited {
+a {
     text-decoration: inherit;
     color: inherit;
     cursor: pointer;
@@ -45,4 +39,19 @@ input[type=text] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+.LinkActive::before {
+  content: "";
+  border-left: 50px solid var(--padding-first);
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  width: 0;
+  height: 50px;
+  position: absolute;
+  left: -33px;
+}
+.LinkActive{
+  color: var(--padding-first);
+  font-weight: bolder;
 }

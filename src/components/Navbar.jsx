@@ -23,7 +23,7 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
                 <h1>{titleName && titleName[1].toUpperCase() + titleName.slice(2)}</h1>
             </div>
             <NavIcons>
-                <NavLink to="/contact">
+                <NavLink to="/contact" >
                     <FaRegEnvelope className="iconPointer" size={26} />
                 </NavLink>
                 <NavLink>
