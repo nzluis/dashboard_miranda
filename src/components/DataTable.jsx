@@ -1,4 +1,4 @@
-export default function Table({ data, columns }) {
+export default function DataTable({ data, columns }) {
     return (
         <div>
             <table style={{ borderCollapse: 'collapse' }}>
