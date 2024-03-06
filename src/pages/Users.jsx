@@ -1,4 +1,5 @@
-import users from '../../users.json'
+import users from '../assets/data/users.json'
+import { DashBoard } from '../assets/styled Components/DashBoard'
 import DataTable from "../components/DataTable"
 
 function Users() {
@@ -31,10 +32,10 @@ function Users() {
     ]
 
     return (
-        <div style={{ overflow: 'scroll' }}>
+        <DashBoard>
             <h1>Users</h1>
             <DataTable data={users} columns={columns} />
-        </div>
+        </DashBoard>
     )
 }
 

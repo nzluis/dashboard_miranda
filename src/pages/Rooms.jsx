@@ -1,4 +1,5 @@
-import rooms from '../../rooms.json'
+import rooms from '../assets/data/rooms.json'
+import { DashBoard } from '../assets/styled Components/DashBoard'
 import DataTable from "../components/DataTable"
 
 export default function Rooms() {
@@ -36,10 +37,10 @@ export default function Rooms() {
         },
     ]
     return (
-        <div style={{ overflow: 'scroll' }}>
+        <DashBoard>
             <h1>Rooms</h1>
             <DataTable data={rooms} columns={columns} />
-        </div>
+        </DashBoard>
 
     )
 }

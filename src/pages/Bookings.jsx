@@ -1,4 +1,5 @@
-import bookings from '../../bookings'
+import data from '../assets/data/bookings'
+import { DashBoard } from '../assets/styled Components/DashBoard'
 import DataTable from '../components/DataTable'
 
 export default function Bookings() {
@@ -30,9 +31,10 @@ export default function Bookings() {
     ]
 
     return (
-        <div>
+        <DashBoard>
             <h1>Bookings</h1>
-            <DataTable data={bookings} columns={columns} />
-        </div>
+            <DataTable data={data} columns={columns} />
+        </DashBoard>
+
     )
 }

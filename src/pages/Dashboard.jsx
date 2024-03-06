@@ -1,6 +1,10 @@
+import { DashBoard } from "../assets/styled Components/DashBoard"
+
 function Dashboard() {
     return (
-        <div>Dashboard</div>
+        <DashBoard>
+            <h1>Dashboard</h1>
+        </DashBoard>
     )
 }
 
