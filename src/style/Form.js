@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%,-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,4 +44,11 @@ transform: translate(-50%,-50%);
         color: var(--padding-first);
         max-width: 60%
     }
+`
+
+export const FormCenter = styled(Form)`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 `
