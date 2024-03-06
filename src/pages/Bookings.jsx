@@ -1,7 +1,7 @@
-import data from '../../data.json'
-import Table from '../components/Table'
+import bookings from '../../bookings'
+import DataTable from '../components/DataTable'
 
-function Bookings() {
+export default function Bookings() {
     const columns = [
         {
             label: "Guest",
@@ -9,15 +9,15 @@ function Bookings() {
         },
         {
             label: 'Order Date',
-            property: 'order_date'
+            display: row => new Date(Number(row.order_date)).toLocaleDateString('es-ES')
         },
         {
             label: 'Check In',
-            property: 'check_in'
+            display: row => new Date(Number(row.check_in)).toLocaleDateString('es-ES')
         },
         {
             label: 'Check Out',
-            property: 'check_out'
+            display: row => new Date(Number(row.check_out)).toLocaleDateString('es-ES')
         },
         {
             label: 'Room Type',
@@ -30,8 +30,9 @@ function Bookings() {
     ]
 
     return (
-        <Table data={data} columns={columns} />
+        <div>
+            <h1>Bookings</h1>
+            <DataTable data={bookings} columns={columns} />
+        </div>
     )
 }
-
-export default Bookings
