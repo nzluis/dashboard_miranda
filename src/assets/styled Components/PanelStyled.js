@@ -57,7 +57,7 @@ export const UserBox = styled.div`
 
     button {
         background-color: #EBF1EF;
-        color: var(--main-second);
+        color: var(--padding-second);
         border: none;
         border-radius: 8px;
         font-size: 16px;

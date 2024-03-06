@@ -4,10 +4,11 @@
 }
 
 :root {
-  --main-first: #E23428;
-  --main-second: #135846;
+  --padding-first: #E23428;
+  --padding-second: #135846;
   --bg-dashboard: #F8F8F8;
   --panel-inactive: #799283;
+  --font-primary: #262626;
 }
 
 body {
@@ -32,4 +33,8 @@ a:visited {
     text-decoration: inherit;
     color: inherit;
     cursor: pointer;
+}
+
+.iconPointer {
+  cursor: pointer
 }
