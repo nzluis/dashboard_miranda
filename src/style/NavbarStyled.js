@@ -15,7 +15,7 @@ margin: 0 30px;
 h1 {
     font-size: 30px;
     font-weight: 600;
-    color: var(--font-primary);
+    color: var(--black-secondary);
 }
 `
 export const NavIcons = styled.div`
