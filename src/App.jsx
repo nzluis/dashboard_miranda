@@ -11,7 +11,6 @@ import { createContext } from "react"
 import RoomDetail from "./pages/RoomDetail"
 import BookingDetail from "./pages/BookingDetail"
 import UserDetail from "./pages/UserDetail"
-import ContactDetail from "./pages/ContactDetail"
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
 export const AuthContext = createContext()
