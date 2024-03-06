@@ -18,8 +18,8 @@ export const AuthContext = createContext()
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route element={<Root />}>
     <Route path='/login' element={<Login />} />
-    <Route path='/' element={<ProtectedRoute />}>
-      <Route path='/' element={<Dashboard />} />
+    <Route element={<ProtectedRoute />}>
+      <Route path='/dashboard' element={<Dashboard />} />
       <Route path="rooms" element={<Rooms />} />
       <Route path="rooms/:id" element={<RoomDetail />} />
       <Route path="bookings" element={<Bookings />} />
@@ -28,7 +28,7 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path="users/:id" element={<UserDetail />} />
       <Route path="contact" element={<Contact />} />
     </Route>
-    <Route path="/*" element={<Navigate to='/' />}></Route>
+    <Route path="/*" element={<Navigate to='/dashboard' />}></Route>
   </Route>
 ))
 

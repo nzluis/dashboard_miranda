@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom"
 export default function Login() {
     const { auth, setAuth } = useContext(AuthContext)
     const result = auth === '1' ? (
-        <Navigate to='/' />
+        <Navigate to='/dashboard' />
     ) : (
         <div>
             <div>Login</div>
