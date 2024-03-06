@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { AuthContext } from "../App"
-import { useLocation } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { PiSignOutBold } from "react-icons/pi";
 import { FaRegEnvelope, FaRegBell } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
@@ -23,9 +23,17 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
                 <h1>{titleName && titleName[1].toUpperCase() + titleName.slice(2)}</h1>
             </div>
             <NavIcons>
-                <FaRegEnvelope className="iconPointer" size={26} />
-                <FaRegBell className="iconPointer" size={26} />
-                {auth === '1' && <PiSignOutBold className="iconPointer" size={26} onClick={() => setAuth('0')} />}
+                <NavLink to="/contact">
+                    <FaRegEnvelope className="iconPointer" size={26} />
+                </NavLink>
+                <NavLink>
+
+                    <FaRegBell className="iconPointer" size={26} />
+                </NavLink>
+                <NavLink>
+                    {auth === '1' && <PiSignOutBold className="iconPointer" size={26} onClick={() => setAuth('0')} />}
+                </NavLink>
+
             </NavIcons>
         </NavBar>
     )
