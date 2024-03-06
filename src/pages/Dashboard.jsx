@@ -1,4 +1,4 @@
-import { DashBoard } from "../assets/styled Components/DashBoard"
+import { DashBoard } from "../assets/styled Components/DashBoardStyled"
 
 function Dashboard() {
     return (

@@ -1,5 +1,5 @@
 import rooms from '../assets/data/rooms.json'
-import { DashBoard } from '../assets/styled Components/DashBoard'
+import { DashBoard } from '../assets/styled Components/DashBoardStyled'
 import DataTable from "../components/DataTable"
 
 export default function Rooms() {

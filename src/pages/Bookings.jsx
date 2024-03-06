@@ -1,5 +1,5 @@
 import data from '../assets/data/bookings'
-import { DashBoard } from '../assets/styled Components/DashBoard'
+import { DashBoard } from '../assets/styled Components/DashBoardStyled'
 import DataTable from '../components/DataTable'
 
 export default function Bookings() {

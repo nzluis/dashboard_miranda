@@ -1,5 +1,5 @@
 import contacts from '../assets/data/contacts.json'
-import { DashBoard } from '../assets/styled Components/DashBoard'
+import { DashBoard } from '../assets/styled Components/DashBoardStyled'
 import DataTable from "../components/DataTable"
 
 function Contact() {

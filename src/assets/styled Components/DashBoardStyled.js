@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
 export const DashBoard = styled.div`
-overflow: scroll
+background-color: var(--bg-dashboard);
+overflow: scroll;
+padding: 40px 50px;
 `

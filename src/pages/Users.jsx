@@ -1,5 +1,5 @@
 import users from '../assets/data/users.json'
-import { DashBoard } from '../assets/styled Components/DashBoard'
+import { DashBoard } from '../assets/styled Components/DashBoardStyled'
 import DataTable from "../components/DataTable"
 
 function Users() {
