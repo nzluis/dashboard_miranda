@@ -3,10 +3,33 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-first: #E23428;
+  --main-second: #135846;
+  --bg-dashboard: #F8F8F8;
+  --panel-inactive: #799283;
+}
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
 button {
   cursor: pointer;
 }
 
 table, th, td {
   border: 1px solid;
+}
+
+a:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: pointer;
 }
