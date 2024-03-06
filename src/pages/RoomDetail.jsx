@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"
 export default function RoomDetail() {
     const { id } = useParams()
     return (
-        <div>Room number {id}</div>
+        <DashBoard>
+            <h1>Room number {id}</h1>
+        </DashBoard>
     )
 }

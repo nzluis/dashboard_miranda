@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom"
 import { PiSignOutBold } from "react-icons/pi";
 import { FaRegEnvelope, FaRegBell } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
-import { NavBar, NavIcons } from "../assets/styled Components/NavbarStyled";
+import { NavBar, NavIcons } from "../style/NavbarStyled";
 
 
 export default function Navbar({ visiblePanel, setVisiblePanel }) {

@@ -4,7 +4,7 @@ import { LuCalendarCheck2 } from "react-icons/lu";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { PanelLinks, SideBar, UserBox } from "../assets/styled Components/PanelStyled";
+import { PanelLinks, SideBar, UserBox } from "../style/PanelStyled";
 
 export default function Panel() {
     return (

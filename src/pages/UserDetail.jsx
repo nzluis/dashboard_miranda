@@ -4,6 +4,8 @@ export default function UserDetail() {
     const { id } = useParams()
 
     return (
-        <div>User number {id}</div>
+        <DashBoard>
+            <h1>User number {id}</h1>
+        </DashBoard>
     )
 }

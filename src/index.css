@@ -8,7 +8,9 @@
   --padding-second: #135846;
   --bg-dashboard: #F8F8F8;
   --panel-inactive: #799283;
-  --font-primary: #262626;
+  --black-primary: #393939;
+  --black-secondary: #262626; 
+  --bg-lightPink: #FFEDEC;
 }
 
 body {
