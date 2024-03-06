@@ -28,7 +28,6 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path="users" element={<Users />} />
       <Route path="users/:id" element={<UserDetail />} />
       <Route path="contact" element={<Contact />} />
-      <Route path="contact/:id" element={<ContactDetail />} />
     </Route>
     <Route path="/*" element={<Navigate to='/' />}></Route>
   </Route>
