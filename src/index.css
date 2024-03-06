@@ -40,3 +40,9 @@ a:visited {
 .iconPointer {
   cursor: pointer
 }
+
+input[type=text] {   
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
