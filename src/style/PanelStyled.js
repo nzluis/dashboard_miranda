@@ -19,6 +19,10 @@ color: var(--panel-inactive);
     gap: 25px;
     align-items: center;
 }
+
+>*:not(.LinkActive):hover {
+    transform: translateX(2px);
+}
 `
 
 export const UserBox = styled.div`
@@ -63,5 +67,9 @@ export const UserBox = styled.div`
         font-size: 16px;
         font-weight: 600;
         padding: 15px 42px
+    }
+
+    button:hover {
+        box-shadow: 0px 0px 3px 0px var(--padding-second);
     }
 `

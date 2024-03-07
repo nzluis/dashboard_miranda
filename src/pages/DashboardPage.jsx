@@ -1,4 +1,4 @@
-import { DashBoard, KPIs, PinkBox, RedBox } from "../style/DashBoardStyled"
+import { DashBoard, KPIs, PinkBox } from "../style/DashBoardStyled"
 import { IoBedOutline } from "react-icons/io5";
 import { TbCalendarCheck } from "react-icons/tb";
 import { BsBoxArrowInLeft, BsBoxArrowInRight } from "react-icons/bs";
@@ -17,9 +17,9 @@ function Dashboard() {
                     </div>
                 </div>
                 <div>
-                    <RedBox>
+                    <PinkBox>
                         <TbCalendarCheck size={26} />
-                    </RedBox>
+                    </PinkBox>
                     <div>
                         <h6>963</h6>
                         <p>Scheduled Room</p>

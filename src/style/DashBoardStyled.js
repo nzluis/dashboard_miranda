@@ -40,6 +40,7 @@ export const PinkBox = styled.div`
     background-color: var(--bg-lightPink);
     border-radius: 8px;
     position: relative;
+    cursor:pointer;
     *{
         overflow: visible;
         position: absolute;
@@ -48,11 +49,11 @@ export const PinkBox = styled.div`
         transform: translateX(-25%);
         color: var(--padding-first);
     }
-`
 
-export const RedBox = styled(PinkBox)`
-background-color: var(--padding-first);
-* {
-    color: white;
-}
+    &:hover {
+        background-color: var(--padding-first);
+        * {
+            color: white;
+        }
+    }
 `

@@ -12,6 +12,11 @@ margin: 0 30px;
     gap:50px;
 }
 
+svg:hover {
+    transform: scale(1.1);
+
+}
+
 h1 {
     font-size: 30px;
     font-weight: 600;
