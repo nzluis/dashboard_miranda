@@ -31,7 +31,7 @@ export const StyledTableBody = styled.tbody`
         font-weight: 400;
         color: var(--black-primary);
         line-height: 25px;
-        cursor:pointer;
+        cursor:${props => props.noPointer ? 'default' : 'pointer'};
 
         td {
             padding: 20px 0;
@@ -90,8 +90,8 @@ export const StyledTableBody = styled.tbody`
                 }
             }
 
-            .twoLines {
-                max-width: 300px;
+            .moreLines {
+                max-width: 270px;
             }
         }
     }

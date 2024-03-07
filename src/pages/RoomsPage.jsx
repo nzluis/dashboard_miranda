@@ -22,7 +22,7 @@ export default function Rooms() {
         {
             label: 'Amenities',
             display: row =>
-                <div className='twoLines'>
+                <div className='moreLines'>
                     <p>{row.amenities.slice(0, 65)}</p>
                 </div>
         },
