@@ -2,8 +2,8 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../App"
 import { Navigate } from "react-router-dom"
 import { LoginContainer } from '../style/LoginStyled'
-import { ButtonActive } from "../style/Button"
-import { Form, FormCenter } from '../style/Form'
+import { ButtonActive } from "../style/ButtonStyled"
+import { Form, FormCenter } from '../style/FormStyled'
 
 export default function Login() {
     const { auth, setAuth } = useContext(AuthContext)

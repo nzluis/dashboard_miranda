@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { StyledTable, StyledTableBody, StyledTableHead } from "../style/Table"
+import { StyledTable, StyledTableBody, StyledTableHead } from "../style/TableStyled"
 
 export default function DataTable({ data, columns, highlight }) {
     const { pathname } = useLocation()
