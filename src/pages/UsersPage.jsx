@@ -33,7 +33,6 @@ function Users() {
 
     return (
         <DashBoard>
-            <h1>Users</h1>
             <DataTable data={users} columns={columns} />
         </DashBoard>
     )

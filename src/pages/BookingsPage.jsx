@@ -1,24 +1,51 @@
 import data from '../assets/data/bookings'
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from '../components/DataTable'
+import { useState } from 'react';
+import { ModalComponent } from '../components/ModalComponent';
 
 export default function Bookings() {
+    const [open, setOpen] = useState(false);
+    const handleOpen = (e, message) => {
+        e.stopPropagation()
+        setSelectedNote(message)
+        setOpen(true)
+    }
+    const handleClose = () => setOpen(false);
+    const [selectedNote, setSelectedNote] = useState('')
     const columns = [
         {
             label: "Guest",
-            display: row => `${row.first_name} ${row.last_name}`
+            display: row =>
+                <div>
+                    <p className='highlight'>{row.first_name}{' '}{row.last_name}</p>
+                    <p className='panelColor'># {row.id}</p>
+                </div>
         },
         {
             label: 'Order Date',
-            display: row => new Date(Number(row.order_date)).toLocaleDateString('es-ES')
+            display: row => new Date(Number(row.order_date)).toString().slice(0, 21)
         },
         {
             label: 'Check In',
-            display: row => new Date(Number(row.check_in)).toLocaleDateString('es-ES')
+            display: row => new Date(Number(row.check_in)).toDateString()
         },
         {
             label: 'Check Out',
-            display: row => new Date(Number(row.check_out)).toLocaleDateString('es-ES')
+            display: row => new Date(Number(row.check_out)).toDateString()
+        },
+        {
+            label: 'Special Request',
+            // display: row => row.request.slice(0, 10) + ' ...'
+            display: row =>
+                <>
+                    <div
+                        className="request"
+                        onClick={(e) => handleOpen(e, row.request)}
+                    >
+                        View Notes
+                    </div>
+                </>
         },
         {
             label: 'Room Type',
@@ -26,14 +53,25 @@ export default function Bookings() {
         },
         {
             label: 'Status',
-            property: 'status'
+            display: row =>
+                <>
+                    <div
+                        className={
+                            row.status === 'Check In' ? "bookingStatus green" :
+                                row.status === 'Check Out' ? "bookingStatus red" :
+                                    row.status === 'In Progress' ? "bookingStatus yellow" : ''
+                        }
+                    >
+                        <p>{row.status}</p>
+                    </div>
+                </>
         }
     ]
 
     return (
         <DashBoard>
-            <h1>Bookings</h1>
             <DataTable data={data} columns={columns} />
+            <ModalComponent open={open} handleClose={handleClose} selectedNote={selectedNote} />
         </DashBoard>
 
     )

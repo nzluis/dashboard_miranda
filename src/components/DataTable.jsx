@@ -1,16 +1,21 @@
-export default function DataTable({ data, columns }) {
-    return (
-        <div>
-            <table style={{ borderCollapse: 'collapse' }}>
-                <thead>
-                    <tr>
-                        {columns.map((column, index) => <th key={index}>{column.label}</th>)}
-                    </tr>
-                </thead>
+import { useLocation, useNavigate } from "react-router-dom"
+import { StyledTable, StyledTableBody, StyledTableHead } from "../style/Table"
 
-                <tbody>
-                    {data.map((row, index) => {
-                        return <tr key={index}>
+export default function DataTable({ data, columns, highlight }) {
+    const { pathname } = useLocation()
+    const navigate = useNavigate()
+    return (
+        <StyledTable>
+            <StyledTableHead>
+                <tr>
+                    {columns.map((column, index) => <th key={index}>{column.label}</th>)}
+                </tr>
+            </StyledTableHead>
+
+            <StyledTableBody highlight={highlight}>
+                {data.map((row, index) => {
+                    return (
+                        <tr key={index} onClick={() => navigate(`${pathname}/${row.id}`)}>
                             {columns.map((column, i) => {
                                 return (
                                     <td key={i}>
@@ -19,9 +24,9 @@ export default function DataTable({ data, columns }) {
                                 )
                             })}
                         </tr>
-                    })}
-                </tbody>
-            </table>
-        </div>
+                    )
+                })}
+            </StyledTableBody>
+        </StyledTable>
     )
 }

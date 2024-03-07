@@ -10,8 +10,8 @@ export default function Rooms() {
                 <div style={{ display: 'flex' }}>
                     <img src={row.photo} />
                     <div>
-                        <p>{row.id}</p>
-                        <p>{row.room_number}</p>
+                        <p># {row.id}</p>
+                        {row.room_number}
                     </div>
                 </div>
         },
@@ -38,7 +38,6 @@ export default function Rooms() {
     ]
     return (
         <DashBoard>
-            <h1>Rooms</h1>
             <DataTable data={rooms} columns={columns} />
         </DashBoard>
 

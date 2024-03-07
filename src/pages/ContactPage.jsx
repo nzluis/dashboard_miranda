@@ -37,7 +37,6 @@ function Contact() {
 
     return (
         <DashBoard>
-            <h1>Contact</h1>
             <DataTable data={contacts} columns={columns} />
         </DashBoard>
     )

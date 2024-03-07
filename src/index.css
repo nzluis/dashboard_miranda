@@ -9,8 +9,14 @@
   --bg-dashboard: #F8F8F8;
   --panel-inactive: #799283;
   --black-primary: #393939;
-  --black-secondary: #262626; 
+  --black-secondary: #262626;
+  --black-third: #212121;
   --bg-lightPink: #FFEDEC;
+  --bg-lightGreen: #E8FFEE;
+  --bg-lightYellow: #fdffcd;
+  --bg-notes: #EEF9F2;
+  --hg-green: #5AD07A;
+  --hg-yellow: #ca8a04;
 }
 
 body {
