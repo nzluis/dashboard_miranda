@@ -21,10 +21,6 @@ button {
   cursor: pointer;
 }
 
-table, th, td {
-  border: 1px solid;
-}
-
 a {
     text-decoration: inherit;
     color: inherit;
@@ -49,7 +45,7 @@ input[type=text] {
   width: 0;
   height: 50px;
   position: absolute;
-  left: -33px;
+  left: -38px;
 }
 .LinkActive{
   color: var(--padding-first);
