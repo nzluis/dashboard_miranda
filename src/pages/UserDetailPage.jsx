@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom"
+import { DashBoard } from "../style/DashBoardStyled"
 
 export default function UserDetail() {
     const { id } = useParams()
