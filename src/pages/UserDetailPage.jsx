@@ -6,7 +6,7 @@ export default function UserDetail() {
 
     return (
         <DashBoard>
-            <h1>User number {id}</h1>
+            <h1>User {id}</h1>
         </DashBoard>
     )
 }

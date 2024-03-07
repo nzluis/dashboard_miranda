@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { MdOutlineBedroomParent } from "react-icons/md";
@@ -10,6 +10,7 @@ import { useContext } from "react";
 
 export default function Panel() {
     const { auth } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     return (
         <SideBar>
@@ -25,7 +26,7 @@ export default function Panel() {
                 <img width={70} height={70} src="" alt="" />
                 <h3>Luis Navarro</h3>
                 <p>admin@example.es</p>
-                <button>Edit</button>
+                <button onClick={() => navigate('/users/Luis Navarro')}>Edit</button>
             </UserBox>}
         </SideBar>
     )
