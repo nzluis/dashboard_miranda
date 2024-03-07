@@ -5,7 +5,6 @@ background-color: var(--bg-dashboard);
 overflow: scroll;
 padding: 40px 50px;
 `
-
 export const KPIs = styled.div`
     display: flex;
     flex-wrap: nowrap;
@@ -20,6 +19,16 @@ export const KPIs = styled.div`
         background-color: #FFFFFF;
         padding: 0 20px;
         border-radius: 12px;
+
+        &:hover {
+            cursor: pointer;
+            ${PinkBox} {
+                background-color: var(--padding-first);
+                * {
+                    color: white;
+                }
+        }
+    }
     }
     
     h6 {
@@ -48,12 +57,5 @@ export const PinkBox = styled.div`
         left: 50%;
         transform: translateX(-25%);
         color: var(--padding-first);
-    }
-
-    &:hover {
-        background-color: var(--padding-first);
-        * {
-            color: white;
-        }
     }
 `
