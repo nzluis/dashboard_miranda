@@ -29,7 +29,7 @@ function Contact() {
         {
             label: 'Customer',
             display: row =>
-                <div className='moreLines'>
+                <div className='twoLines'>
                     <p className='highlight'>{row.full_name}</p>
                     <p className='panelColor'>{row.phone}</p>
                     <p className='panelColor'>{row.email}</p>
@@ -41,12 +41,12 @@ function Contact() {
                 <div
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => handleOpen(e, row.message)}
-                    className='moreLines'
+                    className='twoLines'
                 >
                     <h5>{row.subject}</h5>
                     <p>{row.message.slice(0, 50)}
                         <span
-                            style={{ color: "var(--panel-inactive)" }}
+                            style={{ color: "var(--hg-yellow)" }}
                             className='highlight'
                         >{'  '}... more</span></p>
                 </div>

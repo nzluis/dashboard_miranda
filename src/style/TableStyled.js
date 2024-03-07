@@ -6,7 +6,7 @@ export const StyledTable = styled.table`
     border-radius: 20px;
     padding: 20px 30px;
     border-collapse: collapse;
-`
+    `
 
 export const StyledTableHead = styled.thead`
     font-size: 16px;
@@ -17,13 +17,13 @@ export const StyledTableHead = styled.thead`
     tr {
         border-bottom: 3px solid var(--bg-dashboard);
         th {
-            padding: 20px 0;
+            padding: 20px 7px;
             &:first-child{
                 padding-left: 30px;
             }
         }
     }
-`
+    `
 
 export const StyledTableBody = styled.tbody`
     tr{
@@ -32,9 +32,9 @@ export const StyledTableBody = styled.tbody`
         color: var(--black-primary);
         line-height: 25px;
         cursor:${props => props.noPointer ? 'default' : 'pointer'};
-
+        
         td {
-            padding: 20px 0;
+            padding: 20px 7px;
             &:not(:first-child) {
                 vertical-align: ${props => props.position === 'bottom' ? 'bottom' : 'top' }
             }
@@ -90,8 +90,12 @@ export const StyledTableBody = styled.tbody`
                 }
             }
 
+            .twoLines {
+                max-width: 250px;
+            }
+            
             .moreLines {
-                max-width: 270px;
+                max-width: 400px;
             }
         }
     }
@@ -99,8 +103,4 @@ export const StyledTableBody = styled.tbody`
     tr:hover {
         box-shadow: 0 4px 30px #00000014;
     }
-
-    ${props => props.highlight === 'bottom'  && css`
-    `}
-    
 `

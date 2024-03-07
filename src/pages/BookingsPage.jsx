@@ -39,7 +39,6 @@ export default function Bookings() {
         },
         {
             label: 'Special Request',
-            // display: row => row.request.slice(0, 10) + ' ...'
             display: row =>
                 <>
                     <div
