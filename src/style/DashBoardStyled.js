@@ -5,6 +5,23 @@ background-color: var(--bg-dashboard);
 overflow: scroll;
 padding: 40px 50px;
 `
+export const PinkBox = styled.div`
+    width: 65px;
+    height: 65px;
+    background-color: var(--bg-lightPink);
+    border-radius: 8px;
+    position: relative;
+    cursor:pointer;
+    *{
+        overflow: visible;
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-25%);
+        color: var(--padding-first);
+    }
+`
+
 export const KPIs = styled.div`
     display: flex;
     flex-wrap: nowrap;
@@ -27,8 +44,8 @@ export const KPIs = styled.div`
                 * {
                     color: white;
                 }
+            }
         }
-    }
     }
     
     h6 {
@@ -41,21 +58,5 @@ export const KPIs = styled.div`
         font-size: 15px;
         font-weight: 300;
         color: #787878;
-    }
-`
-export const PinkBox = styled.div`
-    width: 65px;
-    height: 65px;
-    background-color: var(--bg-lightPink);
-    border-radius: 8px;
-    position: relative;
-    cursor:pointer;
-    *{
-        overflow: visible;
-        position: absolute;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-25%);
-        color: var(--padding-first);
     }
 `
