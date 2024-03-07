@@ -46,7 +46,7 @@ export const Form = styled.form`
     }
 `
 
-export const FormCenter = styled(Form)`
+export const FormAbsolute = styled(Form)`
     position: absolute;
     top: 50%;
     left: 50%;

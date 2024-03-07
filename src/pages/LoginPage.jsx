@@ -3,7 +3,7 @@ import { AuthContext } from "../App"
 import { Navigate } from "react-router-dom"
 import { LoginContainer } from '../style/LoginStyled'
 import { ButtonActive } from "../style/ButtonStyled"
-import { Form, FormCenter } from '../style/FormStyled'
+import { Form, FormAbsolute } from '../style/FormStyled'
 
 export default function Login() {
     const { auth, setAuth } = useContext(AuthContext)
@@ -26,7 +26,7 @@ export default function Login() {
         <Navigate to='/dashboard' />
     ) : (
         <LoginContainer>
-            <FormCenter onSubmit={(e) => handleSubmit(e)}>
+            <FormAbsolute onSubmit={(e) => handleSubmit(e)}>
                 <label htmlFor="email">Email:
                     <input
 
@@ -49,7 +49,7 @@ export default function Login() {
                 {error && <p>Incorrect Authentication: try again with 'admin@example.es' and 'admin' </p>}
                 <ButtonActive>Log in</ButtonActive>
                 <ButtonActive onClick={() => setAuth('1')}>Easy way login</ButtonActive>
-            </FormCenter>
+            </FormAbsolute>
         </LoginContainer>
     )
 

@@ -3,6 +3,8 @@ import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from '../components/DataTable'
 import { useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
+import { ButtonActive } from '../style/ButtonStyled';
+import { useNavigate } from 'react-router-dom';
 
 export default function Bookings() {
     const [open, setOpen] = useState(false);
@@ -13,6 +15,7 @@ export default function Bookings() {
     }
     const handleClose = () => setOpen(false);
     const [selectedNote, setSelectedNote] = useState('')
+    const navigate = useNavigate()
     const columns = [
         {
             label: "Guest",
@@ -72,6 +75,7 @@ export default function Bookings() {
 
     return (
         <DashBoard>
+            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/bookings/newbooking')}>+ New Booking</ButtonActive>
             <DataTable data={data} columns={columns} />
             <ModalComponent open={open} handleClose={handleClose} selectedNote={selectedNote} />
         </DashBoard>

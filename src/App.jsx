@@ -12,6 +12,9 @@ import RoomDetail from "./pages/RoomDetailPage"
 import BookingDetail from "./pages/BookingDetailPage"
 import UserDetail from "./pages/UserDetailPage"
 import { useLocalStorage } from "../hooks/useLocalStorage"
+import NewBookingPage from "./pages/NewBookingPage"
+import NewRoomPage from "./pages/NewRoomPage"
+import NewUserPage from "./pages/NewUserPage"
 
 export const AuthContext = createContext()
 
@@ -22,10 +25,13 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path="rooms" element={<Rooms />} />
       <Route path="rooms/:id" element={<RoomDetail />} />
+      <Route path="rooms/newroom" element={<NewRoomPage />} />
       <Route path="bookings" element={<Bookings />} />
       <Route path="bookings/:id" element={<BookingDetail />} />
+      <Route path="bookings/newbooking" element={<NewBookingPage />} />
       <Route path="users" element={<Users />} />
       <Route path="users/:id" element={<UserDetail />} />
+      <Route path="users/newuser" element={<NewUserPage />} />
       <Route path="contact" element={<Contact />} />
     </Route>
     <Route path="/*" element={<Navigate to='/dashboard' />}></Route>

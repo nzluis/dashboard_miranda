@@ -1,8 +1,12 @@
 import users from '../assets/data/users.json'
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from "../components/DataTable"
+import { useNavigate } from 'react-router-dom'
+import { ButtonActive } from '../style/ButtonStyled'
 
 function Users() {
+    const navigate = useNavigate()
+
     const columns = [
         {
             label: "Name",
@@ -46,6 +50,7 @@ function Users() {
 
     return (
         <DashBoard>
+            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/users/newuser')}>+ New User</ButtonActive>
             <DataTable data={users} columns={columns} />
         </DashBoard>
     )

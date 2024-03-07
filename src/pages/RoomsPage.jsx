@@ -1,8 +1,12 @@
 import rooms from '../assets/data/rooms.json'
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from "../components/DataTable"
+import { useNavigate } from 'react-router-dom'
+import { ButtonActive } from '../style/ButtonStyled'
 
 export default function Rooms() {
+    const navigate = useNavigate()
+
     const columns = [
         {
             label: "Room Name",
@@ -57,6 +61,7 @@ export default function Rooms() {
     ]
     return (
         <DashBoard>
+            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/rooms/newroom')}>+ New Room</ButtonActive>
             <DataTable data={rooms} columns={columns} position={'bottom'} />
         </DashBoard>
 
