@@ -18,7 +18,7 @@ export default function DataTable({ data, columns, position, noPointer }) {
                         <tr key={index} onClick={() => pathname !== '/contact' && navigate(`${pathname}/${row.id}`)}>
                             {columns.map((column, i) => {
                                 return (
-                                    <td key={i} >
+                                    <td key={i}  >
                                         {row[column.property] ? row[column.property] : column.display(row)}
                                     </td>
                                 )

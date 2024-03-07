@@ -7,19 +7,22 @@ function Users() {
         {
             label: "Name",
             display: row =>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', gap: '15px' }}>
                     <img src={row.photo} />
                     <div>
-                        <p>{row.full_name}</p>
-                        <p>{row.id}</p>
-                        <p>joined on {row.start_date}</p>
-                        <p>{row.email}</p>
+                        <p className='highlight'>{row.full_name}</p>
+                        <p className='panelColor'>#{row.id}</p>
+                        <p className='lighter'>joined on {row.start_date}</p>
+                        <p className='lighter'>{row.email}</p>
                     </div>
                 </div>
         },
         {
             label: 'Description',
-            display: row => `${row.description.slice(0, 10)} ...`
+            display: row =>
+                <div className='moreLines'>
+                    {row.description}
+                </div>
         },
         {
             label: 'Contact',
@@ -27,7 +30,17 @@ function Users() {
         },
         {
             label: 'Status',
-            property: 'status'
+            display: row =>
+                <>
+                    <div
+                        className={
+                            row.status === 'Active' ? "bookingStatus green" :
+                                row.status === 'Inactive' ? "bookingStatus red" : ''
+                        }
+                    >
+                        <p>{row.status}</p>
+                    </div>
+                </>
         },
     ]
 
