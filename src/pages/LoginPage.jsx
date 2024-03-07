@@ -10,6 +10,18 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [error, setError] = useState(false)
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        if (email === 'admin@example.es' && pass === 'admin') {
+            setAuth('1')
+            setEmail('')
+            setPass('')
+            setError(false)
+        }
+        else setError(true)
+    }
+
     const result = auth === '1' ? (
         <Navigate to='/dashboard' />
     ) : (
@@ -40,17 +52,6 @@ export default function Login() {
             </FormCenter>
         </LoginContainer>
     )
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        if (email === 'admin@example.es' && pass === 'admin') {
-            setAuth('1')
-            setEmail('')
-            setPass('')
-            setError(false)
-        }
-        else setError(true)
-    }
 
     return (
         <>
