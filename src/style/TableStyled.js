@@ -36,14 +36,18 @@ export const StyledTableBody = styled.tbody`
         td {
             padding: 20px 0;
             &:not(:first-child) {
-                vertical-align: top;
+                vertical-align: ${props => props.position === 'bottom' ? 'bottom' : 'top' }
             }
             
             &:first-child{
                 padding-left: 30px;
             }
             .highlight {
-                font-weight: 500;
+                font-weight: 600;
+                color: var(--black-primary)
+            }
+            .lighter {
+                font-weight: 200;
             }
             .panelColor {
                 color: var(--panel-inactive);
@@ -59,8 +63,7 @@ export const StyledTableBody = styled.tbody`
             }
 
             .request:hover {
-        box-shadow: 0px 0px 3px 0px var(--padding-second);
-
+                box-shadow: 0px 0px 3px 0px var(--padding-second);
             }
             
             .bookingStatus {
@@ -86,6 +89,10 @@ export const StyledTableBody = styled.tbody`
                     color: var(--hg-yellow);
                 }
             }
+
+            .twoLines {
+                max-width: 300px;
+            }
         }
     }
 
@@ -93,10 +100,7 @@ export const StyledTableBody = styled.tbody`
         box-shadow: 0 4px 30px #00000014;
     }
 
-    ${props => props.highlight === 'red'  && css`
-        tr {
-            background-color: red;
-        }
+    ${props => props.highlight === 'bottom'  && css`
     `}
     
 `

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { StyledTable, StyledTableBody, StyledTableHead } from "../style/TableStyled"
 
-export default function DataTable({ data, columns, highlight }) {
+export default function DataTable({ data, columns, position }) {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     return (
@@ -12,13 +12,13 @@ export default function DataTable({ data, columns, highlight }) {
                 </tr>
             </StyledTableHead>
 
-            <StyledTableBody highlight={highlight}>
+            <StyledTableBody position={position}>
                 {data.map((row, index) => {
                     return (
                         <tr key={index} onClick={() => navigate(`${pathname}/${row.id}`)}>
                             {columns.map((column, i) => {
                                 return (
-                                    <td key={i}>
+                                    <td key={i} >
                                         {row[column.property] ? row[column.property] : column.display(row)}
                                     </td>
                                 )

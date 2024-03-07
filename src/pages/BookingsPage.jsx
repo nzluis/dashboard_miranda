@@ -18,13 +18,16 @@ export default function Bookings() {
             label: "Guest",
             display: row =>
                 <div>
-                    <p className='highlight'>{row.first_name}{' '}{row.last_name}</p>
+                    <p>{row.first_name}{' '}{row.last_name}</p>
                     <p className='panelColor'># {row.id}</p>
                 </div>
         },
         {
             label: 'Order Date',
-            display: row => new Date(Number(row.order_date)).toString().slice(0, 21)
+            display: row =>
+                <div className='lighter'>
+                    {new Date(Number(row.order_date)).toString().slice(0, 21)}
+                </div>
         },
         {
             label: 'Check In',

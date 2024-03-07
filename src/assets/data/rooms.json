@@ -5,8 +5,8 @@
         "room_number": "DELUXE S - 97",
         "room_type": "Double Bed",
         "amenities": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
-        "price": "€607 /Night",
-        "offer_price": "€485 /Night",
+        "price": "€607",
+        "offer_price": "€485",
         "status": "Booked"
     },
     {
@@ -15,8 +15,8 @@
         "room_number": "DELUXE B - 16",
         "room_type": "Single Bed",
         "amenities": "Proin eu mi.",
-        "price": "€853 /Night",
-        "offer_price": "€302 /Night",
+        "price": "€853",
+        "offer_price": "€302",
         "status": "Booked"
     },
     {
@@ -25,8 +25,8 @@
         "room_number": "DELUXE C - 86",
         "room_type": "Double Superior",
         "amenities": "Nulla tempus.",
-        "price": "€235 /Night",
-        "offer_price": "€452 /Night",
+        "price": "€235",
+        "offer_price": "€452",
         "status": "Available"
     },
     {
@@ -35,8 +35,8 @@
         "room_number": "DELUXE D - 27",
         "room_type": "Double Bed",
         "amenities": "Maecenas rhoncus aliquam lacus.",
-        "price": "€944 /Night",
-        "offer_price": "€521 /Night",
+        "price": "€944",
+        "offer_price": "€521",
         "status": "Available"
     },
     {
@@ -45,8 +45,8 @@
         "room_number": "DELUXE P - 71",
         "room_type": "Double Superior",
         "amenities": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
-        "price": "€872 /Night",
-        "offer_price": "€865 /Night",
+        "price": "€872",
+        "offer_price": "€865",
         "status": "Booked"
     },
     {
@@ -55,8 +55,8 @@
         "room_number": "DELUXE A - 12",
         "room_type": "Suite",
         "amenities": "Pellentesque eget nunc.",
-        "price": "€836 /Night",
-        "offer_price": "€901 /Night",
+        "price": "€836",
+        "offer_price": "€901",
         "status": "Available"
     },
     {
@@ -65,8 +65,8 @@
         "room_number": "DELUXE Y - 64",
         "room_type": "Double Bed",
         "amenities": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",
-        "price": "€717 /Night",
-        "offer_price": "€421 /Night",
+        "price": "€717",
+        "offer_price": "€421",
         "status": "Available"
     },
     {
@@ -75,8 +75,8 @@
         "room_number": "DELUXE W - 25",
         "room_type": "Single Bed",
         "amenities": "Vivamus vel nulla eget eros elementum pellentesque.",
-        "price": "€153 /Night",
-        "offer_price": "€348 /Night",
+        "price": "€153",
+        "offer_price": "€348",
         "status": "Available"
     },
     {
@@ -85,8 +85,8 @@
         "room_number": "DELUXE J - 36",
         "room_type": "Double Superior",
         "amenities": "Pellentesque eget nunc.",
-        "price": "€512 /Night",
-        "offer_price": "€192 /Night",
+        "price": "€512",
+        "offer_price": "€192",
         "status": "Booked"
     },
     {
@@ -95,8 +95,8 @@
         "room_number": "DELUXE E - 93",
         "room_type": "Double Bed",
         "amenities": "Fusce posuere felis sed lacus.",
-        "price": "€870 /Night",
-        "offer_price": "€245 /Night",
+        "price": "€870",
+        "offer_price": "€245",
         "status": "Available"
     },
     {
@@ -105,8 +105,8 @@
         "room_number": "DELUXE N - 21",
         "room_type": "Double Superior",
         "amenities": "Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-        "price": "€295 /Night",
-        "offer_price": "€475 /Night",
+        "price": "€295",
+        "offer_price": "€475",
         "status": "Booked"
     },
     {
@@ -115,8 +115,8 @@
         "room_number": "DELUXE I - 78",
         "room_type": "Suite",
         "amenities": "Mauris lacinia sapien quis libero.",
-        "price": "€345 /Night",
-        "offer_price": "€212 /Night",
+        "price": "€345",
+        "offer_price": "€212",
         "status": "Available"
     },
     {
@@ -125,8 +125,8 @@
         "room_number": "DELUXE T - 14",
         "room_type": "Suite",
         "amenities": "Donec ut mauris eget massa tempor convallis.",
-        "price": "€170 /Night",
-        "offer_price": "€051 /Night",
+        "price": "€170",
+        "offer_price": "€051",
         "status": "Available"
     },
     {
@@ -135,8 +135,8 @@
         "room_number": "DELUXE P - 82",
         "room_type": "Double Superior",
         "amenities": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-        "price": "€059 /Night",
-        "offer_price": "€821 /Night",
+        "price": "€059",
+        "offer_price": "€821",
         "status": "Available"
     },
     {
@@ -145,8 +145,8 @@
         "room_number": "DELUXE X - 62",
         "room_type": "Suite",
         "amenities": "In blandit ultrices enim.",
-        "price": "€551 /Night",
-        "offer_price": "€113 /Night",
+        "price": "€551",
+        "offer_price": "€113",
         "status": "Booked"
     },
     {
@@ -155,8 +155,8 @@
         "room_number": "DELUXE Y - 93",
         "room_type": "Suite",
         "amenities": "Vivamus vel nulla eget eros elementum pellentesque.",
-        "price": "€362 /Night",
-        "offer_price": "€584 /Night",
+        "price": "€362",
+        "offer_price": "€584",
         "status": "Available"
     },
     {
@@ -165,8 +165,8 @@
         "room_number": "DELUXE J - 43",
         "room_type": "Single Bed",
         "amenities": "Suspendisse potenti.",
-        "price": "€373 /Night",
-        "offer_price": "€176 /Night",
+        "price": "€373",
+        "offer_price": "€176",
         "status": "Available"
     },
     {
@@ -175,8 +175,8 @@
         "room_number": "DELUXE R - 49",
         "room_type": "Double Bed",
         "amenities": "Vestibulum rutrum rutrum neque.",
-        "price": "€173 /Night",
-        "offer_price": "€267 /Night",
+        "price": "€173",
+        "offer_price": "€267",
         "status": "Booked"
     },
     {
@@ -185,8 +185,8 @@
         "room_number": "DELUXE U - 29",
         "room_type": "Double Bed",
         "amenities": "Praesent blandit.",
-        "price": "€165 /Night",
-        "offer_price": "€007 /Night",
+        "price": "€165",
+        "offer_price": "€007",
         "status": "Available"
     },
     {
@@ -195,8 +195,8 @@
         "room_number": "DELUXE X - 16",
         "room_type": "Double Superior",
         "amenities": "Nullam sit amet turpis elementum ligula vehicula consequat.",
-        "price": "€183 /Night",
-        "offer_price": "€867 /Night",
+        "price": "€183",
+        "offer_price": "€867",
         "status": "Booked"
     },
     {
@@ -205,8 +205,8 @@
         "room_number": "DELUXE F - 56",
         "room_type": "Double Bed",
         "amenities": "Curabitur at ipsum ac tellus semper interdum.",
-        "price": "€105 /Night",
-        "offer_price": "€412 /Night",
+        "price": "€105",
+        "offer_price": "€412",
         "status": "Booked"
     },
     {
@@ -215,8 +215,8 @@
         "room_number": "DELUXE P - 67",
         "room_type": "Single Bed",
         "amenities": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.",
-        "price": "€578 /Night",
-        "offer_price": "€937 /Night",
+        "price": "€578",
+        "offer_price": "€937",
         "status": "Booked"
     },
     {
@@ -225,8 +225,8 @@
         "room_number": "DELUXE V - 57",
         "room_type": "Double Superior",
         "amenities": "Pellentesque ultrices mattis odio.",
-        "price": "€203 /Night",
-        "offer_price": "€723 /Night",
+        "price": "€203",
+        "offer_price": "€723",
         "status": "Available"
     },
     {
@@ -235,8 +235,8 @@
         "room_number": "DELUXE H - 63",
         "room_type": "Double Superior",
         "amenities": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-        "price": "€372 /Night",
-        "offer_price": "€934 /Night",
+        "price": "€372",
+        "offer_price": "€934",
         "status": "Booked"
     },
     {
@@ -245,8 +245,8 @@
         "room_number": "DELUXE A - 96",
         "room_type": "Double Bed",
         "amenities": "In quis justo.",
-        "price": "€470 /Night",
-        "offer_price": "€542 /Night",
+        "price": "€470",
+        "offer_price": "€542",
         "status": "Available"
     },
     {
@@ -255,8 +255,8 @@
         "room_number": "DELUXE Q - 05",
         "room_type": "Single Bed",
         "amenities": "Aenean lectus.",
-        "price": "€404 /Night",
-        "offer_price": "€701 /Night",
+        "price": "€404",
+        "offer_price": "€701",
         "status": "Available"
     },
     {
@@ -265,8 +265,8 @@
         "room_number": "DELUXE G - 04",
         "room_type": "Suite",
         "amenities": "Donec ut mauris eget massa tempor convallis.",
-        "price": "€176 /Night",
-        "offer_price": "€585 /Night",
+        "price": "€176",
+        "offer_price": "€585",
         "status": "Available"
     },
     {
@@ -275,8 +275,8 @@
         "room_number": "DELUXE I - 87",
         "room_type": "Double Superior",
         "amenities": "Morbi a ipsum.",
-        "price": "€570 /Night",
-        "offer_price": "€558 /Night",
+        "price": "€570",
+        "offer_price": "€558",
         "status": "Available"
     },
     {
@@ -285,8 +285,8 @@
         "room_number": "DELUXE N - 42",
         "room_type": "Double Bed",
         "amenities": "Proin risus.",
-        "price": "€262 /Night",
-        "offer_price": "€328 /Night",
+        "price": "€262",
+        "offer_price": "€328",
         "status": "Booked"
     },
     {
@@ -295,8 +295,8 @@
         "room_number": "DELUXE Q - 07",
         "room_type": "Suite",
         "amenities": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
-        "price": "€029 /Night",
-        "offer_price": "€213 /Night",
+        "price": "€029",
+        "offer_price": "€213",
         "status": "Available"
     },
     {
@@ -305,8 +305,8 @@
         "room_number": "DELUXE A - 43",
         "room_type": "Double Superior",
         "amenities": "Vestibulum sed magna at nunc commodo placerat.",
-        "price": "€783 /Night",
-        "offer_price": "€024 /Night",
+        "price": "€783",
+        "offer_price": "€024",
         "status": "Available"
     },
     {
@@ -315,8 +315,8 @@
         "room_number": "DELUXE O - 03",
         "room_type": "Double Bed",
         "amenities": "Duis at velit eu est congue elementum.",
-        "price": "€744 /Night",
-        "offer_price": "€453 /Night",
+        "price": "€744",
+        "offer_price": "€453",
         "status": "Available"
     },
     {
@@ -325,8 +325,8 @@
         "room_number": "DELUXE T - 08",
         "room_type": "Single Bed",
         "amenities": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
-        "price": "€040 /Night",
-        "offer_price": "€493 /Night",
+        "price": "€040",
+        "offer_price": "€493",
         "status": "Booked"
     },
     {
@@ -335,8 +335,8 @@
         "room_number": "DELUXE O - 65",
         "room_type": "Suite",
         "amenities": "Quisque id justo sit amet sapien dignissim vestibulum.",
-        "price": "€483 /Night",
-        "offer_price": "€384 /Night",
+        "price": "€483",
+        "offer_price": "€384",
         "status": "Booked"
     },
     {
@@ -345,8 +345,8 @@
         "room_number": "DELUXE G - 27",
         "room_type": "Double Superior",
         "amenities": "Fusce posuere felis sed lacus.",
-        "price": "€130 /Night",
-        "offer_price": "€264 /Night",
+        "price": "€130",
+        "offer_price": "€264",
         "status": "Booked"
     },
     {
@@ -355,8 +355,8 @@
         "room_number": "DELUXE T - 34",
         "room_type": "Double Bed",
         "amenities": "Nullam sit amet turpis elementum ligula vehicula consequat.",
-        "price": "€132 /Night",
-        "offer_price": "€368 /Night",
+        "price": "€132",
+        "offer_price": "€368",
         "status": "Available"
     },
     {
@@ -365,8 +365,8 @@
         "room_number": "DELUXE R - 75",
         "room_type": "Single Bed",
         "amenities": "Suspendisse potenti.",
-        "price": "€296 /Night",
-        "offer_price": "€339 /Night",
+        "price": "€296",
+        "offer_price": "€339",
         "status": "Available"
     },
     {
@@ -375,8 +375,8 @@
         "room_number": "DELUXE A - 13",
         "room_type": "Single Bed",
         "amenities": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-        "price": "€791 /Night",
-        "offer_price": "€803 /Night",
+        "price": "€791",
+        "offer_price": "€803",
         "status": "Available"
     },
     {
@@ -385,8 +385,8 @@
         "room_number": "DELUXE W - 48",
         "room_type": "Double Superior",
         "amenities": "Suspendisse potenti.",
-        "price": "€005 /Night",
-        "offer_price": "€013 /Night",
+        "price": "€005",
+        "offer_price": "€013",
         "status": "Booked"
     },
     {
@@ -395,8 +395,8 @@
         "room_number": "DELUXE A - 29",
         "room_type": "Double Superior",
         "amenities": "Nam tristique tortor eu pede.",
-        "price": "€542 /Night",
-        "offer_price": "€226 /Night",
+        "price": "€542",
+        "offer_price": "€226",
         "status": "Booked"
     }
 ]

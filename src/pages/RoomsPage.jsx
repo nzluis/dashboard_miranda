@@ -7,10 +7,10 @@ export default function Rooms() {
         {
             label: "Room Name",
             display: row =>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', gap: '5px' }}>
                     <img src={row.photo} />
                     <div>
-                        <p># {row.id}</p>
+                        <p className='panelColor'># {row.id}</p>
                         {row.room_number}
                     </div>
                 </div>
@@ -21,24 +21,43 @@ export default function Rooms() {
         },
         {
             label: 'Amenities',
-            display: row => `${row.amenities.slice(0, 10)} ...`
+            display: row =>
+                <div className='twoLines'>
+                    <p>{row.amenities.slice(0, 65)}</p>
+                </div>
         },
         {
             label: 'Price',
-            property: 'price'
+            display: row =>
+                <div>
+                    <span className='highlight'>{row.price}</span><span className='panelColor'>/Night</span>
+                </div>
         },
         {
             label: 'Offer',
-            property: 'offer_price'
+            display: row =>
+                <div>
+                    <span className='highlight'>{row.offer_price}</span><span className='panelColor'>/Night</span>
+                </div>
         },
         {
             label: 'Status',
-            property: 'status'
+            display: row =>
+                <>
+                    <div
+                        className={
+                            row.status === 'Available' ? "bookingStatus green" :
+                                row.status === 'Booked' ? "bookingStatus red" : ''
+                        }
+                    >
+                        <p>{row.status}</p>
+                    </div>
+                </>
         },
     ]
     return (
         <DashBoard>
-            <DataTable data={rooms} columns={columns} />
+            <DataTable data={rooms} columns={columns} position={'bottom'} />
         </DashBoard>
 
     )
