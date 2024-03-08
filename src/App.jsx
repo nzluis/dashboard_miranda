@@ -22,7 +22,7 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route element={<Root />}>
     <Route path='/login' element={<Login />} />
     <Route element={<ProtectedRoute />}>
-      <Route path='/dashboard' element={<Dashboard />} />
+      <Route path='/' element={<Dashboard />} />
       <Route path="rooms" element={<Rooms />} />
       <Route path="rooms/:id" element={<RoomDetail />} />
       <Route path="rooms/newroom" element={<NewRoomPage />} />
