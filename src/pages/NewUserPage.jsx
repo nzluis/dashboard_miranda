@@ -1,4 +1,4 @@
-import { Form } from "../style/FormStyled";
+import { Form, FormRow } from "../style/FormStyled";
 import { useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
@@ -49,32 +49,34 @@ export default function NewUserPage() {
                     />
                 </label>
                 <label htmlFor="description">Description:
-                    <input
+                    <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         name="description"
                         style={{ height: '125px' }}
                     />
                 </label>
-                <label htmlFor="contact">Contact:
-                    <input
-                        value={contact}
-                        onChange={(e) => setContact(e.target.value)}
-                        name="contact"
-                        type="number"
-                    />
-                </label>
-                <label htmlFor="status">Status:
-                    <select
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                        name="status"
-                    >
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                    </select>
-                </label>
-                <ButtonActive onClick={(e) => handleSubmit(e)}>Send</ButtonActive>
+                <FormRow>
+                    <label htmlFor="contact">Contact:
+                        <input
+                            value={contact}
+                            onChange={(e) => setContact(e.target.value)}
+                            name="contact"
+                            type="number"
+                        />
+                    </label>
+                    <label htmlFor="status">Status:
+                        <select
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
+                            name="status"
+                        >
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </label>
+                </FormRow>
+                <ButtonActive onClick={(e) => handleSubmit(e)}>Create User</ButtonActive>
             </Form>
         </DashBoard>
     )

@@ -102,7 +102,7 @@ export default function NewRoomPage() {
                         </select>
                     </label>
                 </FormRow>
-                <ButtonActive onClick={(e) => handleSubmit(e)}>Send</ButtonActive>
+                <ButtonActive onClick={(e) => handleSubmit(e)}>Create Room</ButtonActive>
             </Form>
         </DashBoard>
     )

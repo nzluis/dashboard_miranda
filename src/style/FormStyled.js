@@ -12,13 +12,13 @@ export const Form = styled.form`
     label {
         display: flex;
         flex-direction: column;
-        /* ${props => props.label === 'file' ? 'white' : 'var(--padding-second)'} */
         color: var(--padding-second);
         width: 100%;
         font-size: 17px;
         font-weight: 300;
         line-height: 27px;
         letter-spacing: 2px;
+        margin-top: 5px;
     }
 
     input, select {
@@ -45,10 +45,22 @@ export const Form = styled.form`
 
     select {
         cursor: pointer;
+         background-color: white;
     }
 
     input[type="file"] {
         display: none
+    }
+
+    textarea {
+        border: 1px solid var(--padding-second);
+        border-radius: 12px;
+        padding: 10px 15px;
+        resize: none;
+        margin-top: 5px;
+    }
+    textarea:focus {
+        outline: .3px solid var(--padding-second);
     }
 `
 export const FormRow = styled(Form)`
@@ -58,7 +70,6 @@ export const FormRow = styled(Form)`
     gap: 15px;
     margin: 0;
     input {
-
         height: 38px;
     }
 `
@@ -80,6 +91,7 @@ export const FileStyled = styled.label`
     align-self: flex-end;
 
     &:active {
-        transform: scale(.99);
+        box-shadow: -1px -1px .5px .5px gray;
+        transform: translate(1px,1px)
     }
 `
