@@ -23,7 +23,7 @@ export default function Login() {
     }
 
     const result = auth === '1' ? (
-        <Navigate to='/dashboard' />
+        <Navigate to='/' />
     ) : (
         <LoginContainer>
             <FormAbsolute onSubmit={(e) => handleSubmit(e)}>
