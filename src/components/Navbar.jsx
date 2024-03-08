@@ -13,7 +13,6 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
     const { pathname } = useLocation()
     const regexMatch = pathname.match(/\/[^/]+/g)
     const titleName = pathname[1] ? regexMatch[0][1].toUpperCase() + regexMatch[0].slice(2) : 'Dashboard'
-    console.log(regexMatch)
     const subTitleName = regexMatch !== null && regexMatch[1] ? regexMatch[1].replace('-', ' ').slice(1) : false
 
     function togglePanel() {
@@ -24,7 +23,7 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
         <NavBar>
             <div>
                 {visiblePanel ? <HiOutlineBars3BottomLeft size={26} onClick={togglePanel} /> : <FaArrowRight size={26} onClick={togglePanel} />}
-                <h1>{titleName}</h1>
+                <h1>{titleName === 'Login' ? '' : titleName}</h1>
                 {subTitleName && <h2>{subTitleName.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}</h2>}
             </div>
             <NavIcons>
