@@ -7,8 +7,8 @@ import { Form, FormAbsolute } from '../style/FormStyled'
 
 export default function Login() {
     const { auth, setAuth } = useContext(AuthContext)
-    const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
+    const [email, setEmail] = useState('admin@example.es')
+    const [pass, setPass] = useState('admin')
     const [error, setError] = useState(false)
 
     function handleSubmit(e) {
@@ -26,13 +26,13 @@ export default function Login() {
         <Navigate to='/' />
     ) : (
         <LoginContainer>
-            <FormAbsolute onSubmit={(e) => handleSubmit(e)}>
+            <FormAbsolute width={'login'} onSubmit={(e) => handleSubmit(e)}>
                 <label htmlFor="email">Email:
                     <input
 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="email@email.com"
+                        placeholder="admin@example.com"
                         type="email"
                         name="email"
                     />
@@ -41,14 +41,13 @@ export default function Login() {
                     <input
                         value={pass}
                         onChange={(e) => setPass(e.target.value)}
-                        placeholder="your password..."
+                        placeholder="admin"
                         type="password"
                         name="password"
                     />
                 </label>
                 {error && <p>Incorrect Authentication: try again with 'admin@example.es' and 'admin' </p>}
                 <ButtonActive>Log in</ButtonActive>
-                <ButtonActive onClick={() => setAuth('1')}>Easy way login</ButtonActive>
             </FormAbsolute>
         </LoginContainer>
     )
