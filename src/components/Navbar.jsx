@@ -20,20 +20,20 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
     return (
         <NavBar>
             <div>
-                {visiblePanel ? <FaArrowLeft className="iconPointer" size={26} onClick={togglePanel} /> : <FaArrowRight className="iconPointer" size={26} onClick={togglePanel} />}
+                {visiblePanel ? <FaArrowLeft size={26} onClick={togglePanel} /> : <FaArrowRight size={26} onClick={togglePanel} />}
                 <h1>{titleName && titleName[1].toUpperCase() + titleName.slice(2)}</h1>
                 {id && <h2># {id}</h2>}
             </div>
             <NavIcons>
                 <NavLink to="/contact" >
-                    <FaRegEnvelope className="iconPointer" size={26} />
+                    <FaRegEnvelope size={26} />
                 </NavLink>
                 <NavLink>
 
-                    <FaRegBell className="iconPointer" size={26} />
+                    <FaRegBell size={26} />
                 </NavLink>
                 <NavLink>
-                    {auth === '1' && <PiSignOutBold className="iconPointer" size={26} onClick={() => setAuth('0')} />}
+                    {auth === '1' && <PiSignOutBold size={26} onClick={() => setAuth('0')} />}
                 </NavLink>
 
             </NavIcons>

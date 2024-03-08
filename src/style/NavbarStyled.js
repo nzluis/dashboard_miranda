@@ -12,6 +12,10 @@ export const NavBar = styled.div`
         gap:50px;
     }
 
+    svg {
+        cursor: pointer;
+    }
+    
     svg:hover {
         transform: scale(1.1);
 
