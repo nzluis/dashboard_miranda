@@ -25,16 +25,16 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path='/' element={<Dashboard />} />
       <Route path="rooms" element={<Rooms />} />
       <Route path="rooms/:id" element={<RoomDetail />} />
-      <Route path="rooms/newroom" element={<NewRoomPage />} />
+      <Route path="rooms/new-room" element={<NewRoomPage />} />
       <Route path="bookings" element={<Bookings />} />
       <Route path="bookings/:id" element={<BookingDetail />} />
-      <Route path="bookings/newbooking" element={<NewBookingPage />} />
+      <Route path="bookings/new-booking" element={<NewBookingPage />} />
       <Route path="users" element={<Users />} />
       <Route path="users/:id" element={<UserDetail />} />
-      <Route path="users/newuser" element={<NewUserPage />} />
+      <Route path="users/new-user" element={<NewUserPage />} />
       <Route path="contact" element={<Contact />} />
     </Route>
-    <Route path="/*" element={<Navigate to='/dashboard' />}></Route>
+    <Route path="/*" element={<Navigate to='/' />}></Route>
   </Route>
 ))
 

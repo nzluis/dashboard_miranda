@@ -50,7 +50,7 @@ function Users() {
 
     return (
         <DashBoard>
-            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/users/newuser')}>+ New User</ButtonActive>
+            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/users/new-user')}>+ New User</ButtonActive>
             <DataTable data={users} columns={columns} />
         </DashBoard>
     )

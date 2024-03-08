@@ -61,7 +61,7 @@ export default function Rooms() {
     ]
     return (
         <DashBoard>
-            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/rooms/newroom')}>+ New Room</ButtonActive>
+            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/rooms/new-room')}>+ New Room</ButtonActive>
             <DataTable data={rooms} columns={columns} position={'bottom'} />
         </DashBoard>
 

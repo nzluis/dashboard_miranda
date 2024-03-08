@@ -75,7 +75,7 @@ export default function Bookings() {
 
     return (
         <DashBoard>
-            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/bookings/newbooking')}>+ New Booking</ButtonActive>
+            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/bookings/new-booking')}>+ New Booking</ButtonActive>
             <DataTable data={data} columns={columns} />
             <ModalComponent open={open} handleClose={handleClose} selectedNote={selectedNote} />
         </DashBoard>
