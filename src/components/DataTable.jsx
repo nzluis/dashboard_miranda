@@ -15,7 +15,7 @@ export default function DataTable({ data, columns, position, nopointer }) {
             <StyledTableBody position={position} nopointer={nopointer}>
                 {data.map((row, index) => {
                     return (
-                        <tr key={index} onClick={() => pathname !== '/contact' && navigate(`${pathname}/${row.id}`)}>
+                        <tr key={index} onClick={() => pathname === '/bookings' && navigate(`${pathname}/${row.id}`)}>
                             {columns.map((column, i) => {
                                 return (
                                     <td key={i}  >
