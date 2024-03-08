@@ -95,3 +95,8 @@ export const FileStyled = styled.label`
         transform: translate(1px,1px)
     }
 `
+
+export const UserFileStyled = styled(FileStyled)`
+    padding: 5px 10px;
+    align-self: center;
+`

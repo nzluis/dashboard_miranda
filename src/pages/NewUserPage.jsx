@@ -1,9 +1,10 @@
-import { Form, FormRow } from "../style/FormStyled";
+import { Form, FormRow, UserFileStyled } from "../style/FormStyled";
 import { useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
 
 export default function NewUserPage() {
+    const [photo, setPhoto] = useState()
     const [fullName, setFullName] = useState()
     const [email, setEmail] = useState()
     const [description, setDescription] = useState()
@@ -12,6 +13,7 @@ export default function NewUserPage() {
 
     const newUser = {
         id: Math.random() * 1000,
+        photo,
         full_name: fullName,
         email: email,
         start_date: Date.now(),
@@ -76,6 +78,15 @@ export default function NewUserPage() {
                         </select>
                     </label>
                 </FormRow>
+                <UserFileStyled htmlFor="photo">Upload Photo
+                    <input
+                        value={photo}
+                        onChange={(e) => setPhoto(e.target.value)}
+                        name="photo"
+                        type="file"
+                        id="photo"
+                    />
+                </UserFileStyled>
                 <ButtonActive onClick={(e) => handleSubmit(e)}>Create User</ButtonActive>
             </Form>
         </DashBoard>
