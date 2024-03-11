@@ -7,16 +7,14 @@ import Bookings from "./pages/BookingsPage"
 import Users from "./pages/UsersPage"
 import Contact from "./pages/ContactPage"
 import ProtectedRoute from "./components/ProtectedRoute"
-import { createContext } from "react"
 import RoomDetail from "./pages/RoomDetailPage"
 import BookingDetail from "./pages/BookingDetailPage"
 import UserDetail from "./pages/UserDetailPage"
-import { useLocalStorage } from "../hooks/useLocalStorage"
 import NewBookingPage from "./pages/NewBookingPage"
 import NewRoomPage from "./pages/NewRoomPage"
 import NewUserPage from "./pages/NewUserPage"
+import { AuthProvider } from "./context/AuthContext"
 
-export const AuthContext = createContext()
 
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route element={<Root />}>
@@ -39,14 +37,13 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
 ))
 
 export default function App() {
-  const [auth, setAuth] = useLocalStorage('AUTH_KEY', '0')
-  const value = { auth, setAuth }
+
 
   return (
     <>
-      <AuthContext.Provider value={value}>
+      <AuthProvider>
         <RouterProvider router={appRouter} />
-      </AuthContext.Provider>
+      </AuthProvider>
     </>
   )
 }

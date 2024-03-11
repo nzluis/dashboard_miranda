@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Panel from "../components/Panel";
 import Navbar from "../components/Navbar"
-import { useContext, useState } from "react";
-import { AuthContext } from "../App";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export default function Root() {
     const [visiblePanel, setVisiblePanel] = useState(true)
-    const { auth } = useContext(AuthContext)
+    const { auth } = useAuth()
 
     return (
         <div style={{

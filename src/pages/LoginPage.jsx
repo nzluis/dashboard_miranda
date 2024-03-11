@@ -1,12 +1,12 @@
 import { useContext, useState } from "react"
-import { AuthContext } from "../App"
 import { Navigate } from "react-router-dom"
 import { LoginContainer } from '../style/LoginStyled'
 import { ButtonActive } from "../style/ButtonStyled"
 import { Form, FormAbsolute } from '../style/FormStyled'
+import { useAuth } from "../context/AuthContext"
 
 export default function Login() {
-    const { auth, setAuth } = useContext(AuthContext)
+    const { auth, setAuth } = useAuth()
     const [email, setEmail] = useState('admin@example.es')
     const [pass, setPass] = useState('admin')
     const [error, setError] = useState(false)

@@ -1,15 +1,14 @@
-import { useContext } from "react"
-import { AuthContext } from "../App"
 import { NavLink, useLocation } from "react-router-dom"
 import { PiSignOutBold } from "react-icons/pi";
 import { FaRegEnvelope, FaRegBell } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { NavBar, NavIcons } from "../style/NavbarStyled";
+import { useAuth } from "../context/AuthContext";
 
 
 export default function Navbar({ visiblePanel, setVisiblePanel }) {
-    const { auth, setAuth } = useContext(AuthContext)
+    const { auth, setAuth } = useAuth()
     const { pathname } = useLocation()
     const regexMatch = pathname.match(/\/[^/]+/g)
     const titleName = pathname[1] ? regexMatch[0][1].toUpperCase() + regexMatch[0].slice(2) : 'Dashboard'

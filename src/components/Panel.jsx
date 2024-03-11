@@ -5,11 +5,10 @@ import { MdOutlineBedroomParent } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { PanelLinks, SideBar, UserBox } from "../style/PanelStyled";
-import { AuthContext } from "../App";
-import { useContext } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export default function Panel() {
-    const { auth } = useContext(AuthContext)
+    const { auth } = useAuth()
     const navigate = useNavigate()
 
     return (
