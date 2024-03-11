@@ -25,7 +25,7 @@ export default function Panel() {
                 <img width={70} height={70} src="" alt="" />
                 <h3>Luis Navarro</h3>
                 <p>admin@example.es</p>
-                <button onClick={() => navigate('/users/Luis Navarro')}>Edit</button>
+                <button onClick={() => navigate('/users/Luis-Navarro')}>Edit</button>
             </UserBox>}
         </SideBar>
     )
