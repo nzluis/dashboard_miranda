@@ -31,12 +31,12 @@ export const StyledTableBody = styled.tbody`
         font-weight: 400;
         color: var(--black-primary);
         line-height: 25px;
-        cursor:${props => props.nopointer ? 'default' : 'pointer'};
+        cursor:${props => props.$noPointer ? 'default' : 'pointer'};
         
         td {
             padding: 20px 7px;
             &:not(:first-child) {
-                vertical-align: ${props => props.position === 'bottom' ? 'bottom' : 'top' }
+                vertical-align: ${props => props.$position === 'bottom' ? 'bottom' : 'top' }
             }
             
             &:first-child{

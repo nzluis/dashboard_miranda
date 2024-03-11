@@ -69,7 +69,7 @@ function Contact() {
 
     return (
         <DashBoard>
-            <DataTable data={contacts} columns={columns} nopointer="true" />
+            <DataTable data={contacts} columns={columns} noPointer="true" />
             <ModalComponent open={open} handleClose={handleClose} selectedNote={selectedNote} />
         </DashBoard>
     )

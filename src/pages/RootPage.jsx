@@ -9,7 +9,7 @@ export default function Root() {
     const [visiblePanel, setVisiblePanel] = useState(true)
     const { state } = useAuth()
     return (
-        <RootStyled visiblepanel={String(visiblePanel)}>
+        <RootStyled $visiblePanel={visiblePanel}>
             {state.isAuthenticated && <Navbar visiblePanel={visiblePanel} setVisiblePanel={setVisiblePanel} />}
             {visiblePanel && state.isAuthenticated && <Panel />}
             <Outlet />
