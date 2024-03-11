@@ -14,6 +14,8 @@ import NewBookingPage from "./pages/NewBookingPage"
 import NewRoomPage from "./pages/NewRoomPage"
 import NewUserPage from "./pages/NewUserPage"
 import { AuthProvider } from "./context/AuthContext"
+import { store } from "./app/store"
+import { Provider } from 'react-redux'
 
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route element={<Root />}>
@@ -39,7 +41,9 @@ export default function App() {
   return (
     <>
       <AuthProvider>
-        <RouterProvider router={appRouter} />
+        <Provider store={store}>
+          <RouterProvider router={appRouter} />
+        </Provider>
       </AuthProvider>
     </>
   )
