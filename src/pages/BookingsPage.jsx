@@ -1,21 +1,15 @@
-import data from '../assets/data/bookings'
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from '../components/DataTable'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
-import { ButtonActive } from '../style/ButtonStyled';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { allBookings } from '../features/bookings/bookingsSlice';
+import { fetchBookings } from '../features/bookings/bookingsThunk';
+import { LinearProgress } from '@mui/material';
+
+
 
 export default function Bookings() {
-    const [open, setOpen] = useState(false);
-    const handleOpen = (e, message) => {
-        e.stopPropagation()
-        setSelectedNote(message)
-        setOpen(true)
-    }
-    const handleClose = () => setOpen(false);
-    const [selectedNote, setSelectedNote] = useState('')
-    const navigate = useNavigate()
     const columns = [
         {
             label: "Guest",
@@ -73,9 +67,29 @@ export default function Bookings() {
         }
     ]
 
+    const [open, setOpen] = useState(false);
+    const handleOpen = (e, message) => {
+        e.stopPropagation()
+        setSelectedNote(message)
+        setOpen(true)
+    }
+    const handleClose = () => setOpen(false);
+    const [selectedNote, setSelectedNote] = useState('')
+    const dispatch = useDispatch()
+    const bookings = useSelector(allBookings)
+    const [fetched, setFetched] = useState(false)
+    const initialFetch = async () => {
+        await dispatch(fetchBookings())
+        setFetched(true)
+    }
+
+    useEffect(() => {
+        initialFetch()
+    }, [])
+
     return (
         <DashBoard>
-            <DataTable data={data} columns={columns} />
+            {fetched ? <DataTable data={bookings} columns={columns} /> : <LinearProgress />}
             <ModalComponent open={open} handleClose={handleClose} selectedNote={selectedNote} />
         </DashBoard>
 
