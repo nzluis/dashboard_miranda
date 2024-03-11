@@ -8,7 +8,7 @@ import { PanelLinks, SideBar, UserBox } from "../style/PanelStyled";
 import { useAuth } from "../context/AuthContext";
 
 export default function Panel() {
-    const { auth } = useAuth()
+    const { state } = useAuth()
     const navigate = useNavigate()
 
     return (
@@ -21,11 +21,11 @@ export default function Panel() {
                 <NavLink to='/contact' className={({ isActive }) => isActive ? 'LinkActive' : ''}><BiMessageDetail size={26} />Contact</NavLink>
                 <NavLink to='/users' className={({ isActive }) => isActive ? 'LinkActive' : ''}><FaRegUser size={26} />Users</NavLink>
             </PanelLinks>
-            {auth === '1' && <UserBox>
+            {state.isAuthenticated && <UserBox>
                 <img width={70} height={70} src="" alt="" />
-                <h3>Luis Navarro</h3>
-                <p>admin@example.es</p>
-                <button onClick={() => navigate('/users/Luis-Navarro')}>Edit</button>
+                <h3>{state.user.fullName}</h3>
+                <p>{state.user.email}</p>
+                <button onClick={() => navigate(`/users/${state.user.fullName.replace(' ', '-')}`)}>Edit</button>
             </UserBox>}
         </SideBar>
     )

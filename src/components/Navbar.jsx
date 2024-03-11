@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 
 
 export default function Navbar({ visiblePanel, setVisiblePanel }) {
-    const { auth, setAuth } = useAuth()
+    const { state, dispatch } = useAuth()
     const { pathname } = useLocation()
     const regexMatch = pathname.match(/\/[^/]+/g)
     const titleName = pathname[1] ? regexMatch[0][1].toUpperCase() + regexMatch[0].slice(2) : 'Dashboard'
@@ -34,7 +34,7 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
                     <FaRegBell size={26} />
                 </NavLink>
                 <NavLink>
-                    {auth === '1' && <PiSignOutBold size={26} onClick={() => setAuth('0')} />}
+                    {state.isAuthenticated && <PiSignOutBold size={26} onClick={() => dispatch({ type: 'LOGOUT' })} />}
                 </NavLink>
 
             </NavIcons>

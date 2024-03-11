@@ -15,7 +15,6 @@ import NewRoomPage from "./pages/NewRoomPage"
 import NewUserPage from "./pages/NewUserPage"
 import { AuthProvider } from "./context/AuthContext"
 
-
 const appRouter = createBrowserRouter(createRoutesFromElements(
   <Route element={<Root />}>
     <Route path='/login' element={<Login />} />
@@ -37,8 +36,6 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
 ))
 
 export default function App() {
-
-
   return (
     <>
       <AuthProvider>

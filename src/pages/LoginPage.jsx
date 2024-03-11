@@ -6,7 +6,7 @@ import { Form, FormAbsolute } from '../style/FormStyled'
 import { useAuth } from "../context/AuthContext"
 
 export default function Login() {
-    const { auth, setAuth } = useAuth()
+    const { state, dispatch } = useAuth()
     const [email, setEmail] = useState('admin@example.es')
     const [pass, setPass] = useState('admin')
     const [error, setError] = useState(false)
@@ -14,15 +14,18 @@ export default function Login() {
     function handleSubmit(e) {
         e.preventDefault()
         if (email === 'admin@example.es' && pass === 'admin') {
-            setAuth('1')
-            setEmail('')
-            setPass('')
+            dispatch({
+                type: 'LOGIN', payload: {
+                    email,
+                    fullName: 'Luis Navarro'
+                }
+            })
             setError(false)
         }
         else setError(true)
     }
 
-    const result = auth === '1' ? (
+    const result = state.isAuthenticated ? (
         <Navigate to='/' />
     ) : (
         <LoginContainer>

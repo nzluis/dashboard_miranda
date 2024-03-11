@@ -1,15 +1,39 @@
 import { createContext, useContext } from "react"
-import { useLocalStorage } from "../../hooks/useLocalStorage"
+import useReducerWithLocalStorage from "../../hooks/useReducerWithLocalStorage"
 
 const AuthContext = createContext()
+const initializer = {
+    isAuthenticated: false,
+    user: null
+}
+const authReducer = (state, action) => {
+    switch (action.type) {
+        case 'LOGIN':
+            return {
+                isAuthenticated: true,
+                user: action.payload
+            }
+        case 'LOGOUT':
+            return {
+                isAuthenticated: false,
+                user: null
+            }
+        default:
+            return state
+    }
+}
 
 export function useAuth() {
     return useContext(AuthContext)
 }
 
 export function AuthProvider({ children }) {
-    const [auth, setAuth] = useLocalStorage('AUTH_KEY', '0')
-    const value = { auth, setAuth }
+    const [state, dispatch] = useReducerWithLocalStorage({
+        key: 'USER_AUTH',
+        reducer: authReducer,
+        initializer
+    })
+    const value = { state, dispatch }
 
     return (
         <AuthContext.Provider value={value}>

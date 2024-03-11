@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Root() {
     const [visiblePanel, setVisiblePanel] = useState(true)
-    const { auth } = useAuth()
+    const { state } = useAuth()
 
     return (
         <div style={{
@@ -22,8 +22,8 @@ export default function Root() {
                 'dashboard'`
 
         }}>
-            {auth === '1' && <Navbar visiblePanel={visiblePanel} setVisiblePanel={setVisiblePanel} />}
-            {visiblePanel && auth === '1' && <Panel />}
+            {state.isAuthenticated && <Navbar visiblePanel={visiblePanel} setVisiblePanel={setVisiblePanel} />}
+            {visiblePanel && state.isAuthenticated && <Panel />}
             <Outlet />
         </div>
     )
