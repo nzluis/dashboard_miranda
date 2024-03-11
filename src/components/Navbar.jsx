@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { NavBar, NavIcons } from "../style/NavbarStyled";
 import { useAuth } from "../context/AuthContext";
-
+import { Link } from 'react-router-dom'
 
 export default function Navbar({ visiblePanel, setVisiblePanel }) {
     const { state, dispatch } = useAuth()
@@ -22,7 +22,9 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
         <NavBar>
             <div>
                 {visiblePanel ? <HiOutlineBars3BottomLeft size={26} onClick={togglePanel} /> : <FaArrowRight size={26} onClick={togglePanel} />}
-                <h1>{titleName === 'Login' ? '' : titleName}</h1>
+                <Link to={titleName !== 'Dashboard' && `/${titleName.toLowerCase()}`}>
+                    <h1>{titleName === 'Login' ? '' : titleName}</h1>
+                </Link>
                 {subTitleName && <h2>{subTitleName.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}</h2>}
             </div>
             <NavIcons>
