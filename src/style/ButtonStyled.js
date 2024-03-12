@@ -6,7 +6,19 @@ export const ButtonActive = styled.button`
     border-radius: 12px;
     background-color: var(--padding-second);
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     cursor: pointer;
+`
+
+export const ButtonSecondary = styled.button`
+    background-color: white;
+    padding: 0 25px;
+    height: 45px;
+    border-radius: 12px;
+    margin: 5px 0;
+    border: 1px solid var(--padding-second);
+    color: var(--padding-second);
+    font-size: 16px;
+    font-weight: 500;
 `
