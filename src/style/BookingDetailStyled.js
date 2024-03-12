@@ -29,7 +29,7 @@ export const CheckDatesBox = styled.div`
 
 `
 export const RightSide = styled(CommonSides)`
-    background-color: var(--padding-first);
+    background-color: var(--panel-inactive);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 `
