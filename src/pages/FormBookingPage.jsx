@@ -1,9 +1,9 @@
-import { Form } from "../style/FormStyled";
+import { Form, FormRow } from "../style/FormStyled";
 import { useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
 
-export default function NewBookingPage() {
+export default function FormBookingPage() {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
     const [checkIn, setCheckIn] = useState()
@@ -11,16 +11,18 @@ export default function NewBookingPage() {
     const [request, setRequest] = useState()
     const [roomType, setRoomType] = useState()
     const [status, setStatus] = useState()
+    const [roomNumber, setRoomNumber] = useState()
 
     const newBooking = {
         id: Math.random() * 1000,
         first_name: firstName,
         last_name: lastName,
-        order_date: Date.now(),
+        order_date: new Date(Date.now()),
         check_in: checkIn,
         check_out: checkOut,
         request,
         room_type: roomType,
+        room_number: roomNumber,
         status,
     }
 
@@ -68,25 +70,35 @@ export default function NewBookingPage() {
                     />
                 </label>
                 <label htmlFor="request">Message:
-                    <input
+                    <textarea
                         value={request}
                         onChange={(e) => setRequest(e.target.value)}
                         name="request"
                         style={{ height: '125px' }}
                     />
                 </label>
-                <label htmlFor="room_type">Room Type:
-                    <select
-                        value={roomType}
-                        onChange={(e) => setRoomType(e.target.value)}
-                        name="check_out"
-                    >
-                        <option value="single_bed">Single Bed</option>
-                        <option value="double_bed">Double Bed</option>
-                        <option value="double_superior">Double Superior</option>
-                        <option value="suite">Suite</option>
-                    </select>
-                </label>
+                <FormRow>
+                    <label htmlFor="room_type">Room Type:
+                        <select
+                            value={roomType}
+                            onChange={(e) => setRoomType(e.target.value)}
+                            name="check_out"
+                        >
+                            <option value="single_bed">Single Bed</option>
+                            <option value="double_bed">Double Bed</option>
+                            <option value="double_superior">Double Superior</option>
+                            <option value="suite">Suite</option>
+                        </select>
+                    </label>
+                    <label htmlFor="room_number">Room Number:
+                        <input
+                            value={roomNumber}
+                            onChange={(e) => setRoomNumber(e.target.value)}
+                            name="room_number"
+                            type="number"
+                        />
+                    </label>
+                </FormRow>
                 <label htmlFor="status">Status:
                     <select
                         value={status}

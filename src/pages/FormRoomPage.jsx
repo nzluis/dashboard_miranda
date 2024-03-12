@@ -3,7 +3,7 @@ import { useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
 
-export default function NewRoomPage() {
+export default function FormRoomPage() {
     const [photo, setPhoto] = useState()
     const [roomNumber, setRoomNumber] = useState()
     const [roomType, setRoomType] = useState('single_bed')

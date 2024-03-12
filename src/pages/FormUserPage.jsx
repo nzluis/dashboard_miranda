@@ -3,7 +3,7 @@ import { useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
 
-export default function NewUserPage() {
+export default function FormUserPage() {
     const [photo, setPhoto] = useState()
     const [fullName, setFullName] = useState()
     const [email, setEmail] = useState()
