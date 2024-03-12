@@ -3,7 +3,7 @@ import DataTable from '../components/DataTable'
 import { useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
 import { useDispatch, useSelector } from 'react-redux';
-import { allBookingsSelector } from '../features/bookings/bookingsSlice';
+import { bookingsData } from '../features/bookings/bookingsSlice';
 import { fetchBookings } from '../features/bookings/bookingsThunk';
 import { LinearProgress } from '@mui/material';
 import { ButtonActive, ButtonSecondary } from '../style/ButtonStyled';
@@ -88,7 +88,7 @@ export default function Bookings() {
     const [selectedTab, setSelectedTab] = useState('All Bookings')
     const [orderBy, setOrderBy] = useState('order_date')
     const [fetched, setFetched] = useState(false)
-    const allBookings = useSelector(allBookingsSelector)
+    const allBookings = useSelector(bookingsData)
     const bookings = useMemo(() => {
         let bookings = selectedTab === 'All Bookings' ?
             allBookings :

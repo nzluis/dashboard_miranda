@@ -3,7 +3,7 @@ import { createBooking, deleteBookingById, fetchBookingById, fetchBookings, upda
 
 export const bookingsSlice = createSlice({
     name: 'bookings',
-    initialState: {data: [], status: 'idle', error: null},
+    initialState: {data: [], bookingById: {}, status: 'idle', error: null},
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -19,7 +19,7 @@ export const bookingsSlice = createSlice({
             //     state.bookings.error = action.error.message
             // })
             .addCase(fetchBookingById.fulfilled, (state, action) => {
-                state.data = action.payload
+                state.bookingById = action.payload
             })
             .addCase(createBooking.fulfilled, (state, action) => {
                 state.data.push(action.payload)
@@ -34,6 +34,7 @@ export const bookingsSlice = createSlice({
     }
 })
 
-export const allBookingsSelector = state => state.bookings.data
+export const bookingsData = state => state.bookings.data
+export const bookingsByIdData = state => state.bookings.bookingById
 export const allBookingsStatus = state => state.bookings.status
 export const allBookingsError = state => state.bookings.error
