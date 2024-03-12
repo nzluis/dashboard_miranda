@@ -10,9 +10,9 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import RoomDetail from "./pages/RoomDetailPage"
 import BookingDetail from "./pages/BookingDetailPage"
 import UserDetail from "./pages/UserDetailPage"
-import NewBookingPage from "./pages/NewBookingPage"
-import NewRoomPage from "./pages/NewRoomPage"
-import NewUserPage from "./pages/NewUserPage"
+import FormBookingPage from "./pages/FormBookingPage"
+import FormRoomPage from "./pages/FormRoomPage"
+import FormUserPage from "./pages/FormUserPage"
 import { AuthProvider } from "./context/AuthContext"
 import { store } from "./app/store"
 import { Provider } from 'react-redux'
@@ -24,13 +24,13 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path='/' element={<Dashboard />} />
       <Route path="rooms" element={<Rooms />} />
       <Route path="rooms/:id" element={<RoomDetail />} />
-      <Route path="rooms/new-room" element={<NewRoomPage />} />
+      <Route path="rooms/new-room" element={<FormRoomPage />} />
       <Route path="bookings" element={<Bookings />} />
       <Route path="bookings/:id" element={<BookingDetail />} />
-      <Route path="bookings/new-booking" element={<NewBookingPage />} />
+      <Route path="bookings/new-booking" element={<FormBookingPage />} />
       <Route path="users" element={<Users />} />
       <Route path="users/:id" element={<UserDetail />} />
-      <Route path="users/new-user" element={<NewUserPage />} />
+      <Route path="users/new-user" element={<FormUserPage />} />
       <Route path="contact" element={<Contact />} />
     </Route>
     <Route path="/*" element={<Navigate to='/' />}></Route>
