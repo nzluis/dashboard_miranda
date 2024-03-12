@@ -18,6 +18,11 @@ const authReducer = (state, action) => {
                 isAuthenticated: false,
                 user: null
             }
+        case 'EDIT':
+            return {
+                ...state,
+                user: action.payload
+            }
         default:
             return state
     }
