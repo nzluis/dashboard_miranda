@@ -4,10 +4,8 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 30px auto;
+    margin: 0 auto;
     width: ${props => props.width === 'login' ? '250px' : '40%'};
-
-  
     
     label {
         display: flex;
@@ -45,7 +43,7 @@ export const Form = styled.form`
 
     select {
         cursor: pointer;
-         background-color: white;
+        background-color: white;
     }
 
     input[type="file"] {
