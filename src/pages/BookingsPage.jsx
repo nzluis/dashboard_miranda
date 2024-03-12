@@ -89,7 +89,6 @@ export default function Bookings() {
     const [orderBy, setOrderBy] = useState('order_date')
     const [fetched, setFetched] = useState(false)
     const allBookings = useSelector(allBookingsSelector)
-
     const bookings = useMemo(() => {
         let bookings = selectedTab === 'All Bookings' ?
             allBookings :
@@ -103,7 +102,7 @@ export default function Bookings() {
             return 0
         })
         return bookings
-    }, [selectedTab, orderBy])
+    }, [allBookings, selectedTab, orderBy])
 
     const { pageData, currentPage, setPage } = usePaginate(bookings)
     const totalPages = Math.ceil(bookings.length / 10)
