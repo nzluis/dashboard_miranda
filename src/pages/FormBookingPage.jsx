@@ -1,25 +1,46 @@
 import { Form, FormRow } from "../style/FormStyled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
+import { useDispatch, useSelector } from "react-redux";
+import { createBooking, fetchBookingById, updateBooking } from "../features/bookings/bookingsThunk";
+import { useParams } from "react-router-dom";
+import { bookingsByIdData } from "../features/bookings/bookingsSlice";
+import { LinearProgress } from "@mui/material";
 
 export default function FormBookingPage() {
-    const [firstName, setFirstName] = useState()
-    const [lastName, setLastName] = useState()
-    const [checkIn, setCheckIn] = useState()
-    const [checkOut, setCheckOut] = useState()
-    const [request, setRequest] = useState()
-    const [roomType, setRoomType] = useState()
-    const [status, setStatus] = useState()
-    const [roomNumber, setRoomNumber] = useState()
+    const bookingData = useSelector(bookingsByIdData)
+    const [firstName, setFirstName] = useState(bookingData.first_name || undefined)
+    const [lastName, setLastName] = useState(bookingData.last_name || undefined)
+    const [checkIn, setCheckIn] = useState(bookingData.check_in || undefined)
+    const [checkOut, setCheckOut] = useState(bookingData.check_out || undefined)
+    const [request, setRequest] = useState(bookingData.request || undefined)
+    const [roomType, setRoomType] = useState(bookingData.room_type || 'Single Bed')
+    const [status, setStatus] = useState(bookingData.status || 'In Progress')
+    const [roomNumber, setRoomNumber] = useState(bookingData.room_number || undefined)
+    const dispatch = useDispatch()
+    const { id } = useParams()
+    console.log(bookingData)
+    const [fetched, setFetched] = useState(false)
+    if (id) {
+        const initialFetch = async () => {
+            await dispatch(fetchBookingById(Number(id)))
+            setFetched(true)
+        }
 
+        useEffect(() => {
+            initialFetch()
+        }, [])
+
+        if (!fetched) return <LinearProgress />
+    }
     const newBooking = {
-        id: Math.random() * 1000,
+        id: Math.round(Math.random() * 1000),
         first_name: firstName,
         last_name: lastName,
         order_date: new Date(Date.now()),
-        check_in: checkIn,
-        check_out: checkOut,
+        check_in: new Date(checkIn),
+        check_out: new Date(checkOut),
         request,
         room_type: roomType,
         room_number: roomNumber,
@@ -28,17 +49,17 @@ export default function FormBookingPage() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        alert(`
-            Booking registered successfuly:
-                ${newBooking.first_name} ${newBooking.last_name}
-                From ${newBooking.check_in} to ${newBooking.check_out}
-        `)
+        if (id) {
+            dispatch(updateBooking(newBooking))
+        } else {
+            dispatch(createBooking(newBooking))
+        }
     }
 
     return (
         <DashBoard>
             <Form>
-                <label htmlFor="firs_name">First Name:
+                <label htmlFor="first_name">First Name:
                     <input
 
                         value={firstName}
@@ -84,10 +105,10 @@ export default function FormBookingPage() {
                             onChange={(e) => setRoomType(e.target.value)}
                             name="check_out"
                         >
-                            <option value="single_bed">Single Bed</option>
-                            <option value="double_bed">Double Bed</option>
-                            <option value="double_superior">Double Superior</option>
-                            <option value="suite">Suite</option>
+                            <option value="Dingle Bed">Single Bed</option>
+                            <option value="Double Bed">Double Bed</option>
+                            <option value="Double Superior">Double Superior</option>
+                            <option value="Suite">Suite</option>
                         </select>
                     </label>
                     <label htmlFor="room_number">Room Number:
@@ -105,12 +126,12 @@ export default function FormBookingPage() {
                         onChange={(e) => setStatus(e.target.value)}
                         name="status"
                     >
-                        <option value="check_in">Check In</option>
-                        <option value="check_out">Check Out</option>
-                        <option value="in_progress">In Progress</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Check In">Check In</option>
+                        <option value="Check Out">Check Out</option>
                     </select>
                 </label>
-                <ButtonActive onClick={(e) => handleSubmit(e)}>Send</ButtonActive>
+                <ButtonActive onClick={(e) => handleSubmit(e)}>{id ? 'Edit' : 'Send'}</ButtonActive>
             </Form>
         </DashBoard>
     )

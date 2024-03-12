@@ -8,7 +8,7 @@ export const bookingsSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchBookings.fulfilled, (state, action) => {
-                state.data = action.payload
+                state.data = action.payload ? action.payload : state.data
                 // state.status = 'fulfilled'
             })
             // .addCase(fetchBookings.pending, (state) => {
@@ -25,7 +25,7 @@ export const bookingsSlice = createSlice({
                 state.data.push(action.payload)
             })
             .addCase(updateBooking.fulfilled, (state, action) => {
-                const updateBooking = state.data.find(booking => booking.id === action.payload.id)
+                let updateBooking = state.data.find(booking => booking.id === action.payload.id)
                 updateBooking = action.payload
             })
             .addCase(deleteBookingById.fulfilled, (state, action) => {

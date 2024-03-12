@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import bookings from '../../assets/data/bookings.json'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -8,9 +9,14 @@ const delay = (data, time = 200) => {
         }, 200)
     })
 }
-
+let firstFetch = false
 export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async() => {
-    return await delay(bookings)
+    if (!firstFetch) {
+        const data = await delay(bookings)
+        firstFetch = true
+        return data
+    }
+    return false
 })
 
 export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', async(id) => {

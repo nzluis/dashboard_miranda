@@ -61,7 +61,7 @@ export const Form = styled.form`
         outline: .3px solid var(--padding-second);
     }
 `
-export const FormRow = styled(Form)`
+export const FormRow = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;

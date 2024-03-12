@@ -28,6 +28,7 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path="bookings" element={<Bookings />} />
       <Route path="bookings/:id" element={<BookingDetail />} />
       <Route path="bookings/new-booking" element={<FormBookingPage />} />
+      <Route path="bookings/edit/:id" element={<FormBookingPage />} />
       <Route path="users" element={<Users />} />
       <Route path="users/:id" element={<UserDetail />} />
       <Route path="users/new-user" element={<FormUserPage />} />
