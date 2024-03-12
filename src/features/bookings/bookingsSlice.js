@@ -34,6 +34,6 @@ export const bookingsSlice = createSlice({
     }
 })
 
-export const allBookings = state => state.bookings.data
+export const allBookingsSelector = state => state.bookings.data
 export const allBookingsStatus = state => state.bookings.status
 export const allBookingsError = state => state.bookings.error
