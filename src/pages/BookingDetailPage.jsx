@@ -38,11 +38,11 @@ export default function BookingDetail() {
                 <h1>{bookingData.first_name} {bookingData.last_name}</h1>
                 <p>{bookingData.id}</p>
                 <CheckDatesBox>
-                    <CheckDatesBox insidebox>
+                    <CheckDatesBox $insidebox>
                         <h5>Check In</h5>
                         <p>{new Date(Number(bookingData.check_in)).toLocaleDateString('en-EN', options)}</p>
                     </CheckDatesBox>
-                    <CheckDatesBox insidebox>
+                    <CheckDatesBox $insidebox>
                         <h5>Check Out</h5>
                         <p>{new Date(Number(bookingData.check_out)).toLocaleDateString('en-EN', options)}</p>
                     </CheckDatesBox>

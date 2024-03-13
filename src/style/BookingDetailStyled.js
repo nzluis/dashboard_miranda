@@ -22,7 +22,7 @@ export const LeftSide = styled(CommonSides)`
 export const CheckDatesBox = styled.div`
     display: flex;
     gap: 25px;
-    ${props => props.insidebox && css`
+    ${props => props.$insidebox && css`
         flex-direction: column;
         gap: 5px
     `}
