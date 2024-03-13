@@ -4,7 +4,7 @@ export const DashBoard = styled.div`
     background-color: var(--bg-dashboard);
     overflow: scroll;
     padding: 40px 50px;
-    ${props => props.flex && css`
+    ${props => props.$flex && css`
         display: flex;
     `}
 

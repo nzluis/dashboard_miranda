@@ -33,7 +33,7 @@ export default function BookingDetail() {
     if (!fetched) return <LinearProgress />
 
     return (
-        <DashBoard flex>
+        <DashBoard $flex>
             <LeftSide>
                 <h1>{bookingData.first_name} {bookingData.last_name}</h1>
                 <p>{bookingData.id}</p>
