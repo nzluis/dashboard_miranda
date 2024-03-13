@@ -4,7 +4,7 @@ import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
 import { useDispatch, useSelector } from "react-redux";
 import { createBooking, fetchBookingById, updateBooking } from "../features/bookings/bookingsThunk";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { bookingByIdData } from "../features/bookings/bookingsSlice";
 import { LinearProgress } from "@mui/material";
 
@@ -13,6 +13,7 @@ export default function FormBookingPage() {
     const { id } = useParams()
     const [fetched, setFetched] = useState(false)
     const booking = useSelector(bookingByIdData)
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -61,6 +62,7 @@ export default function FormBookingPage() {
                 check_out: new Date(formData.check_out).getTime()
             })
         )
+        navigate('/bookings')
     }
 
     if (!fetched && id) return <LinearProgress />
