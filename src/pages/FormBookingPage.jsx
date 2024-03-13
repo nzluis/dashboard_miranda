@@ -113,7 +113,7 @@ export default function FormBookingPage() {
                         <select
                             value={formData.room_type}
                             onChange={handleChange}
-                            name="check_out"
+                            name="room_type"
                         >
                             <option value="Single Bed">Single Bed</option>
                             <option value="Double Bed">Double Bed</option>
