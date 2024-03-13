@@ -15,7 +15,7 @@ export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async() 
         firstFetch = true
         return data
     }
-    return false
+    return delay(false)
     // return await delay(bookings)
 })
 
