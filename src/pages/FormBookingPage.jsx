@@ -12,8 +12,8 @@ export default function FormBookingPage() {
     const bookingData = useSelector(bookingsByIdData)
     const [firstName, setFirstName] = useState(bookingData.first_name || undefined)
     const [lastName, setLastName] = useState(bookingData.last_name || undefined)
-    const [checkIn, setCheckIn] = useState(bookingData.check_in || undefined)
-    const [checkOut, setCheckOut] = useState(bookingData.check_out || undefined)
+    const [checkIn, setCheckIn] = useState(bookingData.check_in || Date.now())
+    const [checkOut, setCheckOut] = useState(bookingData.check_out || Date.now())
     const [request, setRequest] = useState(bookingData.request || undefined)
     const [roomType, setRoomType] = useState(bookingData.room_type || 'Single Bed')
     const [status, setStatus] = useState(bookingData.status || 'In Progress')
@@ -38,9 +38,9 @@ export default function FormBookingPage() {
         id: Math.round(Math.random() * 1000),
         first_name: firstName,
         last_name: lastName,
-        order_date: new Date(Date.now()),
-        check_in: new Date(checkIn),
-        check_out: new Date(checkOut),
+        order_date: new Date(Date.now()).getTime(),
+        check_in: new Date(checkIn).getTime(),
+        check_out: new Date(checkOut).getTime(),
         request,
         room_type: roomType,
         room_number: roomNumber,
@@ -52,6 +52,7 @@ export default function FormBookingPage() {
         if (id) {
             dispatch(updateBooking(newBooking))
         } else {
+            console.log(newBooking)
             dispatch(createBooking(newBooking))
         }
     }
