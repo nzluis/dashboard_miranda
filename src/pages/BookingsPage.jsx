@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookingsData } from '../features/bookings/bookingsSlice';
-import { fetchBookings } from '../features/bookings/bookingsThunk';
+import { deleteBookingById, fetchBookings } from '../features/bookings/bookingsThunk';
 import { LinearProgress } from '@mui/material';
 import { ButtonActive, ButtonSecondary } from '../style/ButtonStyled';
 import { useNavigate } from 'react-router-dom';
@@ -34,11 +34,11 @@ export default function Bookings() {
         },
         {
             label: 'Check In',
-            display: row => new Date(Number(row.check_in)).toDateString()
+            display: row => row.check_in.length === 10 ? new Date(new Date(row.check_in).getTime()).toDateString() : new Date(Number(row.check_in)).toDateString()
         },
         {
             label: 'Check Out',
-            display: row => new Date(Number(row.check_out)).toDateString()
+            display: row => row.check_in.length === 10 ? new Date(new Date(row.check_out).getTime()).toDateString() : new Date(Number(row.check_in)).toDateString()
         },
         {
             label: 'Special Request',
@@ -123,6 +123,9 @@ export default function Bookings() {
 
     return (
         <DashBoard>
+            <ButtonActive onClick={() => navigate("/bookings/edit/7")}>Edit 7</ButtonActive>
+            <ButtonActive onClick={() => dispatch(deleteBookingById(7))}>Delete 7</ButtonActive>
+
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {

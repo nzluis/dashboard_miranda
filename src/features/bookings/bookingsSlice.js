@@ -3,7 +3,7 @@ import { createBooking, deleteBookingById, fetchBookingById, fetchBookings, upda
 
 export const bookingsSlice = createSlice({
     name: 'bookings',
-    initialState: {data: [], bookingById: {}, status: 'idle', error: null},
+    initialState: {data: [], dataById: null, status: 'idle', error: null},
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -19,22 +19,21 @@ export const bookingsSlice = createSlice({
             //     state.bookings.error = action.error.message
             // })
             .addCase(fetchBookingById.fulfilled, (state, action) => {
-                state.bookingById = action.payload
+                state.dataById = action.payload
             })
             .addCase(createBooking.fulfilled, (state, action) => {
                 state.data.push(action.payload)
             })
             .addCase(updateBooking.fulfilled, (state, action) => {
-                let updateBooking = state.data.find(booking => booking.id === action.payload.id)
-                updateBooking = action.payload
+                state.data = action.payload
             })
             .addCase(deleteBookingById.fulfilled, (state, action) => {
-                state.data.filter(booking => booking.id !== action.payload)
+                state.data = action.payload
             })
     }
 })
 
 export const bookingsData = state => state.bookings.data
-export const bookingsByIdData = state => state.bookings.bookingById
+export const bookingByIdData = state => state.bookings.dataById
 export const allBookingsStatus = state => state.bookings.status
 export const allBookingsError = state => state.bookings.error

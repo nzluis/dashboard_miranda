@@ -5,32 +5,17 @@ import { ButtonActive } from "../style/ButtonStyled";
 import { useDispatch, useSelector } from "react-redux";
 import { createBooking, fetchBookingById, updateBooking } from "../features/bookings/bookingsThunk";
 import { useParams } from "react-router-dom";
-import { bookingsByIdData } from "../features/bookings/bookingsSlice";
+import { bookingByIdData } from "../features/bookings/bookingsSlice";
 import { LinearProgress } from "@mui/material";
 
 export default function FormBookingPage() {
     const dispatch = useDispatch()
     const { id } = useParams()
     const [fetched, setFetched] = useState(false)
-    const booking = {
-        id: Math.round(Math.random() * 1000),
-        first_name: '',
-        last_name: '',
-        order_date: new Date(Date.now()).getTime(),
-        check_in: '',
-        check_out: '',
-        request: '',
-        room_type: 'Single Bed',
-        room_number: '',
-        status: 'In Progress'
-    }
-
-
+    const booking = useSelector(bookingByIdData)
     const [formData, setFormData] = useState({
-        id: Math.round(Math.random() * 1000),
         first_name: '',
         last_name: '',
-        order_date: new Date(Date.now()).getTime(),
         check_in: '',
         check_out: '',
         request: '',
@@ -49,23 +34,36 @@ export default function FormBookingPage() {
     }, [])
 
     useEffect(() => {
-        if (id && booking) setFormData(booking)
+        if (id && booking) setFormData({
+            ...booking,
+            check_in: new Date(Number(booking.check_in)).toISOString().slice(0, 10),
+            check_out: new Date(Number(booking.check_out)).toISOString().slice(0, 10)
+        })
     }, [booking])
 
-    if (!fetched && id) return <LinearProgress />
-
     function handleChange(e) {
-        const { name, value, type } = e.target
-        if (type === 'date') setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
-        else setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
+        const { name, value } = e.target
+        setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(createBooking(formData))
+        !id ? dispatch(
+            createBooking({
+                id: Math.round(Math.random() * 1000),
+                order_date: new Date(Date.now()).getTime(),
+                ...formData
+            })
+        ) : dispatch(
+            updateBooking({
+                ...formData,
+                check_in: new Date(formData.check_in).getTime(),
+                check_out: new Date(formData.check_out).getTime()
+            })
+        )
     }
 
-    console.log(formData)
+    if (!fetched && id) return <LinearProgress />
     return (
         <DashBoard>
             <Form>

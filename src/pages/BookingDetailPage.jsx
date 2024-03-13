@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { DashBoard } from "../style/DashBoardStyled"
 import { CheckDatesBox, LeftSide, RightSide } from "../style/BookingDetailStyled"
-import { bookingsByIdData } from "../features/bookings/bookingsSlice";
+import { bookingByIdData } from "../features/bookings/bookingsSlice";
 import { useEffect, useState } from "react";
 import { fetchBookingById } from "../features/bookings/bookingsThunk";
 import { LinearProgress } from "@mui/material";
@@ -16,7 +16,7 @@ const options = {
 
 export default function BookingDetail() {
     const { id } = useParams()
-    const bookingData = useSelector(bookingsByIdData)
+    const bookingData = useSelector(bookingByIdData)
     const dispatch = useDispatch()
     const [fetched, setFetched] = useState(false)
 

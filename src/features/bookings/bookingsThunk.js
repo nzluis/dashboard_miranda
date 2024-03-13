@@ -17,6 +17,8 @@ export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async() 
         return data
     }
     return false
+    // return await delay(bookings)
+
 })
 
 export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', async(id) => {
@@ -24,13 +26,13 @@ export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', as
 })
 
 export const createBooking = createAsyncThunk('bookings/createBooking', async(newBooking) => {
-    return await delay({id: Math.round(Math.random() * 1000), ...newBooking})
+    return await delay({...newBooking})
 })
 
 export const updateBooking = createAsyncThunk('bookings/updateBooking', async(updatedBooking) => {
-    return await delay({...updatedBooking})
+    return await delay(bookings.map(booking => booking.id === updatedBooking.id ? updatedBooking : booking))
 })
 
 export const deleteBookingById = createAsyncThunk('bookings/deleteBookingById', async(id) => {
-    return await delay(id)
+    return await delay(bookings.filter(booking => booking.id !== id))
 })
