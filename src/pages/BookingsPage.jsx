@@ -73,6 +73,20 @@ export default function Bookings() {
         }
     ]
 
+    const deleteBooking = (e, booking) => {
+        e.stopPropagation()
+        dispatch(deleteBookingById(booking.id))
+    }
+
+    const editBooking = (e, booking) => {
+        e.stopPropagation()
+        navigate(`/bookings/edit/${booking.id}`)
+    }
+
+    const actions = [
+        { name: 'Delete', handler: deleteBooking },
+        { name: 'Edit', handler: editBooking },
+    ]
     const [open, setOpen] = useState(false);
     const handleOpen = (e, message) => {
         e.stopPropagation()
@@ -145,7 +159,7 @@ export default function Bookings() {
                     </SelectOrder>
                 </ButtonsContainer>
             </TopMenu>
-            {fetched ? <DataTable data={pageData} columns={columns} /> : <LinearProgress />}
+            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} /> : <LinearProgress />}
             <PaginationContainer>
                 {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
                 <Pages>

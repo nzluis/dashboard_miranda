@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const StyledTable = styled.table`
     width: 100%;
@@ -97,10 +97,25 @@ export const StyledTableBody = styled.tbody`
             .moreLines {
                 max-width: 400px;
             }
+
+            svg {
+                &:nth-of-type(1) {
+                    color: var(--hg-yellow)
+                }
+                &:nth-of-type(2) {
+                    color: var(--padding-first);
+                }
+            }
         }
     }
 
     tr:hover {
         box-shadow: 0 4px 30px #00000014;
     }
+`
+
+export const TdActions = styled.td`
+    display: flex;
+    justify-content: space-between;
+    
 `
