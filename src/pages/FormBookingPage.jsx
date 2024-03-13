@@ -47,22 +47,22 @@ export default function FormBookingPage() {
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
-        !id ? dispatch(
+        !id ? await dispatch(
             createBooking({
                 id: Math.round(Math.random() * 1000),
                 order_date: new Date(Date.now()).getTime(),
                 ...formData
             })
-        ) : dispatch(
+        ).unwrap() : await dispatch(
             updateBooking({
                 ...formData,
                 check_in: new Date(formData.check_in).getTime(),
                 check_out: new Date(formData.check_out).getTime()
             })
-        )
-        navigate('/bookings')
+        ).unwrap()
+            .then(navigate('/bookings'))
     }
 
     if (!fetched && id) return <LinearProgress />
