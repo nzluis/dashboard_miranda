@@ -100,11 +100,14 @@ export const StyledTableBody = styled.tbody`
 
             svg {
                 &:nth-of-type(1) {
-                    color: var(--hg-yellow)
+                    color: var(--padding-second)
                 }
                 &:nth-of-type(2) {
                     color: var(--padding-first);
                 }
+            }
+            svg:hover {
+                transform: scale(1.1);
             }
         }
     }
