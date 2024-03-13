@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import bookings from '../../assets/data/bookings.json'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -18,11 +17,10 @@ export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async() 
     }
     return false
     // return await delay(bookings)
-
 })
 
 export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', async(id) => {
-    return await delay(bookings.find(booking => booking.id === id))
+    return await delay(id)
 })
 
 export const createBooking = createAsyncThunk('bookings/createBooking', async(newBooking) => {
@@ -30,9 +28,9 @@ export const createBooking = createAsyncThunk('bookings/createBooking', async(ne
 })
 
 export const updateBooking = createAsyncThunk('bookings/updateBooking', async(updatedBooking) => {
-    return await delay(bookings.map(booking => booking.id === updatedBooking.id ? updatedBooking : booking))
+    return await delay({...updatedBooking})
 })
 
 export const deleteBookingById = createAsyncThunk('bookings/deleteBookingById', async(id) => {
-    return await delay(bookings.filter(booking => booking.id !== id))
+    return await delay(id)
 })

@@ -122,7 +122,7 @@ export default function Bookings() {
     const totalPages = Math.ceil(bookings.length / 10)
 
     const initialFetch = async () => {
-        await dispatch(fetchBookings())
+        await dispatch(fetchBookings()).unwrap()
         setFetched(true)
     }
 
@@ -137,9 +137,6 @@ export default function Bookings() {
 
     return (
         <DashBoard>
-            <ButtonActive onClick={() => navigate("/bookings/edit/7")}>Edit 7</ButtonActive>
-            <ButtonActive onClick={() => dispatch(deleteBookingById(7))}>Delete 7</ButtonActive>
-
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
