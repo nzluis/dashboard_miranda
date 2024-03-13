@@ -38,7 +38,7 @@ export default function Bookings() {
         },
         {
             label: 'Check Out',
-            display: row => row.check_in.length === 10 ? new Date(new Date(row.check_out).getTime()).toDateString() : new Date(Number(row.check_in)).toDateString()
+            display: row => row.check_in.length === 10 ? new Date(new Date(row.check_out).getTime()).toDateString() : new Date(Number(row.check_out)).toDateString()
         },
         {
             label: 'Special Request',
