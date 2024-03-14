@@ -5,7 +5,7 @@ const delay = (data, time = 200) => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(data)
-        }, 200)
+        }, time)
     })
 }
 let firstFetch = false
@@ -23,12 +23,8 @@ export const fetchContactById = createAsyncThunk('contacts/fetchContactById', as
     return await delay(id)
 })
 
-export const createContact = createAsyncThunk('contacts/createContact', async(newContact) => {
-    return await delay({...newContact})
-})
-
 export const updateContact = createAsyncThunk('contacts/updateContact', async(updatedContact) => {
-    return await delay({...updatedContact})
+    return await delay({...updatedContact}, 1000)
 })
 
 export const deleteContactById = createAsyncThunk('contacts/deleteContactById', async(id) => {

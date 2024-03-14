@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createContact, deleteContactById, fetchContactById, fetchContacts, updateContact } from "./contactsThunk";
+import { deleteContactById, fetchContactById, fetchContacts, updateContact } from "./contactsThunk";
 
 export const contactsSlice = createSlice({
     name: 'contacts',
@@ -27,17 +27,6 @@ export const contactsSlice = createSlice({
             })
             .addCase(fetchContactById.fulfilled, (state, action) => {
                 state.dataById = state.data.find(contact => contact.id === action.payload)
-                state.status = 'fulfilled'
-            })
-            .addCase(createContact.pending, (state, action) => {
-                state.status = 'pending'
-            })
-            .addCase(createContact.rejected, (state, action) => {
-                state.status = 'rejected'
-                state.error = action.error.message
-            })
-            .addCase(createContact.fulfilled, (state, action) => {
-                state.data.push(action.payload)
                 state.status = 'fulfilled'
             })
             .addCase(updateContact.pending, (state, action) => {
