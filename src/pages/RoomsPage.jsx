@@ -154,7 +154,7 @@ export default function Rooms() {
                     </SelectOrder>
                 </ButtonsContainer>
             </TopMenu>
-            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} position={'bottom'} $noPointer /> : <LinearProgress />}
+            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} position={'bottom'} noPointer /> : <LinearProgress />}
             <PaginationContainer>
                 {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
                 <Pages>

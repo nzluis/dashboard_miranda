@@ -14,7 +14,7 @@ export default function DataTable({ data, columns, actions, position, noPointer 
                 </tr>
             </StyledTableHead>
 
-            <StyledTableBody $position={position} $noPointer>
+            <StyledTableBody $position={position} $noPointer={noPointer}>
                 {data.map((row, index) => {
                     return (
                         <tr key={index} onClick={() => pathname === '/bookings' && navigate(`${pathname}/${row.id}`)}>

@@ -135,7 +135,7 @@ function Users() {
                     </SelectOrder>
                 </ButtonsContainer>
             </TopMenu>
-            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} /> : <LinearProgress />}
+            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} noPointer /> : <LinearProgress />}
             <PaginationContainer>
                 {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
                 <Pages>

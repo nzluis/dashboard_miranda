@@ -147,7 +147,7 @@ function Contact() {
                 </TabsContainer>
             </TopMenu>
             {editing ? <Box sx={{ position: "absolute", left: '50%', top: '50%', transform: 'translate(-50%,-50%)' }}><CircularProgress /></Box> : ''}
-            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} $noPointer /> : <LinearProgress />}
+            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} noPointer /> : <LinearProgress />}
             <PaginationContainer>
                 {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
                 <Pages>
