@@ -12,7 +12,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(fetchBookings.rejected, (state, action) => {
                 state.status = 'rejected'
-                state.bookings.error = action.error.message
+                state.error = action.error.message
             })
             .addCase(fetchBookings.fulfilled, (state, action) => {
                 state.data = action.payload ? action.payload : state.data
@@ -23,7 +23,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(fetchBookingById.rejected, (state, action) => {
                 state.status = 'rejected'
-                state.bookings.error = action.error.message
+                state.error = action.error.message
             })
             .addCase(fetchBookingById.fulfilled, (state, action) => {
                 state.dataById = state.data.find(booking => booking.id === action.payload)
@@ -34,7 +34,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(createBooking.rejected, (state, action) => {
                 state.status = 'rejected'
-                state.bookings.error = action.error.message
+                state.error = action.error.message
             })
             .addCase(createBooking.fulfilled, (state, action) => {
                 state.data.push(action.payload)
@@ -45,7 +45,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(updateBooking.rejected, (state, action) => {
                 state.status = 'rejected'
-                state.bookings.error = action.error.message
+                state.error = action.error.message
             })
             .addCase(updateBooking.fulfilled, (state, action) => {
                 state.data = state.data.map(booking => booking.id === action.payload.id ? action.payload : booking)
@@ -56,7 +56,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(deleteBookingById.rejected, (state, action) => {
                 state.status = 'rejected'
-                state.bookings.error = action.error.message
+                state.error = action.error.message
             })
             .addCase(deleteBookingById.fulfilled, (state, action) => {
                 state.data = state.data.filter(booking => booking.id !== action.payload)
@@ -68,4 +68,4 @@ export const bookingsSlice = createSlice({
 export const bookingsData = state => state.bookings.data
 export const bookingByIdData = state => state.bookings.dataById
 export const bookingsStatus = state => state.bookings.status
-export const bookingsError = state => state.bookings.error
+export const bookingsError = state => state.error
