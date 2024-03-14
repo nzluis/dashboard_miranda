@@ -1,8 +1,15 @@
-import rooms from '../assets/data/rooms.json'
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from "../components/DataTable"
 import { useNavigate } from 'react-router-dom'
-import { ButtonActive } from '../style/ButtonStyled'
+import { ButtonActive, ButtonSecondary } from '../style/ButtonStyled'
+import { useEffect, useMemo, useState } from 'react'
+import { roomsData } from '../features/rooms/roomsSlice'
+import usePaginate from '../../hooks/usePaginate'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchRooms } from '../features/rooms/roomsThunk'
+import { ButtonsContainer, SelectOrder, Tab, TabsContainer, TopMenu } from '../style/TopMenuStyled'
+import { LinearProgress } from '@mui/material'
+import { Page, PageSelected, Pages, PaginationContainer } from '../style/PaginatorStyled'
 
 export default function Rooms() {
     const navigate = useNavigate()
@@ -78,10 +85,89 @@ export default function Rooms() {
         { name: 'Delete', handler: deleteRoom },
         { name: 'Edit', handler: editRoom },
     ]
+
+
+    const tabs = ['All Rooms', 'Available', 'Booked']
+    const orderTags = ['low_to_high', 'high_to_low']
+    const [selectedTab, setSelectedTab] = useState('All Rooms')
+    const [orderBy, setOrderBy] = useState('low_to_high')
+    const [fetched, setFetched] = useState(false)
+    const dispatch = useDispatch()
+    const allRooms = useSelector(roomsData)
+    const rooms = useMemo(() => {
+        let rooms = selectedTab === 'All Rooms' ?
+            allRooms :
+            allRooms.filter(booking => booking.status === selectedTab)
+        rooms = [...rooms].sort((a, b) => {
+            if (orderBy === 'high_to_low') {
+                if (a["price"] < b["price"]) {
+                    return 1
+                } else if (a["price"] > b["price"]) {
+                    return -1;
+                }
+                return 0
+            }
+            if (a["price"] > b["price"]) {
+                return 1
+            } else if (a["price"] < b["price"]) {
+                return -1;
+            }
+            return 0
+        })
+        return rooms
+    }, [allRooms, selectedTab, orderBy])
+
+    const { pageData, currentPage, setPage } = usePaginate(rooms)
+    const totalPages = Math.ceil(rooms.length / 10)
+
+    const initialFetch = async () => {
+        await dispatch(fetchRooms()).unwrap()
+        setFetched(true)
+    }
+
+    useEffect(() => {
+        initialFetch()
+    }, [])
+
+    function handleTab(tab) {
+        setPage(1)
+        setSelectedTab(tab)
+    }
+
     return (
         <DashBoard>
-            <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/rooms/new-room')}>+ New Room</ButtonActive>
-            <DataTable data={rooms} columns={columns} actions={actions} position={'bottom'} $noPointer />
+            <TopMenu>
+                <TabsContainer>
+                    {tabs.map((tab, index) => {
+                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab}</Tab>
+                    })}
+                </TabsContainer>
+                <ButtonsContainer>
+                    <ButtonActive onClick={() => navigate('/rooms/new-room')}>+ New Room</ButtonActive>
+                    <SelectOrder onChange={(e) => setOrderBy(e.target.value)}>
+                        {orderTags.map((tag, index) => {
+                            return <option
+                                key={index + 1}
+                                value={tag}>
+                                Price: {tag.split('_').map(element => element[0].toUpperCase() + element.slice(1)).join(' ')}
+                            </option>
+                        })}
+                    </SelectOrder>
+                </ButtonsContainer>
+            </TopMenu>
+            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} position={'bottom'} $noPointer /> : <LinearProgress />}
+            <PaginationContainer>
+                {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
+                <Pages>
+                    {[...Array(totalPages).keys()].map((page, index) => {
+                        if (currentPage === page + 1) {
+                            return <PageSelected key={index} onClick={() => setPage(page + 1)}>{page + 1}</PageSelected>
+                        }
+                        return <Page key={index} onClick={() => setPage(page + 1)}>{page + 1}</Page>
+                    })}
+                </Pages>
+                {currentPage < totalPages && <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary>}
+            </PaginationContainer>
         </DashBoard>
 
     )
