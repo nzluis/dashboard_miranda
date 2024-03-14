@@ -54,7 +54,11 @@ export default function Bookings() {
         },
         {
             label: 'Room Type',
-            property: 'room_type'
+            display: row =>
+                <>
+                    <p>{row.room_type}</p>
+                    <p>{row.room_number}</p>
+                </>
         },
         {
             label: 'Status',

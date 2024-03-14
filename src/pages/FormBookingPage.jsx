@@ -26,7 +26,7 @@ export default function FormBookingPage() {
     })
 
     const initialFetch = async () => {
-        await dispatch(fetchBookingById(Number(id))).unwrap()
+        await dispatch(fetchBookingById(id)).unwrap()
         setFetched(true)
     }
 

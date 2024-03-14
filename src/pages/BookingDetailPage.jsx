@@ -22,7 +22,7 @@ export default function BookingDetail() {
 
 
     const initialFetch = async () => {
-        await dispatch(fetchBookingById(Number(id)))
+        await dispatch(fetchBookingById(id))
         setFetched(true)
     }
 
