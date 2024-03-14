@@ -22,7 +22,7 @@ export default function Bookings() {
             display: row =>
                 <div>
                     <p>{row.first_name}{' '}{row.last_name}</p>
-                    <p className='panelColor'># {row.id}</p>
+                    <p className='panelColor'># {row.id.slice(0, 8)}</p>
                 </div>
         },
         {
