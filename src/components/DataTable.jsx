@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { StyledTable, StyledTableBody, StyledTableHead } from "../style/TableStyled"
+import { StyledTable, StyledTableBody, StyledTableHead, TdActions } from "../style/TableStyled"
+import { FiEdit, FiXCircle } from "react-icons/fi";
 
-export default function DataTable({ data, columns, position, noPointer }) {
+export default function DataTable({ data, columns, actions, position, noPointer }) {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     return (
@@ -9,13 +10,14 @@ export default function DataTable({ data, columns, position, noPointer }) {
             <StyledTableHead>
                 <tr>
                     {columns.map((column, index) => <th key={index}>{column.label}</th>)}
+                    {actions ? <th>Edit/Del</th> : null}
                 </tr>
             </StyledTableHead>
 
-            <StyledTableBody position={position} noPointer={noPointer}>
+            <StyledTableBody $position={position} $noPointer={noPointer}>
                 {data.map((row, index) => {
                     return (
-                        <tr key={index} onClick={() => pathname !== '/contact' && navigate(`${pathname}/${row.id}`)}>
+                        <tr key={index} onClick={() => pathname === '/bookings' && navigate(`${pathname}/${row.id}`)}>
                             {columns.map((column, i) => {
                                 return (
                                     <td key={i}  >
@@ -23,6 +25,14 @@ export default function DataTable({ data, columns, position, noPointer }) {
                                     </td>
                                 )
                             })}
+                            {actions ?
+                                <TdActions>
+                                    <FiEdit size={26} onClick={(e) => actions[1].handler(e, row)} />
+                                    <FiXCircle size={26} onClick={(e) => actions[0].handler(e, row)} />
+                                </TdActions>
+                                :
+                                null
+                            }
                         </tr>
                     )
                 })}

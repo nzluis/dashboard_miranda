@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const StyledTable = styled.table`
     width: 100%;
@@ -31,12 +31,12 @@ export const StyledTableBody = styled.tbody`
         font-weight: 400;
         color: var(--black-primary);
         line-height: 25px;
-        cursor:${props => props.noPointer ? 'default' : 'pointer'};
+        cursor:${props => props.$noPointer ? 'default' : 'pointer'};
         
         td {
             padding: 20px 7px;
             &:not(:first-child) {
-                vertical-align: ${props => props.position === 'bottom' ? 'bottom' : 'top' }
+                vertical-align: ${props => props.$position === 'bottom' ? 'bottom' : 'top' }
             }
             
             &:first-child{
@@ -97,10 +97,29 @@ export const StyledTableBody = styled.tbody`
             .moreLines {
                 max-width: 400px;
             }
+
+            svg {
+                cursor: pointer;
+                &:nth-of-type(1) {
+                    color: var(--padding-second)
+                }
+                &:nth-of-type(2) {
+                    color: var(--padding-first);
+                }
+            }
+            svg:hover {
+                transform: scale(1.1);
+            }
         }
     }
 
     tr:hover {
         box-shadow: 0 4px 30px #00000014;
     }
+`
+
+export const TdActions = styled.td`
+    display: flex;
+    justify-content: space-between;
+    
 `

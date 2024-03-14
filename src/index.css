@@ -33,10 +33,6 @@ a {
     cursor: pointer;
 }
 
-.iconPointer {
-  cursor: pointer
-}
-
 input[type=text] {   
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -56,4 +52,21 @@ input[type=text] {
 .LinkActive{
   color: var(--padding-first);
   font-weight: bolder;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

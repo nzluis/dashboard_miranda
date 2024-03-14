@@ -1,9 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const DashBoard = styled.div`
-background-color: var(--bg-dashboard);
-overflow: scroll;
-padding: 40px 50px;
+    background-color: var(--bg-dashboard);
+    overflow: scroll;
+    padding: 40px 50px;
+    ${props => props.$flex && css`
+        display: flex;
+    `}
+
 `
 export const PinkBox = styled.div`
     width: 65px;

@@ -1,17 +1,18 @@
-import { useContext } from "react"
-import { AuthContext } from "../App"
-import { NavLink, useLocation, useParams } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { PiSignOutBold } from "react-icons/pi";
 import { FaRegEnvelope, FaRegBell } from "react-icons/fa";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
+import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { NavBar, NavIcons } from "../style/NavbarStyled";
-
+import { useAuth } from "../context/AuthContext";
+import { Link } from 'react-router-dom'
 
 export default function Navbar({ visiblePanel, setVisiblePanel }) {
-    const { auth, setAuth } = useContext(AuthContext)
+    const { state, dispatch } = useAuth()
     const { pathname } = useLocation()
-    const titleName = pathname[1] ? pathname.match(/\/[^/]+/)[0] : false
-    const { id } = useParams()
+    const regexMatch = pathname.match(/\/[^/]+/g)
+    const titleName = pathname[1] ? regexMatch[0][1].toUpperCase() + regexMatch[0].slice(2) : 'Dashboard'
+    const subTitleName = regexMatch !== null && regexMatch[1] ? regexMatch[1].replace('-', ' ').slice(1) : false
 
     function togglePanel() {
         setVisiblePanel(prev => !prev)
@@ -20,9 +21,11 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
     return (
         <NavBar>
             <div>
-                {visiblePanel ? <FaArrowLeft size={26} onClick={togglePanel} /> : <FaArrowRight size={26} onClick={togglePanel} />}
-                <h1>{titleName && titleName[1].toUpperCase() + titleName.slice(2)}</h1>
-                {id && <h2># {id}</h2>}
+                {visiblePanel ? <HiOutlineBars3BottomLeft size={26} onClick={togglePanel} /> : <FaArrowRight size={26} onClick={togglePanel} />}
+                <Link to={titleName !== 'Dashboard' && `/${titleName.toLowerCase()}`}>
+                    <h1>{titleName === 'Login' ? '' : titleName}</h1>
+                </Link>
+                {subTitleName && <h2>{subTitleName.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}</h2>}
             </div>
             <NavIcons>
                 <NavLink to="/contact" >
@@ -33,7 +36,7 @@ export default function Navbar({ visiblePanel, setVisiblePanel }) {
                     <FaRegBell size={26} />
                 </NavLink>
                 <NavLink>
-                    {auth === '1' && <PiSignOutBold size={26} onClick={() => setAuth('0')} />}
+                    {state.isAuthenticated && <PiSignOutBold size={26} onClick={() => dispatch({ type: 'LOGOUT' })} />}
                 </NavLink>
 
             </NavIcons>
