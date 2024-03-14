@@ -12,7 +12,7 @@ import usePaginate from '../../hooks/usePaginate';
 import { Pages, PaginationContainer, Page, PageSelected } from '../style/PaginatorStyled';
 import { usersData } from '../features/users/usersSlice';
 import { LinearProgress } from '@mui/material';
-import { fetchUsers } from '../features/users/usersThunk';
+import { deleteUserById, fetchUsers } from '../features/users/usersThunk';
 
 function Users() {
     const columns = [
@@ -39,7 +39,10 @@ function Users() {
         },
         {
             label: 'Contact',
-            property: 'phone'
+            display: row =>
+                <div>
+                    {row.phone}
+                </div>
         },
         {
             label: 'Status',
