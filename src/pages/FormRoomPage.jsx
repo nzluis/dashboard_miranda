@@ -162,6 +162,24 @@ export default function FormRoomPage() {
                         </select>
                     </label>
                 </FormRow>
+                <label htmlFor="description">Description:
+                    <textarea
+                        value={formData.description}
+                        onChange={handleChange}
+                        name="description"
+                        id="description"
+                        style={{ height: '125px' }}
+                    />
+                </label>
+                <label htmlFor="cancelation">Cancelation Policy:
+                    <textarea
+                        value={formData.cancelation}
+                        onChange={handleChange}
+                        name="cancelation"
+                        id="cancelation"
+                        style={{ height: '80px' }}
+                    />
+                </label>
                 <ButtonActive onClick={(e) => handleSubmit(e)}>{id ? 'Edit Room' : 'Create Room'}</ButtonActive>
             </Form>
         </DashBoard>
