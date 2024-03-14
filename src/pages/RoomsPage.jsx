@@ -114,7 +114,6 @@ export default function Rooms() {
             }
             return 0
         })
-        return rooms
     }, [allRooms, selectedTab, orderBy])
 
     const { pageData, currentPage, setPage } = usePaginate(rooms)

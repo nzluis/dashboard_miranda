@@ -119,7 +119,6 @@ export default function Bookings() {
             }
             return 0
         })
-        return bookings
     }, [allBookings, selectedTab, orderBy])
 
     const { pageData, currentPage, setPage } = usePaginate(bookings)
