@@ -1,8 +1,16 @@
 import contacts from '../assets/data/contacts.json'
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from "../components/DataTable"
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
+import { useDispatch, useSelector } from 'react-redux';
+import { contactsData } from '../features/contacts/contactsSlice';
+import usePaginate from '../../hooks/usePaginate';
+import { deleteContactById, fetchContacts, updateContact } from '../features/contacts/contactsThunk';
+import { Tab, TabsContainer, TopMenu } from '../style/TopMenuStyled';
+import { Page, PageSelected, Pages, PaginationContainer } from '../style/PaginatorStyled';
+import { Box, CircularProgress, LinearProgress } from '@mui/material';
+import { ButtonSecondary } from '../style/ButtonStyled';
 
 function Contact() {
     const [open, setOpen] = useState(false);
@@ -13,6 +21,11 @@ function Contact() {
     }
     const handleClose = () => setOpen(false);
     const [selectedNote, setSelectedNote] = useState('')
+    const tabs = ['All Messages', 'Read', 'Unread']
+    const [selectedTab, setSelectedTab] = useState('All Messages')
+    const [fetched, setFetched] = useState(false)
+    const [editing, setEditing] = useState(false)
+    const dispatch = useDispatch()
     const columns = [
         {
             label: 'ID',
@@ -67,9 +80,86 @@ function Contact() {
         }
     ]
 
+    const deleteContact = (e, contact) => {
+        e.stopPropagation()
+        dispatch(deleteContactById(contact.id))
+    }
+
+    const editContact = async (e, contact) => {
+        e.stopPropagation()
+        setEditing(true)
+        await dispatch(updateContact({
+            ...contact,
+            status: contact.status === 'Read' ? 'Unread' : 'Read'
+        })).unwrap()
+
+    }
+
+    const actions = [
+        { name: 'Delete', handler: deleteContact },
+        { name: 'Edit', handler: editContact },
+    ]
+
+    const allContacts = useSelector(contactsData)
+    const contacts = useMemo(() => {
+        const contacts = selectedTab === 'All Messages' ?
+            allContacts :
+            allContacts.filter(contact => contact.status === selectedTab)
+        return [...contacts].sort((a, b) => {
+            if (a["date"] < b["date"]) {
+                return 1
+            } else if (a["date"] > b["date"]) {
+                return -1;
+            }
+            return 0
+        })
+    }, [allContacts, selectedTab])
+
+
+    const { pageData, currentPage, setPage } = usePaginate(contacts)
+    const totalPages = Math.ceil(contacts.length / 10)
+
+    const initialFetch = async () => {
+        await dispatch(fetchContacts()).unwrap()
+        setFetched(true)
+    }
+
+    useEffect(() => {
+        if (editing) setEditing(false)
+    }, [contacts])
+
+    useEffect(() => {
+        initialFetch()
+    }, [])
+
+    function handleTab(tab) {
+        setPage(1)
+        setSelectedTab(tab)
+    }
+
     return (
         <DashBoard>
-            <DataTable data={contacts} columns={columns} noPointer="true" />
+            <TopMenu>
+                <TabsContainer>
+                    {tabs.map((tab, index) => {
+                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab}</Tab>
+                    })}
+                </TabsContainer>
+            </TopMenu>
+            {editing ? <Box sx={{ position: "absolute", left: '50%', top: '50%', transform: 'translate(-50%,-50%)' }}><CircularProgress /></Box> : ''}
+            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} $noPointer /> : <LinearProgress />}
+            <PaginationContainer>
+                {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
+                <Pages>
+                    {[...Array(totalPages).keys()].map((page, index) => {
+                        if (currentPage === page + 1) {
+                            return <PageSelected key={index} onClick={() => setPage(page + 1)}>{page + 1}</PageSelected>
+                        }
+                        return <Page key={index} onClick={() => setPage(page + 1)}>{page + 1}</Page>
+                    })}
+                </Pages>
+                {currentPage < totalPages && <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary>}
+            </PaginationContainer>
             <ModalComponent open={open} handleClose={handleClose} selectedNote={selectedNote} />
         </DashBoard>
     )
