@@ -5,7 +5,7 @@ const delay = (data, time = 200) => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(data)
-        }, 200)
+        }, time)
     })
 }
 let firstFetch = false
