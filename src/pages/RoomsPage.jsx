@@ -14,7 +14,7 @@ export default function Rooms() {
                 <div style={{ display: 'flex', gap: '5px' }}>
                     <img src={row.photo} />
                     <div>
-                        <p className='panelColor'># {row.id}</p>
+                        <p className='panelColor'># {row.id.slice(0, 8)}</p>
                         {row.room_number}
                     </div>
                 </div>
@@ -27,7 +27,7 @@ export default function Rooms() {
             label: 'Amenities',
             display: row =>
                 <div className='twoLines'>
-                    <p>{row.amenities.slice(0, 65)}</p>
+                    <p>{row.amenities.toString().slice(0, 21) + '...'}</p>
                 </div>
         },
         {
@@ -41,7 +41,11 @@ export default function Rooms() {
             label: 'Offer',
             display: row =>
                 <div>
-                    <span className='highlight'>{row.offer_price}</span><span className='panelColor'>/Night</span>
+                    {row.offer ?
+                        <><span className='highlight'>{Math.round(Number(row.price) * (1 - Number(row.discount) / 100))}</span><span className='panelColor'>/Night</span></>
+                        :
+                        <span className='highlight'>Not now</span>
+                    }
                 </div>
         },
         {
@@ -59,10 +63,25 @@ export default function Rooms() {
                 </>
         },
     ]
+
+    const deleteRoom = (e, room) => {
+        e.stopPropagation()
+        dispatch(deleteRoomById(room.id))
+    }
+
+    const editRoom = (e, room) => {
+        e.stopPropagation()
+        navigate(`/rooms/edit/${room.id}`)
+    }
+
+    const actions = [
+        { name: 'Delete', handler: deleteRoom },
+        { name: 'Edit', handler: editRoom },
+    ]
     return (
         <DashBoard>
             <ButtonActive style={{ marginBottom: '20px' }} onClick={() => navigate('/rooms/new-room')}>+ New Room</ButtonActive>
-            <DataTable data={rooms} columns={columns} position={'bottom'} />
+            <DataTable data={rooms} columns={columns} actions={actions} position={'bottom'} $noPointer />
         </DashBoard>
 
     )

@@ -99,6 +99,7 @@ export const StyledTableBody = styled.tbody`
             }
 
             svg {
+                cursor: pointer;
                 &:nth-of-type(1) {
                     color: var(--padding-second)
                 }
