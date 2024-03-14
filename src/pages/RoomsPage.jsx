@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { roomsData } from '../features/rooms/roomsSlice'
 import usePaginate from '../../hooks/usePaginate'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchRooms } from '../features/rooms/roomsThunk'
+import { deleteRoomById, fetchRooms } from '../features/rooms/roomsThunk'
 import { ButtonsContainer, SelectOrder, Tab, TabsContainer, TopMenu } from '../style/TopMenuStyled'
 import { LinearProgress } from '@mui/material'
 import { Page, PageSelected, Pages, PaginationContainer } from '../style/PaginatorStyled'
@@ -41,7 +41,7 @@ export default function Rooms() {
             label: 'Price',
             display: row =>
                 <div>
-                    <span className='highlight'>{row.price}</span><span className='panelColor'>/Night</span>
+                    <span className='highlight'>{Number(row.price)}€</span><span className='panelColor'>/Night</span>
                 </div>
         },
         {
@@ -49,7 +49,7 @@ export default function Rooms() {
             display: row =>
                 <div>
                     {row.offer ?
-                        <><span className='highlight'>{Math.round(Number(row.price) * (1 - Number(row.discount) / 100))}</span><span className='panelColor'>/Night</span></>
+                        <><span className='highlight'>{Math.round(Number(row.price) * (1 - Number(row.discount) / 100))}€</span><span className='panelColor'>/Night</span></>
                         :
                         <span className='highlight'>Not now</span>
                     }
