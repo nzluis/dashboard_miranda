@@ -16,7 +16,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(fetchBookings.fulfilled, (state, action) => {
                 state.data = action.payload ? action.payload : state.data
-                // state.status = 'fulfilled'
+                state.status = 'fulfilled'
             })
             .addCase(fetchBookingById.pending, (state, action) => {
                 state.status = 'pending'
@@ -27,6 +27,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(fetchBookingById.fulfilled, (state, action) => {
                 state.dataById = state.data.find(booking => booking.id === action.payload)
+                state.status = 'fulfilled'
             })
             .addCase(createBooking.pending, (state, action) => {
                 state.status = 'pending'
@@ -37,6 +38,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(createBooking.fulfilled, (state, action) => {
                 state.data.push(action.payload)
+                state.status = 'fulfilled'
             })
             .addCase(updateBooking.pending, (state, action) => {
                 state.status = 'pending'
@@ -47,6 +49,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(updateBooking.fulfilled, (state, action) => {
                 state.data = state.data.map(booking => booking.id === action.payload.id ? action.payload : booking)
+                state.status = 'fulfilled'
             })
             .addCase(deleteBookingById.pending, (state, action) => {
                 state.status = 'pending'
@@ -57,6 +60,7 @@ export const bookingsSlice = createSlice({
             })
             .addCase(deleteBookingById.fulfilled, (state, action) => {
                 state.data = state.data.filter(booking => booking.id !== action.payload)
+                state.status = 'fulfilled'
             })
     }
 })
