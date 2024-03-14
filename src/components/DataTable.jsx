@@ -10,7 +10,7 @@ export default function DataTable({ data, columns, actions, position, noPointer 
             <StyledTableHead>
                 <tr>
                     {columns.map((column, index) => <th key={index}>{column.label}</th>)}
-                    {actions ? <th>Actions</th> : null}
+                    {actions ? <th>Edit/Del</th> : null}
                 </tr>
             </StyledTableHead>
 

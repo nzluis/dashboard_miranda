@@ -25,6 +25,7 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path="rooms" element={<Rooms />} />
       <Route path="rooms/:id" element={<RoomDetail />} />
       <Route path="rooms/new-room" element={<FormRoomPage />} />
+      <Route path="rooms/edit/:id" element={<FormRoomPage />} />
       <Route path="bookings" element={<Bookings />} />
       <Route path="bookings/:id" element={<BookingDetail />} />
       <Route path="bookings/new-booking" element={<FormBookingPage />} />
@@ -32,7 +33,9 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path="users" element={<Users />} />
       <Route path="users/:id" element={<UserDetail />} />
       <Route path="users/new-user" element={<FormUserPage />} />
+      <Route path="users/edit/:id" element={<FormUserPage />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="contact/edit/:id" element={<Contact />} />
     </Route>
     <Route path="/*" element={<Navigate to='/' />}></Route>
   </Route>

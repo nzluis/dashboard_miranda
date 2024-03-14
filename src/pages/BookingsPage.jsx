@@ -22,7 +22,7 @@ export default function Bookings() {
             display: row =>
                 <div>
                     <p>{row.first_name}{' '}{row.last_name}</p>
-                    <p className='panelColor'># {row.id}</p>
+                    <p className='panelColor'># {row.id.slice(0, 8)}</p>
                 </div>
         },
         {
@@ -54,7 +54,11 @@ export default function Bookings() {
         },
         {
             label: 'Room Type',
-            property: 'room_type'
+            display: row =>
+                <>
+                    <p>{row.room_type}</p>
+                    <p>{row.room_number}</p>
+                </>
         },
         {
             label: 'Status',
@@ -104,10 +108,10 @@ export default function Bookings() {
     const [fetched, setFetched] = useState(false)
     const allBookings = useSelector(bookingsData)
     const bookings = useMemo(() => {
-        let bookings = selectedTab === 'All Bookings' ?
+        const bookings = selectedTab === 'All Bookings' ?
             allBookings :
             allBookings.filter(booking => booking.status === selectedTab)
-        bookings = [...bookings].sort((a, b) => {
+        return [...bookings].sort((a, b) => {
             if (a[orderBy] > b[orderBy]) {
                 return 1
             } else if (a[orderBy] < b[orderBy]) {
@@ -115,7 +119,6 @@ export default function Bookings() {
             }
             return 0
         })
-        return bookings
     }, [allBookings, selectedTab, orderBy])
 
     const { pageData, currentPage, setPage } = usePaginate(bookings)
