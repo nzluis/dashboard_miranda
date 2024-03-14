@@ -95,10 +95,10 @@ export default function Rooms() {
     const dispatch = useDispatch()
     const allRooms = useSelector(roomsData)
     const rooms = useMemo(() => {
-        let rooms = selectedTab === 'All Rooms' ?
+        const rooms = selectedTab === 'All Rooms' ?
             allRooms :
             allRooms.filter(booking => booking.status === selectedTab)
-        rooms = [...rooms].sort((a, b) => {
+        return [...rooms].sort((a, b) => {
             if (orderBy === 'high_to_low') {
                 if (a["price"] < b["price"]) {
                     return 1
@@ -169,6 +169,5 @@ export default function Rooms() {
                 {currentPage < totalPages && <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary>}
             </PaginationContainer>
         </DashBoard>
-
     )
 }
