@@ -108,10 +108,8 @@ export default function Bookings() {
     const [fetched, setFetched] = useState(false)
     const allBookings = useSelector(bookingsData)
     const bookings = useMemo(() => {
-        const bookings = selectedTab === 'All Bookings' ?
-            allBookings :
-            allBookings.filter(booking => booking.status === selectedTab)
-        return [...bookings].sort((a, b) => {
+        const bookings = allBookings.filter(booking => selectedTab === 'All Bookings' ? true : booking.status === selectedTab)
+        return bookings.sort((a, b) => {
             if (a[orderBy] > b[orderBy]) {
                 return 1
             } else if (a[orderBy] < b[orderBy]) {
