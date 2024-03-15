@@ -8,15 +8,18 @@ const delay = (data, time = 200) => {
         }, time)
     })
 }
-let firstFetch = false
-export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async() => {
-    if (!firstFetch) {
-        const data = await delay(bookings)
-        firstFetch = true
-        return data
+
+let fetchedData
+function getData(json) {
+    if (!fetchedData) {
+        fetchedData = json
+        return fetchedData
     }
-    return delay(false)
-    // return await delay(bookings)
+    return false
+}
+
+export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async() => {
+    return await delay(getData(bookings))
 })
 
 export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', async(id) => {

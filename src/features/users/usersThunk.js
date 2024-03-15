@@ -8,15 +8,16 @@ const delay = (data, time = 200) => {
         }, time)
     })
 }
-let firstFetch = false
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async() => {
-    if (!firstFetch) {
-        const data = await delay(users)
-        firstFetch = true
-        return data
+let fetchedData
+function getData(json) {
+    if (!fetchedData) {
+        fetchedData = json
+        return fetchedData
     }
-    return delay(false)
-    // return await delay(users)
+    return false
+}
+export const fetchUsers = createAsyncThunk('users/fetchUsers', async() => {
+    return await delay(getData(users))
 })
 
 export const fetchUserById = createAsyncThunk('users/fetchUserById', async(id) => {
