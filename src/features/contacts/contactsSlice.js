@@ -7,45 +7,34 @@ export const contactsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchContacts.pending, (state) => {
-                state.status = 'pending'
+            .addMatcher(isAnyOf ( 
+                fetchContacts.pending,
+                fetchContactById.pending,
+                createContact.pending,
+                updateContact.pending
+                ), (state) => {
+                    state.status = 'pending'
             })
-            .addCase(fetchContacts.rejected, (state, action) => {
-                state.status = 'rejected'
-                state.error = action.error.message
+            .addMatcher(isAnyOf ( 
+                fetchContacts.rejected,
+                fetchContactById.rejected,
+                createContact.rejected,
+                updateContact.rejected
+                ), (state, action) => {
+                    state.status = 'rejected'
+                    state.error = action.error.message
             })
             .addCase(fetchContacts.fulfilled, (state, action) => {
                 state.data = action.payload ? action.payload : state.data
                 state.status = 'fulfilled'
             })
-            .addCase(fetchContactById.pending, (state, action) => {
-                state.status = 'pending'
-            })
-            .addCase(fetchContactById.rejected, (state, action) => {
-                state.status = 'rejected'
-                state.error = action.error.message
-            })
             .addCase(fetchContactById.fulfilled, (state, action) => {
                 state.dataById = state.data.find(contact => contact.id === action.payload)
                 state.status = 'fulfilled'
             })
-            .addCase(updateContact.pending, (state, action) => {
-                state.status = 'pending'
-            })
-            .addCase(updateContact.rejected, (state, action) => {
-                state.status = 'rejected'
-                state.error = action.error.message
-            })
             .addCase(updateContact.fulfilled, (state, action) => {
                 state.data = state.data.map(contact => contact.id === action.payload.id ? action.payload : contact)
                 state.status = 'fulfilled'
-            })
-            .addCase(deleteContactById.pending, (state, action) => {
-                state.status = 'pending'
-            })
-            .addCase(deleteContactById.rejected, (state, action) => {
-                state.status = 'rejected'
-                state.error = action.error.message
             })
             .addCase(deleteContactById.fulfilled, (state, action) => {
                 state.data = state.data.filter(contact => contact.id !== action.payload)
