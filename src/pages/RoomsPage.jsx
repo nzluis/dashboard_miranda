@@ -154,19 +154,23 @@ export default function Rooms() {
                     </SelectOrder>
                 </ButtonsContainer>
             </TopMenu>
-            {fetched ? <DataTable data={pageData} columns={columns} actions={actions} position={'bottom'} noPointer /> : <LinearProgress />}
-            <PaginationContainer>
-                {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
-                <Pages>
-                    {[...Array(totalPages).keys()].map((page, index) => {
-                        if (currentPage === page + 1) {
-                            return <PageSelected key={index} onClick={() => setPage(page + 1)}>{page + 1}</PageSelected>
-                        }
-                        return <Page key={index} onClick={() => setPage(page + 1)}>{page + 1}</Page>
-                    })}
-                </Pages>
-                {currentPage < totalPages && <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary>}
-            </PaginationContainer>
+            {fetched ?
+                <>
+                    <DataTable data={pageData} columns={columns} actions={actions} position={'bottom'} noPointer />
+                    <PaginationContainer>
+                        {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
+                        <Pages>
+                            {[...Array(totalPages).keys()].map((page, index) => {
+                                if (currentPage === page + 1) {
+                                    return <PageSelected key={index} onClick={() => setPage(page + 1)}>{page + 1}</PageSelected>
+                                }
+                                return <Page key={index} onClick={() => setPage(page + 1)}>{page + 1}</Page>
+                            })}
+                        </Pages>
+                        {currentPage < totalPages && <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary>}
+                    </PaginationContainer>
+                </>
+                : <LinearProgress />}
         </DashBoard>
     )
 }
