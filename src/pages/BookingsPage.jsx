@@ -102,7 +102,7 @@ export default function Bookings() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const tabs = ['All Bookings', 'Check In', 'Check Out', 'In Progress']
-    const orderTags = ['order_date', 'last_name', 'check_in', 'check_out']
+    const orderTags = ['order_date', 'order_date_DESC', 'last_name', 'last_name_DESC', 'check_in', 'check_in_DESC', 'check_out', 'check_out_DESC']
     const [selectedTab, setSelectedTab] = useState('All Bookings')
     const [orderBy, setOrderBy] = useState('order_date')
     const [fetched, setFetched] = useState(false)
@@ -110,9 +110,19 @@ export default function Bookings() {
     const bookings = useMemo(() => {
         const bookings = allBookings.filter(booking => selectedTab === 'All Bookings' ? true : booking.status === selectedTab)
         return bookings.sort((a, b) => {
-            if (a[orderBy] > b[orderBy]) {
+            let firstItem, secondItem, orderingProperty;
+            if (orderBy.includes('_DESC')) {
+                firstItem = b;
+                secondItem = a;
+                orderingProperty = orderBy.split('_DESC')[0]
+            } else {
+                firstItem = a;
+                secondItem = b;
+                orderingProperty = orderBy.split('_DESC')[0]
+            }
+            if (firstItem[orderingProperty] > secondItem[orderingProperty]) {
                 return 1
-            } else if (a[orderBy] < b[orderBy]) {
+            } else if (firstItem[orderingProperty] < secondItem[orderingProperty]) {
                 return -1;
             }
             return 0
@@ -151,7 +161,8 @@ export default function Bookings() {
                             return <option
                                 key={index}
                                 value={tag}>
-                                {tag.split('_').map(element => element[0].toUpperCase() + element.slice(1)).join(' ')}
+                                {tag.split('_').map(element => element !== 'DESC' ? element[0].toUpperCase() + element.slice(1) : '').join(' ')}
+                                {tag.split('_')[2] ? ' ↑' : ' ↓'}
                             </option>
                         })}
                     </SelectOrder>
