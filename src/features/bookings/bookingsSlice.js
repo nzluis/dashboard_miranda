@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { createBooking, deleteBookingById, fetchBookingById, fetchBookings, updateBooking } from "./bookingsThunk";
 
 export const bookingsSlice = createSlice({
@@ -7,25 +7,8 @@ export const bookingsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addMatcher(isAnyOf ( 
-                fetchBookings.pending,
-                fetchBookingById.pending,
-                createBooking.pending,
-                updateBooking.pending
-                ), (state) => {
-                    state.status = 'pending'
-            })
-            .addMatcher(isAnyOf ( 
-                fetchBookings.rejected,
-                fetchBookingById.rejected,
-                createBooking.rejected,
-                updateBooking.rejected
-                ), (state, action) => {
-                    state.status = 'rejected'
-                    state.error = action.error.message
-            })
-            .addCase(fetchBookings.fulfilled, (state, action) => {
-                state.data = action.payload ? action.payload : state.data
+        .addCase(fetchBookings.fulfilled, (state, action) => {
+            state.data = action.payload ? action.payload : state.data
                 state.status = 'fulfilled'
             })
             .addCase(fetchBookingById.fulfilled, (state, action) => {
@@ -43,6 +26,25 @@ export const bookingsSlice = createSlice({
             .addCase(deleteBookingById.fulfilled, (state, action) => {
                 state.data = state.data.filter(booking => booking.id !== action.payload)
                 state.status = 'fulfilled'
+            })
+            .addMatcher(isAnyOf( 
+                fetchBookings.pending,
+                fetchBookingById.pending,
+                createBooking.pending,
+                updateBooking.pending,
+                deleteBookingById.pending
+                ), (state) => {
+                    state.status = 'pending'
+            })
+            .addMatcher(isAnyOf( 
+                fetchBookings.rejected,
+                fetchBookingById.rejected,
+                createBooking.rejected,
+                updateBooking.rejected,
+                deleteBookingById.rejected
+                ), (state, action) => {
+                    state.status = 'rejected'
+                    state.error = action.error.message
             })
     }
 })

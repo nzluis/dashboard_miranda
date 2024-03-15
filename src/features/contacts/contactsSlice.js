@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { deleteContactById, fetchContactById, fetchContacts, updateContact } from "./contactsThunk";
 
 export const contactsSlice = createSlice({
@@ -7,24 +7,7 @@ export const contactsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addMatcher(isAnyOf ( 
-                fetchContacts.pending,
-                fetchContactById.pending,
-                createContact.pending,
-                updateContact.pending
-                ), (state) => {
-                    state.status = 'pending'
-            })
-            .addMatcher(isAnyOf ( 
-                fetchContacts.rejected,
-                fetchContactById.rejected,
-                createContact.rejected,
-                updateContact.rejected
-                ), (state, action) => {
-                    state.status = 'rejected'
-                    state.error = action.error.message
-            })
-            .addCase(fetchContacts.fulfilled, (state, action) => {
+        .addCase(fetchContacts.fulfilled, (state, action) => {
                 state.data = action.payload ? action.payload : state.data
                 state.status = 'fulfilled'
             })
@@ -39,6 +22,23 @@ export const contactsSlice = createSlice({
             .addCase(deleteContactById.fulfilled, (state, action) => {
                 state.data = state.data.filter(contact => contact.id !== action.payload)
                 state.status = 'fulfilled'
+            })
+            .addMatcher(isAnyOf( 
+                fetchContacts.pending,
+                fetchContactById.pending,
+                updateContact.pending,
+                deleteContactById.pending
+                ), (state) => {
+                    state.status = 'pending'
+            })
+            .addMatcher(isAnyOf( 
+                fetchContacts.rejected,
+                fetchContactById.rejected,
+                updateContact.rejected,
+                deleteContactById.rejected
+                ), (state, action) => {
+                    state.status = 'rejected'
+                    state.error = action.error.message
             })
     }
 })

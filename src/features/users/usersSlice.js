@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { createUser, deleteUserById, fetchUserById, fetchUsers, updateUser } from "./usersThunk";
 
 export const usersSlice = createSlice({
@@ -7,25 +7,8 @@ export const usersSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addMatcher(isAnyOf ( 
-                fetchUsers.pending,
-                fetchUserById.pending,
-                createUser.pending,
-                updateUser.pending
-                ), (state) => {
-                    state.status = 'pending'
-            })
-            .addMatcher(isAnyOf ( 
-                fetchUsers.rejected,
-                fetchUserById.rejected,
-                createUser.rejected,
-                updateUser.rejected
-                ), (state, action) => {
-                    state.status = 'rejected'
-                    state.error = action.error.message
-            })
-            .addCase(fetchUsers.fulfilled, (state, action) => {
-                state.data = action.payload ? action.payload : state.data
+        .addCase(fetchUsers.fulfilled, (state, action) => {
+            state.data = action.payload ? action.payload : state.data
                 state.status = 'fulfilled'
             })
             .addCase(fetchUserById.fulfilled, (state, action) => {
@@ -43,6 +26,25 @@ export const usersSlice = createSlice({
             .addCase(deleteUserById.fulfilled, (state, action) => {
                 state.data = state.data.filter(user => user.id !== action.payload)
                 state.status = 'fulfilled'
+            })
+            .addMatcher(isAnyOf( 
+                fetchUsers.pending,
+                fetchUserById.pending,
+                createUser.pending,
+                updateUser.pending,
+                deleteUserById.pending
+                ), (state) => {
+                    state.status = 'pending'
+            })
+            .addMatcher(isAnyOf( 
+                fetchUsers.rejected,
+                fetchUserById.rejected,
+                createUser.rejected,
+                updateUser.rejected,
+                deleteUserById.rejected
+                ), (state, action) => {
+                    state.status = 'rejected'
+                    state.error = action.error.message
             })
     }
 })
