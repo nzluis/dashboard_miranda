@@ -52,7 +52,7 @@ export default function FormBookingPage() {
         !id ?
             await dispatch(
                 createBooking({
-                    id: Math.round(Math.random() * 1000),
+                    id: Math.round(Math.random() * 100000000000).toString(),
                     order_date: new Date(Date.now()).getTime(),
                     ...formData
                 })
