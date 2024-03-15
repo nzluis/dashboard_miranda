@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SideBar = styled.div`
-    margin: 40px 60px;
+    margin: 40px 30px 40px 40px;
     grid-area: panel;
     >svg {
         margin-left: 55px;
