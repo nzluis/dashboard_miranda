@@ -128,9 +128,11 @@ export default function Rooms() {
         initialFetch()
     }, [])
 
-    function handleTab(tab) {
+    const [stateIndex, setStateIndex] = useState(0)
+    function handleTab(tab, index) {
         setPage(1)
         tab === selectedTab ? setSelectedTab('All Rooms') : setSelectedTab(tab)
+        stateIndex === index ? setStateIndex(0) : setStateIndex(index)
     }
 
     return (
@@ -138,7 +140,7 @@ export default function Rooms() {
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
-                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab !== 'All Rooms' && tab}</Tab>
+                        return tab !== 'All Rooms' && <Tab $active={index === stateIndex && true} key={index} onClick={() => handleTab(tab, index)}>{tab}</Tab>
                     })}
                 </TabsContainer>
                 <ButtonsContainer>

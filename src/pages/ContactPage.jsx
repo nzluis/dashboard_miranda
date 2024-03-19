@@ -132,9 +132,11 @@ function Contact() {
         initialFetch()
     }, [])
 
-    function handleTab(tab) {
+    const [stateIndex, setStateIndex] = useState(0)
+    function handleTab(tab, index) {
         setPage(1)
         tab === selectedTab ? setSelectedTab('All Messages') : setSelectedTab(tab)
+        stateIndex === index ? setStateIndex(0) : setStateIndex(index)
     }
 
     return (
@@ -142,7 +144,7 @@ function Contact() {
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
-                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab !== 'All Messages' && tab}</Tab>
+                        return tab !== 'All Messages' && <Tab $active={index === stateIndex && true} key={index} onClick={() => handleTab(tab, index)}>{tab}</Tab>
                     })}
                 </TabsContainer>
             </TopMenu>

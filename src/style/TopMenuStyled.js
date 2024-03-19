@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const TopMenu = styled.div`
     display: flex;
@@ -15,6 +15,10 @@ export const TabsContainer = styled.ul`
 
 export const Tab = styled.li`
     cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 12px;
+    background-color : ${ props => props.$active ? 'var(--padding-second)' : 'inherit' };
+    color : ${ props => props.$active ? 'white' : 'inherit' }
 `
 export const ButtonsContainer = styled.div`
     select {

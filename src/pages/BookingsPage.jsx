@@ -141,9 +141,11 @@ export default function Bookings() {
         initialFetch()
     }, [])
 
-    function handleTab(tab) {
+    const [stateIndex, setStateIndex] = useState(0)
+    function handleTab(tab, index) {
         setPage(1)
         tab === selectedTab ? setSelectedTab('All Bookings') : setSelectedTab(tab)
+        stateIndex === index ? setStateIndex(0) : setStateIndex(index)
     }
 
     return (
@@ -151,7 +153,7 @@ export default function Bookings() {
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
-                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab !== 'All Bookings' && tab}</Tab>
+                        return tab !== 'All Bookings' && <Tab $active={index === stateIndex && true} key={index} onClick={() => handleTab(tab, index)}>{tab}</Tab>
                     })}
                 </TabsContainer>
                 <ButtonsContainer>

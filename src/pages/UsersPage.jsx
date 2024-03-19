@@ -117,9 +117,11 @@ function Users() {
         initialFetch()
     }, [])
 
-    function handleTab(tab) {
+    const [stateIndex, setStateIndex] = useState(0)
+    function handleTab(tab, index) {
         setPage(1)
         tab === selectedTab ? setSelectedTab('All Users') : setSelectedTab(tab)
+        stateIndex === index ? setStateIndex(0) : setStateIndex(index)
     }
 
     return (
@@ -127,7 +129,7 @@ function Users() {
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
-                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab !== 'All Users' && tab}</Tab>
+                        return tab !== 'All Users' && <Tab $active={index === stateIndex && true} key={index} onClick={() => handleTab(tab, index)}>{tab}</Tab>
                     })}
                 </TabsContainer>
                 <ButtonsContainer>
