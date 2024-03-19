@@ -66,7 +66,8 @@ export const UserBox = styled.div`
         border-radius: 8px;
         font-size: 16px;
         font-weight: 600;
-        padding: 15px 42px
+        padding: 15px 42px;
+        cursor: pointer;
     }
 
     button:hover {

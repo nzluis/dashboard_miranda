@@ -7,7 +7,6 @@ export const PaginationContainer = styled.div`
     gap: 15px;
 
     button {
-    cursor: pointer;
     background-color: white;
     padding: 0 25px;
     height: 45px;

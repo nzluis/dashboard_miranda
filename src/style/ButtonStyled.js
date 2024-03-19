@@ -21,4 +21,5 @@ export const ButtonSecondary = styled.button`
     color: var(--padding-second);
     font-size: 16px;
     font-weight: 500;
+    cursor: ${props => props.$notAllow  ? 'not-allowed' : 'pointer'}; 
 `

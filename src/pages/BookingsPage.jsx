@@ -174,7 +174,7 @@ export default function Bookings() {
                 <>
                     <DataTable data={pageData} columns={columns} actions={actions} />
                     <PaginationContainer>
-                        {currentPage > 1 && <button onClick={() => setPage(currentPage - 1)}>Prev</button>}
+                        {currentPage > 1 ? <ButtonSecondary onClick={() => setPage(currentPage - 1)}>Prev</ButtonSecondary> : <ButtonSecondary $notAllow disabled>Prev</ButtonSecondary>}
                         <Pages>
                             {[...Array(totalPages).keys()].map((page, index) => {
                                 if (currentPage === page + 1) {
@@ -183,7 +183,7 @@ export default function Bookings() {
                                 return <Page key={index} onClick={() => setPage(page + 1)}>{page + 1}</Page>
                             })}
                         </Pages>
-                        {currentPage < totalPages && <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary>}
+                        {currentPage < totalPages ? <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary> : <ButtonSecondary $notAllow disabled>Next</ButtonSecondary>}
                     </PaginationContainer>
                 </>
                 : <LinearProgress />
