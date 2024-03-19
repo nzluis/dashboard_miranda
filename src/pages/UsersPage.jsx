@@ -111,7 +111,7 @@ function Users() {
 
     function handleTab(tab) {
         setPage(1)
-        setSelectedTab(tab)
+        tab === selectedTab ? setSelectedTab('All Users') : setSelectedTab(tab)
     }
 
     return (
@@ -119,7 +119,7 @@ function Users() {
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
-                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab}</Tab>
+                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab !== 'All Users' && tab}</Tab>
                     })}
                 </TabsContainer>
                 <ButtonsContainer>

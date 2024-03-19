@@ -130,7 +130,7 @@ export default function Rooms() {
 
     function handleTab(tab) {
         setPage(1)
-        setSelectedTab(tab)
+        tab === selectedTab ? setSelectedTab('All Rooms') : setSelectedTab(tab)
     }
 
     return (
@@ -138,7 +138,7 @@ export default function Rooms() {
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
-                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab}</Tab>
+                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab !== 'All Rooms' && tab}</Tab>
                     })}
                 </TabsContainer>
                 <ButtonsContainer>

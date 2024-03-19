@@ -143,7 +143,7 @@ export default function Bookings() {
 
     function handleTab(tab) {
         setPage(1)
-        setSelectedTab(tab)
+        tab === selectedTab ? setSelectedTab('All Bookings') : setSelectedTab(tab)
     }
 
     return (
@@ -151,7 +151,7 @@ export default function Bookings() {
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
-                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab}</Tab>
+                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab !== 'All Bookings' && tab}</Tab>
                     })}
                 </TabsContainer>
                 <ButtonsContainer>

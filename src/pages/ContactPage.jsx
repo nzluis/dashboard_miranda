@@ -134,7 +134,7 @@ function Contact() {
 
     function handleTab(tab) {
         setPage(1)
-        setSelectedTab(tab)
+        tab === selectedTab ? setSelectedTab('All Messages') : setSelectedTab(tab)
     }
 
     return (
@@ -142,7 +142,7 @@ function Contact() {
             <TopMenu>
                 <TabsContainer>
                     {tabs.map((tab, index) => {
-                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab}</Tab>
+                        return <Tab key={index} onClick={() => handleTab(tab)}>{tab !== 'All Messages' && tab}</Tab>
                     })}
                 </TabsContainer>
             </TopMenu>
