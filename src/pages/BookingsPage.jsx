@@ -158,7 +158,7 @@ export default function Bookings() {
                 </TabsContainer>
                 <ButtonsContainer>
                     <ButtonActive onClick={() => navigate('/bookings/new-booking')}>+ New Booking</ButtonActive>
-                    <SelectOrder onChange={(e) => setOrderBy(e.target.value)}>
+                    <SelectOrder id='bookingSelect' onChange={(e) => setOrderBy(e.target.value)}>
                         {orderTags.map((tag, index) => {
                             return <option
                                 key={index}
