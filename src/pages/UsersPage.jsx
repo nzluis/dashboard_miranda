@@ -3,16 +3,16 @@ import DataTable from "../components/DataTable"
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ButtonActive, ButtonSecondary } from '../style/ButtonStyled';
+import { ButtonActive } from '../style/ButtonStyled';
 import { Tab, TabsContainer } from '../style/TopMenuStyled';
 import { SelectOrder } from '../style/TopMenuStyled';
 import { TopMenu } from '../style/TopMenuStyled';
 import { ButtonsContainer } from '../style/TopMenuStyled';
 import usePaginate from '../../hooks/usePaginate';
-import { Pages, PaginationContainer, Page, PageSelected } from '../style/PaginatorStyled';
 import { usersData } from '../features/users/usersSlice';
 import { LinearProgress } from '@mui/material';
 import { deleteUserById, fetchUsers } from '../features/users/usersThunk';
+import Pagination from '../components/Pagination';
 
 function Users() {
     const columns = [
@@ -149,18 +149,7 @@ function Users() {
             {fetched ?
                 <>
                     <DataTable data={pageData} columns={columns} actions={actions} noPointer />
-                    <PaginationContainer>
-                        {currentPage > 1 ? <ButtonSecondary onClick={() => setPage(currentPage - 1)}>Prev</ButtonSecondary> : <ButtonSecondary $notAllow disabled>Prev</ButtonSecondary>}
-                        <Pages>
-                            {[...Array(totalPages).keys()].map((page, index) => {
-                                if (currentPage === page + 1) {
-                                    return <PageSelected key={index} onClick={() => setPage(page + 1)}>{page + 1}</PageSelected>
-                                }
-                                return <Page key={index} onClick={() => setPage(page + 1)}>{page + 1}</Page>
-                            })}
-                        </Pages>
-                        {currentPage < totalPages ? <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary> : <ButtonSecondary $notAllow disabled>Next</ButtonSecondary>}
-                    </PaginationContainer>
+                    <Pagination currentPage={currentPage} setPage={setPage} totalPages={totalPages} />
                 </>
                 : <LinearProgress />}
         </DashBoard>

@@ -1,4 +1,3 @@
-import contacts from '../assets/data/contacts.json'
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from "../components/DataTable"
 import { useEffect, useMemo, useState } from 'react';
@@ -8,9 +7,8 @@ import { contactsData } from '../features/contacts/contactsSlice';
 import usePaginate from '../../hooks/usePaginate';
 import { deleteContactById, fetchContacts, updateContact } from '../features/contacts/contactsThunk';
 import { Tab, TabsContainer, TopMenu } from '../style/TopMenuStyled';
-import { Page, PageSelected, Pages, PaginationContainer } from '../style/PaginatorStyled';
 import { Box, CircularProgress, LinearProgress } from '@mui/material';
-import { ButtonSecondary } from '../style/ButtonStyled';
+import Pagination from '../components/Pagination';
 
 function Contact() {
     const [open, setOpen] = useState(false);
@@ -152,18 +150,7 @@ function Contact() {
             {fetched ?
                 <div>
                     <DataTable data={pageData} columns={columns} actions={actions} noPointer />
-                    <PaginationContainer>
-                        {currentPage > 1 ? <ButtonSecondary onClick={() => setPage(currentPage - 1)}>Prev</ButtonSecondary> : <ButtonSecondary $notAllow disabled>Prev</ButtonSecondary>}
-                        <Pages>
-                            {[...Array(totalPages).keys()].map((page, index) => {
-                                if (currentPage === page + 1) {
-                                    return <PageSelected key={index} onClick={() => setPage(page + 1)}>{page + 1}</PageSelected>
-                                }
-                                return <Page key={index} onClick={() => setPage(page + 1)}>{page + 1}</Page>
-                            })}
-                        </Pages>
-                        {currentPage < totalPages ? <ButtonSecondary onClick={() => setPage(currentPage + 1)}>Next</ButtonSecondary> : <ButtonSecondary $notAllow disabled>Next</ButtonSecondary>}
-                    </PaginationContainer>
+                    <Pagination currentPage={currentPage} setPage={setPage} totalPages={totalPages} />
                 </div>
                 : <LinearProgress />}
             <ModalComponent open={open} handleClose={handleClose} selectedNote={selectedNote} />
