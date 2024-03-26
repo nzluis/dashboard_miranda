@@ -1,14 +1,18 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { createUser, deleteUserById, fetchUserById, fetchUsers, updateUser } from "./usersThunk";
+import { UserState } from "../../interfaces/Users";
+import { RootState } from "../../app/store";
+
+const initialState: UserState = { data: [], dataById: undefined, status: 'idle', error: null }
 
 export const usersSlice = createSlice({
     name: 'users',
-    initialState: {data: [], dataById: null, status: 'idle', error: null},
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(fetchUsers.fulfilled, (state, action) => {
-            state.data = action.payload ? action.payload : state.data
+            .addCase(fetchUsers.fulfilled, (state, action) => {
+                state.data = action.payload ? action.payload : state.data
                 state.status = 'fulfilled'
             })
             .addCase(fetchUserById.fulfilled, (state, action) => {
@@ -27,29 +31,29 @@ export const usersSlice = createSlice({
                 state.data = state.data.filter(user => user.id !== action.payload)
                 state.status = 'fulfilled'
             })
-            .addMatcher(isAnyOf( 
+            .addMatcher(isAnyOf(
                 fetchUsers.pending,
                 fetchUserById.pending,
                 createUser.pending,
                 updateUser.pending,
                 deleteUserById.pending
-                ), (state) => {
-                    state.status = 'pending'
+            ), (state) => {
+                state.status = 'pending'
             })
-            .addMatcher(isAnyOf( 
+            .addMatcher(isAnyOf(
                 fetchUsers.rejected,
                 fetchUserById.rejected,
                 createUser.rejected,
                 updateUser.rejected,
                 deleteUserById.rejected
-                ), (state, action) => {
-                    state.status = 'rejected'
-                    state.error = action.error.message
+            ), (state, action) => {
+                state.status = 'rejected'
+                state.error = action.error.message || null
             })
     }
 })
 
-export const usersData = state => state.users.data
-export const userByIdData = state => state.users.dataById
-export const usersStatus = state => state.users.status
-export const usersError = state => state.error
+export const usersData = (state: RootState) => state.users.data
+export const userByIdData = (state: RootState) => state.users.dataById
+export const usersStatus = (state: RootState) => state.users.status
+export const usersError = (state: RootState) => state.users.error
