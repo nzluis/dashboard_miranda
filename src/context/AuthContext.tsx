@@ -1,12 +1,14 @@
 import { createContext, useContext } from "react"
 import useReducerWithLocalStorage from "../../hooks/useReducerWithLocalStorage"
+import { AuthAction, AuthContextInterface, AuthProps, AuthState } from "../interfaces/Auth"
 
-const AuthContext = createContext()
-const initializer = {
+const AuthContext = createContext<AuthContextInterface>({ state: { isAuthenticated: false, user: null }, dispatch: () => { } })
+const initializer: AuthState = {
     isAuthenticated: false,
     user: null
 }
-const authReducer = (state, action) => {
+
+const authReducer = (state: AuthState, action: AuthAction): AuthState => {
     switch (action.type) {
         case 'LOGIN':
             return {
@@ -32,17 +34,17 @@ export function useAuth() {
     return useContext(AuthContext)
 }
 
-export function AuthProvider({ children }) {
+export function AuthProvider(props: AuthProps) {
     const [state, dispatch] = useReducerWithLocalStorage({
         key: 'USER_AUTH',
         reducer: authReducer,
         initializer
     })
-    const value = { state, dispatch }
+    const value: AuthContextInterface = { state, dispatch }
 
     return (
         <AuthContext.Provider value={value}>
-            {children}
+            {props.children}
         </AuthContext.Provider>
     )
 }
