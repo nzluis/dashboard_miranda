@@ -10,8 +10,11 @@ export const ButtonActive = styled.button`
     font-weight: 400;
     cursor: pointer;
 `
+interface Props {
+    $notAllow: boolean
+}
 
-export const ButtonSecondary = styled.button`
+export const ButtonSecondary = styled.button<Props>`
     background-color: white;
     padding: 0 25px;
     height: 45px;
@@ -21,5 +24,5 @@ export const ButtonSecondary = styled.button`
     color: var(--padding-second);
     font-size: 16px;
     font-weight: 500;
-    cursor: ${props => props.$notAllow  ? 'not-allowed' : 'pointer'}; 
+    cursor: ${props => props.$notAllow ? 'not-allowed' : 'pointer'}; 
 `

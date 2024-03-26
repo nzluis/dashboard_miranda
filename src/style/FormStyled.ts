@@ -1,11 +1,15 @@
 import styled, { css } from "styled-components";
 
-export const Form = styled.form`
+interface Props {
+    $width: string
+}
+
+export const Form = styled.form<Props>`
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    width: ${props => props.width === 'login' ? '250px' : '40%'};
+    width: ${(props) => (props.$width === 'login') ? '250px' : '40%'};
     
     label {
         display: flex;

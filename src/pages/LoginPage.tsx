@@ -1,17 +1,18 @@
-import { useContext, useState } from "react"
+import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react"
 import { Navigate } from "react-router-dom"
 import { LoginContainer } from '../style/LoginStyled'
 import { ButtonActive } from "../style/ButtonStyled"
-import { Form, FormAbsolute } from '../style/FormStyled'
+import { FormAbsolute } from '../style/FormStyled'
 import { useAuth } from "../context/AuthContext"
+import { AuthContextInterface } from "../interfaces/Auth"
 
 export default function Login() {
-    const { state, dispatch } = useAuth()
-    const [email, setEmail] = useState('admin@example.es')
-    const [pass, setPass] = useState('admin')
-    const [error, setError] = useState(false)
+    const { state, dispatch }: AuthContextInterface = useAuth()
+    const [email, setEmail]: [string, Dispatch<SetStateAction<string>>] = useState('admin@example.es')
+    const [pass, setPass]: [string, Dispatch<SetStateAction<string>>] = useState('admin')
+    const [error, setError]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false)
 
-    function handleSubmit(e) {
+    function handleSubmit(e: SyntheticEvent): void {
         e.preventDefault()
         if (email === 'admin@example.es' && pass === 'admin') {
             dispatch({
@@ -29,7 +30,7 @@ export default function Login() {
         <Navigate to='/' />
     ) : (
         <LoginContainer>
-            <FormAbsolute width={'login'} onSubmit={(e) => handleSubmit(e)}>
+            <FormAbsolute $width={'login'} onSubmit={(e: SyntheticEvent) => handleSubmit(e)}>
                 <label htmlFor="email">Email:
                     <input
 
