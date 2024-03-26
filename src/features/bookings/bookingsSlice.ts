@@ -1,14 +1,18 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { createBooking, deleteBookingById, fetchBookingById, fetchBookings, updateBooking } from "./bookingsThunk";
+import type { RootState } from '../../app/store'
+import type { BookingState } from '../../interfaces/Bookings'
+
+const initialState: BookingState = { data: [], dataById: undefined, status: 'idle', error: null }
 
 export const bookingsSlice = createSlice({
     name: 'bookings',
-    initialState: {data: [], dataById: null, status: 'idle', error: null},
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(fetchBookings.fulfilled, (state, action) => {
-            state.data = action.payload ? action.payload : state.data
+            .addCase(fetchBookings.fulfilled, (state, action) => {
+                state.data = action.payload ? action.payload : state.data
                 state.status = 'fulfilled'
             })
             .addCase(fetchBookingById.fulfilled, (state, action) => {
@@ -27,29 +31,29 @@ export const bookingsSlice = createSlice({
                 state.data = state.data.filter(booking => booking.id !== action.payload)
                 state.status = 'fulfilled'
             })
-            .addMatcher(isAnyOf( 
+            .addMatcher(isAnyOf(
                 fetchBookings.pending,
                 fetchBookingById.pending,
                 createBooking.pending,
                 updateBooking.pending,
                 deleteBookingById.pending
-                ), (state) => {
-                    state.status = 'pending'
+            ), (state) => {
+                state.status = 'pending'
             })
-            .addMatcher(isAnyOf( 
+            .addMatcher(isAnyOf(
                 fetchBookings.rejected,
                 fetchBookingById.rejected,
                 createBooking.rejected,
                 updateBooking.rejected,
                 deleteBookingById.rejected
-                ), (state, action) => {
-                    state.status = 'rejected'
-                    state.error = action.error.message
+            ), (state, action) => {
+                state.status = 'rejected'
+                state.error = action.error.message || null
             })
     }
 })
 
-export const bookingsData = state => state.bookings.data
-export const bookingByIdData = state => state.bookings.dataById
-export const bookingsStatus = state => state.bookings.status
-export const bookingsError = state => state.error
+export const bookingsData = (state: RootState) => state.bookings.data
+export const bookingByIdData = (state: RootState) => state.bookings.dataById
+export const bookingsStatus = (state: RootState) => state.bookings.status
+export const bookingsError = (state: RootState) => state.bookings.error
