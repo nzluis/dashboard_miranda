@@ -1,13 +1,15 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { deleteContactById, fetchContactById, fetchContacts, updateContact } from "./contactsThunk";
+import { ContactState } from "../../interfaces/Contacts";
+import { RootState } from "../../app/store";
 
 export const contactsSlice = createSlice({
     name: 'contacts',
-    initialState: {data: [], dataById: null, status: 'idle', error: null},
+    initialState: { data: [], dataById: undefined, status: 'idle', error: null } as ContactState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(fetchContacts.fulfilled, (state, action) => {
+            .addCase(fetchContacts.fulfilled, (state, action) => {
                 state.data = action.payload ? action.payload : state.data
                 state.status = 'fulfilled'
             })
@@ -23,27 +25,27 @@ export const contactsSlice = createSlice({
                 state.data = state.data.filter(contact => contact.id !== action.payload)
                 state.status = 'fulfilled'
             })
-            .addMatcher(isAnyOf( 
+            .addMatcher(isAnyOf(
                 fetchContacts.pending,
                 fetchContactById.pending,
                 updateContact.pending,
                 deleteContactById.pending
-                ), (state) => {
-                    state.status = 'pending'
+            ), (state) => {
+                state.status = 'pending'
             })
-            .addMatcher(isAnyOf( 
+            .addMatcher(isAnyOf(
                 fetchContacts.rejected,
                 fetchContactById.rejected,
                 updateContact.rejected,
                 deleteContactById.rejected
-                ), (state, action) => {
-                    state.status = 'rejected'
-                    state.error = action.error.message
+            ), (state, action) => {
+                state.status = 'rejected'
+                state.error = action.error.message || null
             })
     }
 })
 
-export const contactsData = state => state.contacts.data
-export const contactByIdData = state => state.contacts.dataById
-export const contactsStatus = state => state.contacts.status
-export const contactsError = state => state.error
+export const contactsData = (state: RootState) => state.contacts.data
+export const contactByIdData = (state: RootState) => state.contacts.dataById
+export const contactsStatus = (state: RootState) => state.contacts.status
+export const contactsError = (state: RootState) => state.contacts.error
