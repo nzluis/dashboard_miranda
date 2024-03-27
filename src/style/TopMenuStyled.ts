@@ -12,13 +12,16 @@ export const TabsContainer = styled.ul`
     display: flex;
     gap: 30px;
 `
+interface Props {
+    $active?: boolean
+}
 
-export const Tab = styled.li`
+export const Tab = styled.li<Props>`
     cursor: pointer;
     padding: 10px 15px;
     border-radius: 12px;
-    background-color : ${ props => props.$active ? 'var(--padding-second)' : 'inherit' };
-    color : ${ props => props.$active ? 'white' : 'inherit' }
+    background-color : ${props => props.$active ? 'var(--padding-second)' : 'inherit'};
+    color : ${props => props.$active ? 'white' : 'inherit'}
 `
 export const ButtonsContainer = styled.div`
     select {
