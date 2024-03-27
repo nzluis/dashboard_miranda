@@ -1,7 +1,14 @@
+import { Dispatch, SetStateAction } from "react"
 import { ButtonSecondary } from "../style/ButtonStyled"
 import { Page, PageSelected, Pages, PaginationContainer } from "../style/PaginatorStyled"
 
-export default function Pagination({ currentPage, setPage, totalPages }) {
+interface PaginationProps {
+    currentPage: number
+    setPage: Dispatch<SetStateAction<number>>
+    totalPages: number
+}
+
+export default function Pagination({ currentPage, setPage, totalPages }: PaginationProps) {
     return (
         <PaginationContainer>
             {currentPage > 1 ? <ButtonSecondary onClick={() => setPage(currentPage - 1)}>Prev</ButtonSecondary> : <ButtonSecondary $notAllow disabled>Prev</ButtonSecondary>}
