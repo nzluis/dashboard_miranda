@@ -18,8 +18,11 @@ export const LeftSide = styled(CommonSides)`
         }
     }
 `
+interface Props {
+    $insidebox?: boolean
+}
 
-export const CheckDatesBox = styled.div`
+export const CheckDatesBox = styled.div<Props>`
     display: flex;
     gap: 25px;
     ${props => props.$insidebox && css`
