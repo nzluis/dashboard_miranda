@@ -1,8 +1,7 @@
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from '../components/DataTable'
-import { useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
-import { useDispatch, useSelector } from 'react-redux';
 import { bookingsData } from '../features/bookings/bookingsSlice';
 import { deleteBookingById, fetchBookings } from '../features/bookings/bookingsThunk';
 import { LinearProgress } from '@mui/material';
@@ -14,12 +13,15 @@ import { TopMenu } from '../style/TopMenuStyled';
 import { ButtonsContainer } from '../style/TopMenuStyled';
 import usePaginate from '../../hooks/usePaginate';
 import Pagination from '../components/Pagination';
+import { BookingData } from '../interfaces/Bookings';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+
 
 export default function Bookings() {
     const columns = [
         {
             label: "Guest",
-            display: row =>
+            display: (row: BookingData) =>
                 <div>
                     <p>{row.first_name}{' '}{row.last_name}</p>
                     <p className='panelColor'># {row.id.slice(0, 8)}</p>
@@ -27,22 +29,22 @@ export default function Bookings() {
         },
         {
             label: 'Order Date',
-            display: row =>
+            display: (row: BookingData) =>
                 <div className='lighter'>
                     {new Date(Number(row.order_date)).toString().slice(0, 21)}
                 </div>
         },
         {
             label: 'Check In',
-            display: row => row.check_in.length === 10 ? new Date(new Date(row.check_in).getTime()).toDateString() : new Date(Number(row.check_in)).toDateString()
+            display: (row: BookingData) => row.check_in.length === 10 ? new Date(new Date(row.check_in).getTime()).toDateString() : new Date(Number(row.check_in)).toDateString()
         },
         {
             label: 'Check Out',
-            display: row => row.check_in.length === 10 ? new Date(new Date(row.check_out).getTime()).toDateString() : new Date(Number(row.check_out)).toDateString()
+            display: (row: BookingData) => row.check_in.length === 10 ? new Date(new Date(row.check_out).getTime()).toDateString() : new Date(Number(row.check_out)).toDateString()
         },
         {
             label: 'Special Request',
-            display: row =>
+            display: (row: BookingData) =>
                 <>
                     <div
                         className="request"
@@ -54,7 +56,7 @@ export default function Bookings() {
         },
         {
             label: 'Room Type',
-            display: row =>
+            display: (row: BookingData) =>
                 <>
                     <p>{row.room_type}</p>
                     <p>{row.room_number}</p>
@@ -62,7 +64,7 @@ export default function Bookings() {
         },
         {
             label: 'Status',
-            display: row =>
+            display: (row: BookingData) =>
                 <>
                     <div
                         className={
@@ -77,12 +79,12 @@ export default function Bookings() {
         }
     ]
 
-    const deleteBooking = (e, booking) => {
+    const deleteBooking = (e: SyntheticEvent, booking: BookingData) => {
         e.stopPropagation()
         dispatch(deleteBookingById(booking.id))
     }
 
-    const editBooking = (e, booking) => {
+    const editBooking = (e: SyntheticEvent, booking: BookingData) => {
         e.stopPropagation()
         navigate(`/bookings/edit/${booking.id}`)
     }
@@ -92,7 +94,7 @@ export default function Bookings() {
         { name: 'Edit', handler: editBooking },
     ]
     const [open, setOpen] = useState(false);
-    const handleOpen = (e, message) => {
+    const handleOpen = (e: SyntheticEvent, message: string) => {
         e.stopPropagation()
         setSelectedNote(message)
         setOpen(true)
@@ -100,17 +102,17 @@ export default function Bookings() {
     const handleClose = () => setOpen(false);
     const [selectedNote, setSelectedNote] = useState('')
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const tabs = ['All Bookings', 'Check In', 'Check Out', 'In Progress']
     const orderTags = ['order_date', 'order_date_DESC', 'last_name', 'last_name_DESC', 'check_in', 'check_in_DESC', 'check_out', 'check_out_DESC']
     const [selectedTab, setSelectedTab] = useState('All Bookings')
     const [orderBy, setOrderBy] = useState('order_date')
     const [fetched, setFetched] = useState(false)
-    const allBookings = useSelector(bookingsData)
+    const allBookings: BookingData[] = useAppSelector(bookingsData)
     const bookings = useMemo(() => {
         const bookings = allBookings.filter(booking => selectedTab === 'All Bookings' ? true : booking.status === selectedTab)
         return bookings.sort((a, b) => {
-            let firstItem, secondItem, orderingProperty;
+            let firstItem: any, secondItem: any, orderingProperty: string;
             if (orderBy.includes('_DESC')) {
                 firstItem = b;
                 secondItem = a;
@@ -133,8 +135,12 @@ export default function Bookings() {
     const totalPages = Math.ceil(bookings.length / 10)
 
     const initialFetch = async () => {
-        await dispatch(fetchBookings()).unwrap()
-        setFetched(true)
+        try {
+            await dispatch(fetchBookings())
+            setFetched(true)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(() => {
@@ -142,7 +148,7 @@ export default function Bookings() {
     }, [])
 
     const [stateIndex, setStateIndex] = useState(0)
-    function handleTab(tab, index) {
+    function handleTab(tab: string, index: number) {
         setPage(1)
         tab === selectedTab ? setSelectedTab('All Bookings') : setSelectedTab(tab)
         stateIndex === index ? setStateIndex(0) : setStateIndex(index)
@@ -158,7 +164,7 @@ export default function Bookings() {
                 </TabsContainer>
                 <ButtonsContainer>
                     <ButtonActive onClick={() => navigate('/bookings/new-booking')}>+ New Booking</ButtonActive>
-                    <SelectOrder id='bookingSelect' onChange={(e) => setOrderBy(e.target.value)}>
+                    <SelectOrder id='bookingSelect' onChange={(e: ChangeEvent<HTMLSelectElement>) => setOrderBy(e.target.value)}>
                         {orderTags.map((tag, index) => {
                             return <option
                                 key={index}
