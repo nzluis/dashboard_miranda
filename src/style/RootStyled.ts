@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const RootStyled = styled.div`
+interface Props {
+    $visiblePanel?: boolean
+}
+
+export const RootStyled = styled.div<Props>`
     display: grid;
     width: 100vw;
     height: 100vh;
