@@ -25,7 +25,12 @@ export const StyledTableHead = styled.thead`
     }
     `
 
-export const StyledTableBody = styled.tbody`
+interface Props {
+    $noPointer?: boolean
+    $position?: string
+}
+
+export const StyledTableBody = styled.tbody<Props>`
     tr{
         font-size: 16px;
         font-weight: 400;
@@ -36,7 +41,7 @@ export const StyledTableBody = styled.tbody`
         td {
             padding: 20px 7px;
             &:not(:first-child) {
-                vertical-align: ${props => props.$position === 'bottom' ? 'bottom' : 'top' }
+                vertical-align: ${props => props.$position === 'bottom' ? 'bottom' : 'top'}
             }
             
             &:first-child{
