@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const DashBoard = styled.div`
+interface Props {
+    $flex?: boolean
+}
+
+export const DashBoard = styled.div<Props>`
     background-color: var(--bg-dashboard);
     overflow: scroll;
     padding: 40px 50px;
