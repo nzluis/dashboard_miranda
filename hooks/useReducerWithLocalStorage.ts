@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import useLocalStorage from "./useLocalStorage";
 import { AuthAction, AuthState } from "../src/interfaces/Auth"
 
-export default function useReducerWithLocalStorage({ initializer, key, reducer }: { initializer: Object, key: string, reducer: Function }) {
+export default function useReducerWithLocalStorage({ initializer, key, reducer }: { initializer: object, key: string, reducer: Function }) {
   const [localStorageState, setLocalStorageState] = useLocalStorage(
     key,
     initializer
