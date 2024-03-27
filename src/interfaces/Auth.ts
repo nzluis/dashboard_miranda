@@ -10,7 +10,7 @@ export interface AuthState {
 
 export interface AuthAction {
     type: 'LOGIN' | 'LOGOUT' | 'EDIT'
-    payload: null | {
+    payload?: null | {
         email: string
         fullName: string
     }
