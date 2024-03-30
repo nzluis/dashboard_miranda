@@ -11,7 +11,7 @@ export const ButtonActive = styled.button`
     cursor: pointer;
 `
 interface Props {
-    $notAllow: boolean
+    $notAllow?: boolean
 }
 
 export const ButtonSecondary = styled.button<Props>`
