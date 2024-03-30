@@ -1,6 +1,12 @@
 import { Box, Modal, Typography } from '@mui/material'
 
-export function ModalComponent({ open, handleClose, selectedNote }) {
+interface ModalProps {
+    open: boolean
+    handleClose: any
+    selectedNote: string
+}
+
+export function ModalComponent({ open, handleClose, selectedNote }: ModalProps) {
     const style = {
         position: 'absolute',
         top: '50%',
