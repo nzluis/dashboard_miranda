@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface Props {
-    $width: string
+    $width?: string
 }
 
 export const Form = styled.form<Props>`
@@ -73,6 +73,7 @@ export const FormRow = styled.div`
     margin: 0;
     input {
         height: 38px;
+        width: 100%;
     }
 `
 
