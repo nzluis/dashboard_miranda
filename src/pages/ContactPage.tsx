@@ -1,6 +1,6 @@
 import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from "../components/DataTable"
-import { useEffect, useMemo, useState } from 'react';
+import { SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsData } from '../features/contacts/contactsSlice';
@@ -9,10 +9,12 @@ import { deleteContactById, fetchContacts, updateContact } from '../features/con
 import { Tab, TabsContainer, TopMenu } from '../style/TopMenuStyled';
 import { Box, CircularProgress, LinearProgress } from '@mui/material';
 import Pagination from '../components/Pagination';
+import { ContactData } from '../interfaces/Contacts';
+import { useAppDispatch } from '../app/hooks';
 
 function Contact() {
     const [open, setOpen] = useState(false);
-    const handleOpen = (e, message) => {
+    const handleOpen = (e: SyntheticEvent, message: string) => {
         e.stopPropagation()
         setSelectedNote(message)
         setOpen(true)
@@ -23,7 +25,7 @@ function Contact() {
     const [selectedTab, setSelectedTab] = useState('All Messages')
     const [fetched, setFetched] = useState(false)
     const [editing, setEditing] = useState(false)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const columns = [
         {
             label: 'ID',
@@ -31,7 +33,7 @@ function Contact() {
         },
         {
             label: 'Date',
-            display: row =>
+            display: (row: ContactData) =>
                 <div>
                     <p>{new Date(Number(row.date)).toString().slice(0, 15)}</p>
                     <p>{new Date(Number(row.date)).toString().slice(0, 21).split(' ')[4]}</p>
@@ -39,7 +41,7 @@ function Contact() {
         },
         {
             label: 'Customer',
-            display: row =>
+            display: (row: ContactData) =>
                 <div className='twoLines'>
                     <p className='highlight'>{row.full_name}</p>
                     <p className='panelColor'>{row.phone}</p>
@@ -48,7 +50,7 @@ function Contact() {
         },
         {
             label: 'Comment',
-            display: row =>
+            display: (row: ContactData) =>
                 <div
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => handleOpen(e, row.message)}
@@ -64,7 +66,7 @@ function Contact() {
         },
         {
             label: 'Status',
-            display: row =>
+            display: (row: ContactData) =>
                 <>
                     <div
                         className={
@@ -78,12 +80,12 @@ function Contact() {
         }
     ]
 
-    const deleteContact = (e, contact) => {
+    const deleteContact = (e: SyntheticEvent, contact: ContactData) => {
         e.stopPropagation()
         dispatch(deleteContactById(contact.id))
     }
 
-    const editContact = async (e, contact) => {
+    const editContact = async (e: SyntheticEvent, contact: ContactData) => {
         e.stopPropagation()
         setEditing(true)
         await dispatch(updateContact({
@@ -118,7 +120,7 @@ function Contact() {
     const totalPages = Math.ceil(contacts.length / 10)
 
     const initialFetch = async () => {
-        await dispatch(fetchContacts()).unwrap()
+        await dispatch(fetchContacts())
         setFetched(true)
     }
 
@@ -131,7 +133,7 @@ function Contact() {
     }, [])
 
     const [stateIndex, setStateIndex] = useState(0)
-    function handleTab(tab, index) {
+    function handleTab(tab: string, index: number) {
         setPage(1)
         tab === selectedTab ? setSelectedTab('All Messages') : setSelectedTab(tab)
         stateIndex === index ? setStateIndex(0) : setStateIndex(index)
