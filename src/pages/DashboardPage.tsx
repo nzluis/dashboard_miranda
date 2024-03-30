@@ -3,7 +3,7 @@ import { IoBedOutline } from "react-icons/io5";
 import { TbCalendarCheck } from "react-icons/tb";
 import { BsBoxArrowInLeft, BsBoxArrowInRight } from "react-icons/bs";
 
-function Dashboard() {
+export default function Dashboard() {
     return (
         <DashBoard>
             <KPIs>
@@ -49,5 +49,3 @@ function Dashboard() {
         </DashBoard>
     )
 }
-
-export default Dashboard
