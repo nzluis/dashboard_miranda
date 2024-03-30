@@ -5,11 +5,11 @@ import { bookingByIdData } from "../features/bookings/bookingsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { fetchBookingById } from "../features/bookings/bookingsThunk";
 import { LinearProgress } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchRooms } from "../features/rooms/roomsThunk";
 import { roomsData } from "../features/rooms/roomsSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
-const options = {
+const options: Intl.DateTimeFormatOptions = {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -18,11 +18,11 @@ const options = {
 
 export default function BookingDetail() {
     const { id } = useParams()
-    const bookingData = useSelector(bookingByIdData)
-    const rooms = useSelector(roomsData)
+    const bookingData = useAppSelector(bookingByIdData)
+    const rooms = useAppSelector(roomsData)
     const daysBetween = useMemo(() => {
         if (bookingData)
-            return Math.ceil(Math.abs(bookingData.check_out - bookingData.check_in) / 1000 / 60 / 60 / 24)
+            return Math.ceil(Math.abs(parseInt(bookingData.check_out) - parseInt(bookingData.check_in)) / 1000 / 60 / 60 / 24)
     }, [bookingData])
     const room = useMemo(() => {
         if (rooms && bookingData) {
@@ -31,10 +31,10 @@ export default function BookingDetail() {
         }
     }, [rooms])
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [fetched, setFetched] = useState(false)
     const initialFetch = async () => {
-        await dispatch(fetchBookingById(id)).unwrap()
+        await dispatch(fetchBookingById(id!)).unwrap()
         await dispatch(fetchRooms()).unwrap()
         setFetched(true)
     }
@@ -47,23 +47,23 @@ export default function BookingDetail() {
     return (
         <DashBoard $flex>
             <LeftSide>
-                <h1>{bookingData.first_name} {bookingData.last_name}</h1>
-                <p>{bookingData.id}</p>
+                <h1>{bookingData!.first_name} {bookingData!.last_name}</h1>
+                <p>{bookingData!.id}</p>
                 <CheckDatesBox>
                     <CheckDatesBox $insidebox>
                         <h5>Check In</h5>
-                        <p>{new Date(Number(bookingData.check_in)).toLocaleDateString('en-EN', options)}</p>
+                        <p>{new Date(Number(bookingData!.check_in)).toLocaleDateString('en-EN', options)}</p>
                     </CheckDatesBox>
                     <CheckDatesBox $insidebox>
                         <h5>Check Out</h5>
-                        <p>{new Date(Number(bookingData.check_out)).toLocaleDateString('en-EN', options)}</p>
+                        <p>{new Date(Number(bookingData!.check_out)).toLocaleDateString('en-EN', options)}</p>
                     </CheckDatesBox>
                 </CheckDatesBox>
-                <p>{bookingData.room_number}</p>
-                <p>{bookingData.price}</p>
-                <p>{room.request}</p>
-                <p>{room.price * daysBetween} <span>$ </span></p>
-                <p>{room.amenities.join(', ')}</p>
+                <p>{bookingData!.room_number}</p>
+                <p>{bookingData!.request}</p>
+                <p>{room!.price}</p>
+                <p>{parseInt(room!.price) * daysBetween!} <span>$ </span></p>
+                <p>{room!.amenities.join(', ')}</p>
             </LeftSide>
 
             <RightSide>
