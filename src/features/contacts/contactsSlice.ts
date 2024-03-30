@@ -1,11 +1,11 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { deleteContactById, fetchContactById, fetchContacts, updateContact } from "./contactsThunk";
-import { ContactState } from "../../interfaces/Contacts";
+import { ContactData, ContactState } from "../../interfaces/Contacts";
 import { RootState } from "../../app/store";
 
 export const contactsSlice = createSlice({
     name: 'contacts',
-    initialState: { data: [], dataById: undefined, status: 'idle', error: null } as ContactState,
+    initialState: { data: [], dataById: {} as ContactData, status: 'idle', error: null } as ContactState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -49,3 +49,4 @@ export const contactsData = (state: RootState) => state.contacts.data
 export const contactByIdData = (state: RootState) => state.contacts.dataById
 export const contactsStatus = (state: RootState) => state.contacts.status
 export const contactsError = (state: RootState) => state.contacts.error
+export default contactsSlice.reducer;

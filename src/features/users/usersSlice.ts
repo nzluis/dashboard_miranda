@@ -1,13 +1,11 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { createUser, deleteUserById, fetchUserById, fetchUsers, updateUser } from "./usersThunk";
-import { UserState } from "../../interfaces/Users";
+import { UserData, UserState } from "../../interfaces/Users";
 import { RootState } from "../../app/store";
-
-const initialState: UserState = { data: [], dataById: undefined, status: 'idle', error: null }
 
 export const usersSlice = createSlice({
     name: 'users',
-    initialState,
+    initialState: { data: [], dataById: {} as UserData, status: 'idle', error: null } as UserState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -57,3 +55,4 @@ export const usersData = (state: RootState) => state.users.data
 export const userByIdData = (state: RootState) => state.users.dataById
 export const usersStatus = (state: RootState) => state.users.status
 export const usersError = (state: RootState) => state.users.error
+export default usersSlice.reducer;

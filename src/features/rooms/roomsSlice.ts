@@ -1,13 +1,11 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { createRoom, deleteRoomById, fetchRoomById, fetchRooms, updateRoom } from "./roomsThunk";
-import { RoomState } from "../../interfaces/Rooms";
+import { RoomData, RoomState } from "../../interfaces/Rooms";
 import { RootState } from "../../app/store";
-
-const initialState: RoomState = { data: [], dataById: undefined, status: 'idle', error: null }
 
 export const roomsSlice = createSlice({
     name: 'rooms',
-    initialState,
+    initialState: { data: [], dataById: {} as RoomData, status: 'idle', error: null } as RoomState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -57,3 +55,4 @@ export const roomsData = (state: RootState) => state.rooms.data
 export const roomByIdData = (state: RootState) => state.rooms.dataById
 export const roomsStatus = (state: RootState) => state.rooms.status
 export const roomsError = (state: RootState) => state.rooms.error
+export default roomsSlice.reducer;

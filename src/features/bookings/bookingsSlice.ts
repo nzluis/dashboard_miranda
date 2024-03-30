@@ -1,13 +1,11 @@
 import { PayloadAction, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { createBooking, deleteBookingById, fetchBookingById, fetchBookings, updateBooking } from "./bookingsThunk";
 import type { RootState } from '../../app/store'
-import type { BookingState } from '../../interfaces/Bookings'
-
-const initialState: BookingState = { data: [], dataById: undefined, status: 'idle', error: null }
+import type { BookingData, BookingState } from '../../interfaces/Bookings'
 
 export const bookingsSlice = createSlice({
     name: 'bookings',
-    initialState,
+    initialState: { data: [], dataById: {} as BookingData, status: 'idle', error: null } as BookingState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -57,3 +55,4 @@ export const bookingsData = (state: RootState) => state.bookings.data
 export const bookingByIdData = (state: RootState) => state.bookings.dataById
 export const bookingsStatus = (state: RootState) => state.bookings.status
 export const bookingsError = (state: RootState) => state.bookings.error
+export default bookingsSlice.reducer;
