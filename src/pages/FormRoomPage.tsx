@@ -1,19 +1,20 @@
 import { FileStyled, Form, FormRow } from "../style/FormStyled";
-import { useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { createRoom, fetchRoomById, updateRoom } from "../features/rooms/roomsThunk";
 import { roomByIdData } from "../features/rooms/roomsSlice";
 import { LinearProgress } from "@mui/material";
 import Select from 'react-select'
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { RoomData } from "../interfaces/Rooms";
 
 export default function FormRoomPage() {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { id } = useParams()
     const [fetched, setFetched] = useState(false)
-    const room = useSelector(roomByIdData)
+    const room = useAppSelector(roomByIdData)
     const amenities = [
         { value: 'AC', label: 'AC' },
         { value: 'Shower', label: 'Shower' },
@@ -25,8 +26,9 @@ export default function FormRoomPage() {
         { value: 'Wifi', label: 'Wifi' },
     ]
     const navigate = useNavigate()
-    const [formData, setFormData] = useState({
-        photo: null,
+    const [formData, setFormData] = useState<RoomData>({
+        id: '',
+        photo: '',
         room_number: '',
         room_type: 'Single Bed',
         amenities: [
@@ -60,18 +62,18 @@ export default function FormRoomPage() {
         if (id && room) setFormData({ ...room })
     }, [room])
 
-    function handleChange(e) {
+    function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
         const { name, value } = e.target
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
     }
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
         !id ?
             await dispatch(
                 createRoom({
-                    id: Math.round(Math.random() * 10000000000).toString(),
                     ...formData,
+                    id: Math.round(Math.random() * 10000000000).toString(),
                     offer: formData.discount ? true : false
                 })
             ).unwrap().then(navigate('/rooms'))
@@ -88,7 +90,7 @@ export default function FormRoomPage() {
     return (
         <DashBoard>
             <Form>
-                <FormRow label="file">
+                <FormRow>
                     <label htmlFor="room_number">Room Number:
                         <input
                             value={formData.room_number}
@@ -107,12 +109,12 @@ export default function FormRoomPage() {
                     </FileStyled>
                 </FormRow>
                 <label htmlFor="amenities">Amenities:
-                    <Select
-                        defaultValue={[amenities[7], amenities[0], amenities[1]]}
-                        isMulti
-                        options={amenities}
-                        className="basic-multi-select"
-                        classNamePrefix="select"
+                    <select
+                        defaultValue={[amenities[7].value, amenities[0].value, amenities[1].value]}
+                        // isMulti
+                        // options={amenities}
+                        // className="basic-multi-select"
+                        // classNamePrefix="select"
                         onChange={handleChange}
                         name="amenities"
                         id="amenities"
