@@ -1,18 +1,19 @@
 import { Form, FormRow } from "../style/FormStyled";
-import { useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
-import { useDispatch, useSelector } from "react-redux";
 import { createBooking, fetchBookingById, updateBooking } from "../features/bookings/bookingsThunk";
 import { useNavigate, useParams } from "react-router-dom";
 import { bookingByIdData } from "../features/bookings/bookingsSlice";
 import { LinearProgress } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+
 
 export default function FormBookingPage() {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { id } = useParams()
     const [fetched, setFetched] = useState(false)
-    const booking = useSelector(bookingByIdData)
+    const booking = useAppSelector(bookingByIdData)
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         first_name: '',
@@ -26,7 +27,7 @@ export default function FormBookingPage() {
     })
 
     const initialFetch = async () => {
-        await dispatch(fetchBookingById(id)).unwrap()
+        await dispatch(fetchBookingById(id!))
         setFetched(true)
     }
 
@@ -42,18 +43,18 @@ export default function FormBookingPage() {
         })
     }, [booking])
 
-    function handleChange(e) {
+    function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
         const { name, value } = e.target
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
     }
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
         !id ?
             await dispatch(
                 createBooking({
                     id: Math.round(Math.random() * 100000000000).toString(),
-                    order_date: new Date(Date.now()).getTime(),
+                    order_date: new Date(Date.now()).getTime().toString(),
                     ...formData
                 })
             ).unwrap().then(navigate('/bookings'))
@@ -61,8 +62,8 @@ export default function FormBookingPage() {
             await dispatch(
                 updateBooking({
                     ...formData,
-                    check_in: new Date(formData.check_in).getTime(),
-                    check_out: new Date(formData.check_out).getTime()
+                    check_in: new Date(formData.check_in).getTime().toString(),
+                    check_out: new Date(formData.check_out).getTime().toString()
                 })
             ).unwrap().then(navigate('/bookings'))
     }
