@@ -1,21 +1,24 @@
 import { Form, FormRow, UserFileStyled } from "../style/FormStyled";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { createUser, fetchUserById, updateUser } from "../features/users/usersThunk";
 import { useNavigate, useParams } from "react-router-dom";
 import { userByIdData } from "../features/users/usersSlice";
 import { LinearProgress } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { UserData } from "../interfaces/Users";
 
 export default function FormUserPage() {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { id } = useParams()
     const [fetched, setFetched] = useState(false)
-    const user = useSelector(userByIdData)
+    const user = useAppSelector(userByIdData)
     const navigate = useNavigate()
-    const [formData, setFormData] = useState({
-        photo: null,
+    const [formData, setFormData] = useState<UserData>({
+        id: '',
+        start_date: '',
+        photo: '',
         full_name: '',
         email: '',
         description: '',
@@ -41,26 +44,26 @@ export default function FormUserPage() {
         })
     }, [user])
 
-    function handleChange(e) {
+    function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
         const { name, value } = e.target
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
     }
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
         !id ?
             await dispatch(
                 createUser({
+                    ...formData,
                     id: Math.round(Math.random() * 100000000000).toString(),
-                    start_date: new Date(Date.now()).getTime(),
-                    ...formData
+                    start_date: new Date(Date.now()).getTime().toString()
                 })
             ).unwrap().then(navigate('/users'))
             :
             await dispatch(
                 updateUser({
                     ...formData,
-                    start_date: new Date(formData.start_date).getTime(),
+                    start_date: new Date(formData.start_date).getTime().toString(),
                 })
             ).unwrap().then(navigate('/users'))
     }
