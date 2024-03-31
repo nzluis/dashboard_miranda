@@ -7,9 +7,9 @@ import Bookings from "./pages/BookingsPage"
 import Users from "./pages/UsersPage"
 import Contact from "./pages/ContactPage"
 import ProtectedRoute from "./components/ProtectedRoute"
-import RoomDetail from "./pages/RoomDetailPage"
+// import RoomDetail from "./pages/RoomDetailPage"
 import BookingDetail from "./pages/BookingDetailPage"
-import UserDetail from "./pages/UserDetailPage"
+// import UserDetail from "./pages/UserDetailPage"
 import FormBookingPage from "./pages/FormBookingPage"
 import FormRoomPage from "./pages/FormRoomPage"
 import FormUserPage from "./pages/FormUserPage"
@@ -23,7 +23,7 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
     <Route element={<ProtectedRoute />}>
       <Route path='/' element={<Dashboard />} />
       <Route path="rooms" element={<Rooms />} />
-      <Route path="rooms/:id" element={<RoomDetail />} />
+      {/* <Route path="rooms/:id" element={<RoomDetail />} /> */}
       <Route path="rooms/new-room" element={<FormRoomPage />} />
       <Route path="rooms/edit/:id" element={<FormRoomPage />} />
       <Route path="bookings" element={<Bookings />} />
@@ -31,7 +31,7 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
       <Route path="bookings/new-booking" element={<FormBookingPage />} />
       <Route path="bookings/edit/:id" element={<FormBookingPage />} />
       <Route path="users" element={<Users />} />
-      <Route path="users/:id" element={<UserDetail />} />
+      {/* <Route path="users/:id" element={<UserDetail />} /> */}
       <Route path="users/new-user" element={<FormUserPage />} />
       <Route path="users/edit/:id" element={<FormUserPage />} />
       <Route path="contact" element={<Contact />} />
