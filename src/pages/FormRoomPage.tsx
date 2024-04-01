@@ -1,5 +1,5 @@
 import { FileStyled, Form, FormRow } from "../style/FormStyled";
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
 import { useNavigate, useParams } from "react-router-dom";
@@ -67,7 +67,7 @@ export default function FormRoomPage() {
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
     }
 
-    async function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         !id ?
             await dispatch(
@@ -89,7 +89,7 @@ export default function FormRoomPage() {
     if (!fetched && id) return <LinearProgress />
     return (
         <DashBoard>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <FormRow>
                     <label htmlFor="room_number">Room Number:
                         <input
@@ -182,7 +182,7 @@ export default function FormRoomPage() {
                         style={{ height: '80px' }}
                     />
                 </label>
-                <ButtonActive onClick={(e) => handleSubmit(e)}>{id ? 'Edit Room' : 'Create Room'}</ButtonActive>
+                <ButtonActive type="submit">{id ? 'Edit Room' : 'Create Room'}</ButtonActive>
             </Form>
         </DashBoard>
     )

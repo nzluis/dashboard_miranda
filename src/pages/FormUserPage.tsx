@@ -1,7 +1,7 @@
 import { Form, FormRow, UserFileStyled } from "../style/FormStyled";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from "react";
 import { createUser, fetchUserById, updateUser } from "../features/users/usersThunk";
 import { useNavigate, useParams } from "react-router-dom";
 import { userByIdData } from "../features/users/usersSlice";
@@ -49,7 +49,7 @@ export default function FormUserPage() {
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
     }
 
-    async function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         !id ?
             await dispatch(
@@ -72,7 +72,7 @@ export default function FormUserPage() {
 
     return (
         <DashBoard>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <label htmlFor="full_name">Full Name:
                     <input
                         value={formData.full_name}
@@ -161,7 +161,7 @@ export default function FormUserPage() {
                         </select>
                     </label>
                 </FormRow>
-                <ButtonActive onClick={handleSubmit}>{id ? 'Edit User' : 'Create User'}</ButtonActive>
+                <ButtonActive type="submit">{id ? 'Edit User' : 'Create User'}</ButtonActive>
             </Form>
         </DashBoard>
     )

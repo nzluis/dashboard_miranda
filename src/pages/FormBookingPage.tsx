@@ -1,5 +1,5 @@
 import { Form, FormRow } from "../style/FormStyled";
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
 import { createBooking, fetchBookingById, updateBooking } from "../features/bookings/bookingsThunk";
@@ -43,12 +43,12 @@ export default function FormBookingPage() {
         })
     }, [booking])
 
-    function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+    function handleChange(e: ChangeEvent<any>) {
         const { name, value } = e.target
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
     }
 
-    async function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         !id ?
             await dispatch(
@@ -71,7 +71,7 @@ export default function FormBookingPage() {
     if (!fetched && id) return <LinearProgress />
     return (
         <DashBoard>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <label htmlFor="first_name">First Name:
                     <input
 
@@ -144,7 +144,7 @@ export default function FormBookingPage() {
                         <option value="Check Out">Check Out</option>
                     </select>
                 </label>
-                <ButtonActive onClick={(e) => handleSubmit(e)}>{id ? 'Edit' : 'Send'}</ButtonActive>
+                <ButtonActive type="submit">{id ? 'Edit' : 'Send'}</ButtonActive>
             </Form>
         </DashBoard>
     )
