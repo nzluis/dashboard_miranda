@@ -14,6 +14,8 @@ interface DataTableProps {
     noPointer?: boolean
 }
 
+type Property = keyof BookingData & keyof RoomData & keyof ContactData & keyof UserData
+
 export default function DataTable({ data, columns, actions, position, noPointer }: DataTableProps) {
     const { pathname } = useLocation()
     const navigate = useNavigate()
@@ -33,7 +35,7 @@ export default function DataTable({ data, columns, actions, position, noPointer 
                             {columns.map((column, i) => {
                                 return (
                                     <td key={i}  >
-                                        {row[column.property as keyof BookingData & keyof RoomData & keyof ContactData & keyof UserData] ? row[column.property as keyof BookingData & keyof RoomData & keyof ContactData & keyof UserData] : column.display!(row)}
+                                        {row[column.property as Property] ? row[column.property as Property] : column.display!(row)}
                                     </td>
                                 )
                             })}
