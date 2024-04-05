@@ -9,8 +9,12 @@ export const DashBoard = styled.div<Props>`
     overflow: scroll;
     padding: 40px 50px;
     ${props => props.$flex && css`
-        display: flex;
+    display: flex;
     `}
+    @media only screen and (max-width: 1400px) {
+        padding: 20px 30px;
+        
+    }
 
 `
 export const PinkBox = styled.div`

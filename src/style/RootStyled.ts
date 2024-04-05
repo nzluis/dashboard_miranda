@@ -14,5 +14,8 @@ export const RootStyled = styled.div<Props>`
         `'panel navbar'
         'panel dashboard'` :
         `'navbar'
-        'dashboard'`}
+        'dashboard'`};
+    @media only screen and (max-width: 1400px) {
+        grid-template-rows: 70px 1fr;
+    }
 `
