@@ -23,8 +23,8 @@ export default function Panel() {
             </PanelLinks>
             {state.isAuthenticated && <UserBox>
                 <img width={70} height={70} src="" alt="" />
-                <h3>{state.user.fullName}</h3>
-                <p>{state.user.email}</p>
+                <h3>{state.user!.fullName}</h3>
+                <p>{state.user!.email}</p>
                 <button onClick={() => navigate(`/users/${state.user.fullName.replace(' ', '-')}`)}>Edit</button>
             </UserBox>}
         </SideBar>

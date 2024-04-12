@@ -13,7 +13,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         case 'LOGIN':
             return {
                 isAuthenticated: true,
-                user: action.payload
+                user: action.payload!
             }
         case 'LOGOUT':
             return {
@@ -23,7 +23,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         case 'EDIT':
             return {
                 ...state,
-                user: action.payload
+                user: action.payload!
             }
         default:
             return state
