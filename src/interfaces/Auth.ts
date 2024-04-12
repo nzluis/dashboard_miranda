@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 export interface AuthState {
     isAuthenticated: boolean
-    user: null | {
+    user: undefined | null | {
         email: string
         fullName: string
     }
@@ -10,7 +10,7 @@ export interface AuthState {
 
 export interface AuthAction {
     type: 'LOGIN' | 'LOGOUT' | 'EDIT'
-    payload?: null | {
+    payload?: undefined | null | {
         email: string
         fullName: string
     }
