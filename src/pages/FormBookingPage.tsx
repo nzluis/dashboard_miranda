@@ -16,6 +16,8 @@ export default function FormBookingPage() {
     const booking = useAppSelector(bookingByIdData)
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
+        id: '',
+        order_date: '',
         first_name: '',
         last_name: '',
         check_in: '',
@@ -53,9 +55,9 @@ export default function FormBookingPage() {
         !id ?
             await dispatch(
                 createBooking({
+                    ...formData,
                     id: Math.round(Math.random() * 100000000000).toString(),
-                    order_date: new Date(Date.now()).getTime().toString(),
-                    ...formData
+                    order_date: new Date(Date.now()).getTime().toString()
                 })
             ).unwrap().then(navigate('/bookings'))
             :

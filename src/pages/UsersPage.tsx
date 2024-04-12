@@ -88,7 +88,7 @@ function Users() {
     const users = useMemo(() => {
         const users = allUsers.filter(user => selectedTab === 'All Users' ? true : user.status === selectedTab)
         return users.sort((a, b) => {
-            let firstItem, secondItem, orderingProperty;
+            let firstItem: any, secondItem: any, orderingProperty;
             if (orderBy.includes('_DESC')) {
                 firstItem = b;
                 secondItem = a;

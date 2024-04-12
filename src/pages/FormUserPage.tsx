@@ -65,7 +65,7 @@ export default function FormUserPage() {
                     ...formData,
                     start_date: new Date(formData.start_date).getTime().toString(),
                 })
-            ).unwrap().then(navigate('/users'))
+            ).unwrap().then(() => navigate('/users'))
     }
 
     if (!fetched && id) return <LinearProgress />
