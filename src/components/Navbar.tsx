@@ -7,6 +7,7 @@ import { NavBar, NavIcons } from "../style/NavbarStyled";
 import { useAuth } from "../context/AuthContext";
 import { Link } from 'react-router-dom'
 import { Dispatch, SetStateAction } from "react";
+import React from 'react'
 
 interface NavbarProps {
     visiblePanel: boolean
@@ -16,7 +17,7 @@ interface NavbarProps {
 export default function Navbar({ visiblePanel, setVisiblePanel }: NavbarProps) {
     const { state, dispatch } = useAuth()
     const { pathname } = useLocation()
-    const regexMatch: RegExpMatchArray | null = pathname.match(/\/[^/]+/g)
+    const regexMatch: RegExpMatchArray | string = pathname.match(/\/[^/]+/g) || 'Dashboard'
     const titleName = pathname[1] ? regexMatch[0][1].toUpperCase() + regexMatch[0].slice(2) : 'Dashboard'
     const subTitleName = regexMatch !== null && regexMatch[1] ? regexMatch[1].replace('-', ' ').slice(1) : false
 
