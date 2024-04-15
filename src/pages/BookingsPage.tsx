@@ -24,7 +24,7 @@ export default function Bookings() {
             display: (row: BookingData) =>
                 <div>
                     <p>{row.first_name}{' '}{row.last_name}</p>
-                    <p className='panelColor'># {row.id.slice(0, 8)}</p>
+                    <p className='panelColor'># {row._id.slice(0, 8)}</p>
                 </div>
         },
         {
@@ -58,8 +58,8 @@ export default function Bookings() {
             label: 'Room Type',
             display: (row: BookingData) =>
                 <>
-                    <p>{row.room_type}</p>
-                    <p>{row.room_number}</p>
+                    <p>{row.room.room_type}</p>
+                    <p>{row.room.room_number}</p>
                 </>
         },
         {
@@ -81,12 +81,12 @@ export default function Bookings() {
 
     const deleteBooking = (e: SyntheticEvent, booking: BookingData) => {
         e.stopPropagation()
-        dispatch(deleteBookingById(booking.id))
+        dispatch(deleteBookingById(booking._id))
     }
 
     const editBooking = (e: SyntheticEvent, booking: BookingData) => {
         e.stopPropagation()
-        navigate(`/bookings/edit/${booking.id}`)
+        navigate(`/bookings/edit/${booking._id}`)
     }
 
     const actions = [
