@@ -20,15 +20,40 @@ function getData(json: BookingData[]): BookingData[] | false {
 }
 
 export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async () => {
-    return await delay(getData(bookings))
+    const response = await fetch('http://localhost:3000/bookings/', {
+        method: 'GET',
+        headers: {
+            "Authorization": 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IklsYTgyQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkVDFTb0g2L3EwVEtmT3lycDFWRGozZWJidTVjbFBDdnliNFVaSEI4eFBnb2tMbTBUeTAvRnEiLCJpYXQiOjE3MTI4MzQ4MDh9.TET-w7rD4_cEWmUvoUBUlFRBjnORpyuBIpE1ic4NFW0'
+        }
+    })
+    const bookings = response.json()
+    if (!response.ok) throw new Error('broken in fetchBookings')
+    return bookings
 })
 
 export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', async (id: string) => {
-    return await delay(id)
+    const response = await fetch(`http://localhost:3000/bookings/${id}`, {
+        method: 'GET',
+        headers: {
+            "Authorization": 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IklsYTgyQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkVDFTb0g2L3EwVEtmT3lycDFWRGozZWJidTVjbFBDdnliNFVaSEI4eFBnb2tMbTBUeTAvRnEiLCJpYXQiOjE3MTI4MzQ4MDh9.TET-w7rD4_cEWmUvoUBUlFRBjnORpyuBIpE1ic4NFW0'
+        }
+    })
+    const booking = response.json()
+    if (!response.ok) throw new Error('broken in fetchBooking')
+    return booking
 })
 
 export const createBooking = createAsyncThunk('bookings/createBooking', async (newBooking: BookingData) => {
-    return await delay({ ...newBooking })
+    const response = await fetch(`http://localhost:3000/bookings/${newBooking._id}`, {
+        method: 'POST',
+        headers: {
+            "Authorization": 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IklsYTgyQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkVDFTb0g2L3EwVEtmT3lycDFWRGozZWJidTVjbFBDdnliNFVaSEI4eFBnb2tMbTBUeTAvRnEiLCJpYXQiOjE3MTI4MzQ4MDh9.TET-w7rD4_cEWmUvoUBUlFRBjnORpyuBIpE1ic4NFW0'
+        },
+        body: JSON.stringify(newBooking)
+    })
+    const booking = response.json()
+    if (!response.ok) throw new Error('broken in fetchBooking')
+    return booking
 })
 
 export const updateBooking = createAsyncThunk('bookings/updateBooking', async (updatedBooking: BookingData) => {
