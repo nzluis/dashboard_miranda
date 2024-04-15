@@ -41,7 +41,7 @@ export default function BookingDetail() {
 
             return rooms.find(room => room.room_type == bookingData.room_type)
         }
-    }, [rooms])
+    }, [rooms, bookingData])
 
     const dispatch = useAppDispatch()
     const [fetched, setFetched] = useState(false)
