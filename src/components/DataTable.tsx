@@ -31,7 +31,7 @@ export default function DataTable({ data, columns, actions, position, noPointer 
             <StyledTableBody $position={position as string} $noPointer={noPointer as boolean}>
                 {data.map((row: BookingData | RoomData | UserData | ContactData, index: number) => {
                     return (
-                        <tr key={index} onClick={() => pathname === '/bookings' && navigate(`${pathname}/${row.id}`)}>
+                        <tr key={index} onClick={() => pathname === '/bookings' && navigate(`${pathname}/${row._id}`)}>
                             {columns.map((column, i) => {
                                 return (
                                     <td key={i}  >

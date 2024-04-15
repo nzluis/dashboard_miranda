@@ -14,7 +14,7 @@ export const bookingsSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(fetchBookingById.fulfilled, (state, action) => {
-                state.dataById = state.data.find(booking => booking.id === action.payload)
+                state.dataById = state.data.find(booking => booking._id === action.payload._id)
                 state.status = 'fulfilled'
             })
             .addCase(createBooking.fulfilled, (state, action) => {
@@ -22,11 +22,11 @@ export const bookingsSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(updateBooking.fulfilled, (state, action) => {
-                state.data = state.data.map(booking => booking.id === action.payload.id ? action.payload : booking)
+                state.data = state.data.map(booking => booking._id === action.payload.id ? action.payload : booking)
                 state.status = 'fulfilled'
             })
             .addCase(deleteBookingById.fulfilled, (state, action) => {
-                state.data = state.data.filter(booking => booking.id !== action.payload)
+                state.data = state.data.filter(booking => booking._id !== action.payload)
                 state.status = 'fulfilled'
             })
             .addMatcher(isAnyOf(
