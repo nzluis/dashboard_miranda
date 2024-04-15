@@ -29,7 +29,7 @@ export default function FormUserPage() {
     })
 
     const initialFetch = async () => {
-        await dispatch(fetchUserById(id)).unwrap()
+        await dispatch(fetchUserById(id))
         setFetched(true)
     }
 
@@ -38,10 +38,7 @@ export default function FormUserPage() {
     }, [])
 
     useEffect(() => {
-        if (id && user) setFormData({
-            ...user,
-            start_date: new Date(Number(user.start_date)).toISOString().slice(0, 10),
-        })
+        if (id && user) setFormData({ ...user })
     }, [user])
 
     function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {

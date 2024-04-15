@@ -38,7 +38,7 @@ export default function FormBookingPage() {
     }, [])
 
     useEffect(() => {
-        if (id && booking) setFormData({
+        if (id && booking && booking.check_in) setFormData({
             ...booking,
             check_in: new Date(Number(booking.check_in)).toISOString().slice(0, 10),
             check_out: new Date(Number(booking.check_out)).toISOString().slice(0, 10)
