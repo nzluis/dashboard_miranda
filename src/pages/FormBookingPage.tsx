@@ -16,15 +16,13 @@ export default function FormBookingPage() {
     const booking = useAppSelector(bookingByIdData)
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        id: '',
         order_date: '',
         first_name: '',
         last_name: '',
         check_in: '',
         check_out: '',
         request: '',
-        room_type: 'Single Bed',
-        room_number: '',
+        room: '6617bcdc9e179f98f0c98977',
         status: 'In Progress'
     })
 
@@ -56,7 +54,6 @@ export default function FormBookingPage() {
             await dispatch(
                 createBooking({
                     ...formData,
-                    id: Math.round(Math.random() * 100000000000).toString(),
                     order_date: new Date(Date.now()).getTime().toString()
                 })
             ).unwrap().then(navigate('/bookings'))
@@ -67,7 +64,7 @@ export default function FormBookingPage() {
                     check_in: new Date(formData.check_in).getTime().toString(),
                     check_out: new Date(formData.check_out).getTime().toString()
                 })
-            ).unwrap().then(navigate('/bookings'))
+            ).unwrap().then(() => navigate('/bookings'))
     }
 
     if (!fetched && id) return <LinearProgress />
@@ -113,10 +110,10 @@ export default function FormBookingPage() {
                         style={{ height: '125px' }}
                     />
                 </label>
-                <FormRow>
+                {/* <FormRow>
                     <label htmlFor="room_type">Room Type:
                         <select
-                            value={formData.room_type}
+                            value={formData.room.room_type}
                             onChange={handleChange}
                             name="room_type"
                         >
@@ -128,13 +125,13 @@ export default function FormBookingPage() {
                     </label>
                     <label htmlFor="room_number">Room Number:
                         <input
-                            value={formData.room_number}
+                            value={formData.room.room_number}
                             onChange={handleChange}
                             name="room_number"
                             type="number"
                         />
                     </label>
-                </FormRow>
+                </FormRow> */}
                 <label htmlFor="status">Status:
                     <select
                         value={formData.status}
