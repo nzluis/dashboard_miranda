@@ -1,5 +1,5 @@
 export type ContactData = {
-    id: number
+    _id: string
     full_name: string
     email: string
     phone: string

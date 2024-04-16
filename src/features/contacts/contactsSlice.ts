@@ -14,15 +14,15 @@ export const contactsSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(fetchContactById.fulfilled, (state, action) => {
-                state.dataById = state.data.find(contact => contact.id === action.payload)
+                state.dataById = state.data.find(contact => contact._id === action.payload)
                 state.status = 'fulfilled'
             })
             .addCase(updateContact.fulfilled, (state, action) => {
-                state.data = state.data.map(contact => contact.id === action.payload.id ? action.payload : contact)
+                state.data = state.data.map(contact => contact._id === action.payload._id ? action.payload : contact)
                 state.status = 'fulfilled'
             })
             .addCase(deleteContactById.fulfilled, (state, action) => {
-                state.data = state.data.filter(contact => contact.id !== action.payload)
+                state.data = state.data.filter(contact => contact._id !== action.payload)
                 state.status = 'fulfilled'
             })
             .addMatcher(isAnyOf(

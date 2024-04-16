@@ -2,7 +2,6 @@ import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from "../components/DataTable"
 import { SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
-import { useDispatch, useSelector } from 'react-redux';
 import { contactsData } from '../features/contacts/contactsSlice';
 import usePaginate from '../../hooks/usePaginate';
 import { deleteContactById, fetchContacts, updateContact } from '../features/contacts/contactsThunk';
@@ -10,7 +9,7 @@ import { Tab, TabsContainer, TopMenu } from '../style/TopMenuStyled';
 import { Box, CircularProgress, LinearProgress } from '@mui/material';
 import Pagination from '../components/Pagination';
 import { ContactData } from '../interfaces/Contacts';
-import { useAppDispatch } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 function Contact() {
     const [open, setOpen] = useState(false);
@@ -29,7 +28,10 @@ function Contact() {
     const columns = [
         {
             label: 'ID',
-            property: 'id'
+            display: (row: ContactData) =>
+                <div>
+                    <p># {row._id.slice(-8)}</p>
+                </div>
         },
         {
             label: 'Date',
@@ -80,9 +82,10 @@ function Contact() {
         }
     ]
 
-    const deleteContact = (e: SyntheticEvent, contact: ContactData) => {
+    const deleteContact = async (e: SyntheticEvent, contact: ContactData) => {
         e.stopPropagation()
-        dispatch(deleteContactById(contact.id))
+        await dispatch(deleteContactById(contact._id)).unwrap()
+        await dispatch(fetchContacts())
     }
 
     const editContact = async (e: SyntheticEvent, contact: ContactData) => {
@@ -91,7 +94,7 @@ function Contact() {
         await dispatch(updateContact({
             ...contact,
             status: contact.status === 'Read' ? 'Unread' : 'Read'
-        })).unwrap()
+        }))
 
     }
 
@@ -100,7 +103,7 @@ function Contact() {
         { name: 'Edit', handler: editContact },
     ]
 
-    const allContacts = useSelector(contactsData)
+    const allContacts = useAppSelector(contactsData)
     const contacts = useMemo(() => {
         const contacts = selectedTab === 'All Messages' ?
             allContacts :
