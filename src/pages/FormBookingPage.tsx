@@ -50,13 +50,16 @@ export default function FormBookingPage() {
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
+        console.log(id)
         !id ?
             await dispatch(
                 createBooking({
                     ...formData,
-                    order_date: new Date(Date.now()).getTime().toString()
+                    order_date: new Date(Date.now()).getTime().toString(),
+                    check_in: new Date(formData.check_in).getTime().toString(),
+                    check_out: new Date(formData.check_out).getTime().toString()
                 })
-            ).unwrap().then(navigate('/bookings'))
+            ).unwrap().then(() => navigate('/bookings'))
             :
             await dispatch(
                 updateBooking({

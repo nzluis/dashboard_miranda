@@ -44,7 +44,6 @@ export const fetchBookingById = createAsyncThunk('bookings/fetchBookingById', as
 })
 
 export const createBooking = createAsyncThunk('bookings/createBooking', async (newBooking: BookingData) => {
-    console.log(newBooking)
     const response = await fetch(`http://localhost:3000/bookings/create`, {
         method: 'POST',
         body: JSON.stringify(newBooking),
@@ -59,7 +58,18 @@ export const createBooking = createAsyncThunk('bookings/createBooking', async (n
 })
 
 export const updateBooking = createAsyncThunk('bookings/updateBooking', async (updatedBooking: BookingData) => {
-    return await delay({ ...updatedBooking })
+    console.log(updatedBooking)
+    const response = await fetch(`http://localhost:3000/bookings/${updatedBooking._id}/update`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedBooking),
+        headers: {
+            "Content-type": "application/json",
+            "Authorization": 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IklsYTgyQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkVDFTb0g2L3EwVEtmT3lycDFWRGozZWJidTVjbFBDdnliNFVaSEI4eFBnb2tMbTBUeTAvRnEiLCJpYXQiOjE3MTI4MzQ4MDh9.TET-w7rD4_cEWmUvoUBUlFRBjnORpyuBIpE1ic4NFW0'
+        }
+    })
+    const booking = response.json()
+    if (!response.ok) throw new Error('broken in edit booking: ' + response)
+    return booking
 })
 
 export const deleteBookingById = createAsyncThunk('bookings/deleteBookingById', async (id: string) => {
