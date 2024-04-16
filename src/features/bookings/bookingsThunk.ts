@@ -1,4 +1,3 @@
-import bookings from '../../assets/data/bookings.json'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BookingData } from '../../interfaces/Bookings';
 import { callApi } from '../../api/callApi';

@@ -22,7 +22,7 @@ export const bookingsSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(updateBooking.fulfilled, (state, action) => {
-                state.data = state.data.map(booking => booking._id === action.payload.id ? action.payload : booking)
+                state.data = state.data.map(booking => booking._id === action.payload._id ? action.payload : booking)
                 state.status = 'fulfilled'
             })
             .addCase(deleteBookingById.fulfilled, (state, action) => {
