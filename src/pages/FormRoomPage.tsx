@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { createRoom, fetchRoomById, updateRoom } from "../features/rooms/roomsThunk";
 import { roomByIdData } from "../features/rooms/roomsSlice";
 import { LinearProgress } from "@mui/material";
-import Select from 'react-select'
+// import Select from 'react-select'
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { RoomData } from "../interfaces/Rooms";
 
@@ -15,20 +15,19 @@ export default function FormRoomPage() {
     const { id } = useParams()
     const [fetched, setFetched] = useState(false)
     const room = useAppSelector(roomByIdData)
-    const amenities = [
-        { value: 'AC', label: 'AC' },
-        { value: 'Shower', label: 'Shower' },
-        { value: 'Towel', label: 'Towel' },
-        { value: 'Comfort Bed', label: 'Comfort Bed' },
-        { value: 'Bathup', label: 'Bathup' },
-        { value: 'Coffee Set', label: 'Coffee Set' },
-        { value: 'LED TV', label: 'LED TV' },
-        { value: 'Wifi', label: 'Wifi' },
-    ]
+    // const amenities = [
+    //     { value: 'AC', label: 'AC' },
+    //     { value: 'Shower', label: 'Shower' },
+    //     { value: 'Towel', label: 'Towel' },
+    //     { value: 'Comfort Bed', label: 'Comfort Bed' },
+    //     { value: 'Bathup', label: 'Bathup' },
+    //     { value: 'Coffee Set', label: 'Coffee Set' },
+    //     { value: 'LED TV', label: 'LED TV' },
+    //     { value: 'Wifi', label: 'Wifi' },
+    // ]
     const navigate = useNavigate()
     const [formData, setFormData] = useState<RoomData>({
-        id: '',
-        photo: '',
+        photo: 'https://picsum.photos/100/50',
         room_number: '',
         room_type: 'Single Bed',
         amenities: [
@@ -50,7 +49,7 @@ export default function FormRoomPage() {
     })
 
     const initialFetch = async () => {
-        await dispatch(fetchRoomById(id)).unwrap()
+        await dispatch(fetchRoomById(id!))
         setFetched(true)
     }
 
@@ -59,7 +58,7 @@ export default function FormRoomPage() {
     }, [])
 
     useEffect(() => {
-        if (id && room) setFormData({ ...room })
+        if (id && room) setFormData(room)
     }, [room])
 
     function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
@@ -73,7 +72,6 @@ export default function FormRoomPage() {
             await dispatch(
                 createRoom({
                     ...formData,
-                    id: Math.round(Math.random() * 10000000000).toString(),
                     offer: formData.discount ? true : false
                 })
             ).unwrap().then(navigate('/rooms'))
@@ -108,7 +106,7 @@ export default function FormRoomPage() {
                         />
                     </FileStyled>
                 </FormRow>
-                <label htmlFor="amenities">Amenities:
+                {/* <label htmlFor="amenities">Amenities:
                     <select
                         defaultValue={[amenities[7].value, amenities[0].value, amenities[1].value]}
                         // isMulti
@@ -119,7 +117,7 @@ export default function FormRoomPage() {
                         name="amenities"
                         id="amenities"
                     />
-                </label>
+                </label> */}
                 <FormRow>
                     <label htmlFor="price">Price:
                         <input

@@ -23,7 +23,7 @@ export default function Rooms() {
                 <div style={{ display: 'flex', gap: '5px' }}>
                     <img src={row.photo} />
                     <div>
-                        <p className='panelColor'># {row.id.slice(0, 8)}</p>
+                        <p className='panelColor'># {row._id!.slice(-8)}</p>
                         {row.room_number}
                     </div>
                 </div>
@@ -75,12 +75,13 @@ export default function Rooms() {
 
     const deleteRoom = (e: SyntheticEvent, room: RoomData) => {
         e.stopPropagation()
-        dispatch(deleteRoomById(room.id))
+        dispatch(deleteRoomById(room._id!)).unwrap()
+        dispatch(fetchRooms())
     }
 
     const editRoom = (e: SyntheticEvent, room: RoomData) => {
         e.stopPropagation()
-        navigate(`/rooms/edit/${room.id}`)
+        navigate(`/rooms/edit/${room._id}`)
     }
 
     const actions = [

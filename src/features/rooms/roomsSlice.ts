@@ -14,7 +14,7 @@ export const roomsSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(fetchRoomById.fulfilled, (state, action) => {
-                state.dataById = state.data.find(room => room.id === action.payload)
+                state.dataById = state.data.find(room => room._id === action.payload._id)
                 state.status = 'fulfilled'
             })
             .addCase(createRoom.fulfilled, (state, action) => {
@@ -22,11 +22,11 @@ export const roomsSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(updateRoom.fulfilled, (state, action) => {
-                state.data = state.data.map(room => room.id === action.payload.id ? action.payload : room)
+                state.data = state.data.map(room => room._id === action.payload._id ? action.payload : room)
                 state.status = 'fulfilled'
             })
             .addCase(deleteRoomById.fulfilled, (state, action) => {
-                state.data = state.data.filter(room => room.id !== action.payload)
+                state.data = state.data.filter(room => room._id !== action.payload)
                 state.status = 'fulfilled'
             })
             .addMatcher(isAnyOf(
