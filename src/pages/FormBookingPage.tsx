@@ -50,7 +50,6 @@ export default function FormBookingPage() {
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        console.log(id)
         !id ?
             await dispatch(
                 createBooking({

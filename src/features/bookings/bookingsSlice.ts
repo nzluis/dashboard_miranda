@@ -26,7 +26,7 @@ export const bookingsSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(deleteBookingById.fulfilled, (state, action) => {
-                state.data = state.data.filter(booking => booking._id !== action.payload)
+                state.data = state.data.filter(booking => booking._id !== action.payload._id)
                 state.status = 'fulfilled'
             })
             .addMatcher(isAnyOf(
