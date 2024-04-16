@@ -16,9 +16,8 @@ export default function FormUserPage() {
     const user = useAppSelector(userByIdData)
     const navigate = useNavigate()
     const [formData, setFormData] = useState<UserData>({
-        id: '',
         start_date: '',
-        photo: '',
+        photo: 'https://i.pravatar.cc/50',
         full_name: '',
         email: '',
         description: '',
@@ -38,7 +37,10 @@ export default function FormUserPage() {
     }, [])
 
     useEffect(() => {
-        if (id && user) setFormData({ ...user })
+        if (id && user) setFormData({
+            ...user,
+            password: ''
+        })
     }, [user])
 
     function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
@@ -52,15 +54,13 @@ export default function FormUserPage() {
             await dispatch(
                 createUser({
                     ...formData,
-                    id: Math.round(Math.random() * 100000000000).toString(),
                     start_date: new Date(Date.now()).getTime().toString()
                 })
             ).unwrap().then(navigate('/users'))
             :
             await dispatch(
                 updateUser({
-                    ...formData,
-                    start_date: new Date(formData.start_date).getTime().toString(),
+                    ...formData
                 })
             ).unwrap().then(() => navigate('/users'))
     }

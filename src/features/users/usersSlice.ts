@@ -14,7 +14,7 @@ export const usersSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(fetchUserById.fulfilled, (state, action) => {
-                state.dataById = state.data.find(user => user.id === action.payload)
+                state.dataById = state.data.find(user => user._id === action.payload._id)
                 state.status = 'fulfilled'
             })
             .addCase(createUser.fulfilled, (state, action) => {
@@ -22,11 +22,11 @@ export const usersSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(updateUser.fulfilled, (state, action) => {
-                state.data = state.data.map(user => user.id === action.payload.id ? action.payload : user)
+                state.data = state.data.map(user => user._id === action.payload._id ? action.payload : user)
                 state.status = 'fulfilled'
             })
             .addCase(deleteUserById.fulfilled, (state, action) => {
-                state.data = state.data.filter(user => user.id !== action.payload)
+                state.data = state.data.filter(user => user._id !== action.payload)
                 state.status = 'fulfilled'
             })
             .addMatcher(isAnyOf(

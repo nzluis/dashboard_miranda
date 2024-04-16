@@ -25,7 +25,7 @@ function Users() {
                     <img src={row.photo} />
                     <div>
                         <p className='highlight'>{row.full_name}</p>
-                        <p className='panelColor'>#{row.id.slice(0, 8)}</p>
+                        <p className='panelColor'>#{row._id!.slice(0, 8)}</p>
                         <p className='lighter'>joined on {new Date(Number(row.start_date)).toDateString().slice(4)}</p>
                         <p className='lighter'>{row.email}</p>
                     </div>
@@ -64,12 +64,13 @@ function Users() {
 
     const deleteUser = (e: SyntheticEvent, user: UserData) => {
         e.stopPropagation()
-        dispatch(deleteUserById(user.id))
+        dispatch(deleteUserById(user._id!)).unwrap()
+        dispatch(fetchUsers())
     }
 
     const editUser = (e: SyntheticEvent, user: UserData) => {
         e.stopPropagation()
-        navigate(`/users/edit/${user.id}`)
+        navigate(`/users/edit/${user._id!}`)
     }
 
     const actions = [
