@@ -12,18 +12,26 @@ export default function Login() {
     const [pass, setPass]: [string, Dispatch<SetStateAction<string>>] = useState('admin')
     const [error, setError]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false)
 
-    function handleSubmit(e: SyntheticEvent): void {
+    async function handleSubmit(e: SyntheticEvent): Promise<void> {
         e.preventDefault()
-        if (email === 'admin@example.es' && pass === 'admin') {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/login`, {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({ email, pass })
+        })
+        const userRequest: any = await response.json()
+        if (!response.ok) {
+            console.error(`Server returns ${userRequest.statusCode} error: "${userRequest.message}"`)
+            setError(true)
+        }
+        else {
             dispatch({
-                type: 'LOGIN', payload: {
-                    email,
-                    fullName: 'Luis Navarro'
-                }
+                type: 'LOGIN', payload: userRequest
             })
             setError(false)
         }
-        else setError(true)
     }
 
     const result = state.isAuthenticated ? (
@@ -36,7 +44,7 @@ export default function Login() {
 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="admin@example.com"
+                        placeholder="admin@example.es"
                         type="email"
                         name="email"
                     />

@@ -3,16 +3,22 @@ import { ReactNode } from 'react'
 export interface AuthState {
     isAuthenticated: boolean
     user: null | {
+        id: string
         email: string
-        fullName: string
+        name: string
+        token: string
+        photo: string
     }
 }
 
 export interface AuthAction {
     type: 'LOGIN' | 'LOGOUT' | 'EDIT'
     payload?: null | {
+        id: string
         email: string
-        fullName: string
+        name: string
+        token: string
+        photo: string
     }
 }
 
