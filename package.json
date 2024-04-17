@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "jest",
     "test-w": "jest --watch",
-    "test-cov": "jest --coverage"
+    "test-cov": "jest --coverage",
+    "deploy": "npm run build && aws s3 sync ./dist s3://dashboardmirandanzluis --delete --acl public-read"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
