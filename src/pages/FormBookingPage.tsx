@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { bookingByIdData } from "../features/bookings/bookingsSlice";
 import { LinearProgress } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { RoomData } from "../interfaces/Rooms";
 
 
 export default function FormBookingPage() {
@@ -22,7 +23,7 @@ export default function FormBookingPage() {
         check_in: '',
         check_out: '',
         request: '',
-        room: '6617bcdc9e179f98f0c98977',
+        room: {} as RoomData,
         status: 'In Progress'
     })
 

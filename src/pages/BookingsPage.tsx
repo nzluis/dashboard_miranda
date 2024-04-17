@@ -24,7 +24,7 @@ export default function Bookings() {
             display: (row: BookingData) =>
                 <div>
                     <p>{row.first_name}{' '}{row.last_name}</p>
-                    <p className='panelColor'># {row._id.slice(0, 8)}</p>
+                    <p className='panelColor'># {row._id!.slice(0, 8)}</p>
                 </div>
         },
         {
@@ -81,7 +81,7 @@ export default function Bookings() {
 
     const deleteBooking = (e: SyntheticEvent, booking: BookingData) => {
         e.stopPropagation()
-        dispatch(deleteBookingById(booking._id))
+        dispatch(deleteBookingById(booking._id!))
     }
 
     const editBooking = (e: SyntheticEvent, booking: BookingData) => {

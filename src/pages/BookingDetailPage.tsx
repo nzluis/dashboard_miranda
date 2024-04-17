@@ -60,28 +60,28 @@ export default function BookingDetail() {
                 <CheckDatesBox>
                     <CheckDatesBox $insidebox>
                         <h5>Check In</h5>
-                        <p>{new Date(Number(bookingData!.check_in)).toLocaleDateString('en-EN', options)}</p>
+                        <p>{new Date(Number(bookingData.check_in)).toLocaleDateString('en-EN', options)}</p>
                     </CheckDatesBox>
                     <CheckDatesBox $insidebox>
                         <h5>Check Out</h5>
-                        <p>{new Date(Number(bookingData!.check_out)).toLocaleDateString('en-EN', options)}</p>
+                        <p>{new Date(Number(bookingData.check_out)).toLocaleDateString('en-EN', options)}</p>
                     </CheckDatesBox>
                 </CheckDatesBox>
                 <hr />
                 <RoomBox>
                     <RoomBox $insidebox>
                         <h5>Room Info</h5>
-                        <p>{bookingData!.room.room_type} - {bookingData!.room.room_number}</p>
+                        <p>{bookingData.room.room_type} - {bookingData.room.room_number}</p>
                     </RoomBox>
                     <RoomBox $insidebox>
                         <h5>Price</h5>
-                        <p>${bookingData!.room.price}<span>/Night</span></p>
+                        <p>${bookingData.room.price}<span>/Night</span></p>
                     </RoomBox>
                 </RoomBox>
-                <p>{bookingData!.room.cancelation}</p>
+                <p>{bookingData.room.cancelation}</p>
                 <p>Facilities</p>
                 <FacilitiesContainer>
-                    {bookingData!.room.amenities.slice(0, 5).map(amenity => {
+                    {bookingData.room.amenities.slice(0, 5).map(amenity => {
                         if (amenity === 'AC') return <FacilitiesCard><TbAirConditioning size={26} />&nbsp;{amenity}</FacilitiesCard>
                         if (amenity === 'Shower') return <FacilitiesCard><FaShower size={26} />&nbsp;{amenity}</FacilitiesCard>
                         if (amenity === 'Comfort Bed') return <FacilitiesCard><LiaBedSolid size={30} />&nbsp;{amenity}</FacilitiesCard>

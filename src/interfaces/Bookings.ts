@@ -8,7 +8,7 @@ export type BookingData = {
     check_in: string
     check_out: string
     request: string
-    room?: RoomData
+    room: RoomData
     status: string
 }
 
