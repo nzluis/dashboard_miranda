@@ -22,7 +22,7 @@ function Users() {
             label: "Name",
             display: (row: UserData) =>
                 <div style={{ display: 'flex', gap: '15px' }}>
-                    <img src={row.photo} />
+                    <img width={100} height={100} src={row.photo} />
                     <div>
                         <p className='highlight'>{row.full_name}</p>
                         <p className='panelColor'>#{row._id!.slice(0, 8)}</p>
