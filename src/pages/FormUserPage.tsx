@@ -90,8 +90,8 @@ export default function FormUserPage() {
                 <FormRow>
                     <label htmlFor="password">Password:
                         <input
-                            // value={FormData.password}
-                            // onChange={handleChange}
+                            value={formData.password}
+                            onChange={handleChange}
                             name="password"
                             id="password"
                             type='password'
