@@ -28,7 +28,7 @@ export default function FormUserPage() {
     })
 
     const initialFetch = async () => {
-        await dispatch(fetchUserById(id))
+        await dispatch(fetchUserById(id!))
         setFetched(true)
     }
 
@@ -56,7 +56,7 @@ export default function FormUserPage() {
                     ...formData,
                     start_date: new Date(Date.now()).getTime().toString()
                 })
-            ).unwrap().then(navigate('/users'))
+            ).unwrap().then(() => navigate('/users'))
             :
             await dispatch(
                 updateUser({

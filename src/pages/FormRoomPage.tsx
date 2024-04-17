@@ -74,14 +74,14 @@ export default function FormRoomPage() {
                     ...formData,
                     offer: formData.discount ? true : false
                 })
-            ).unwrap().then(navigate('/rooms'))
+            ).unwrap().then(() => navigate('/rooms'))
             :
             await dispatch(
                 updateRoom({
                     ...formData,
                     offer: formData.discount ? true : false,
                 })
-            ).unwrap().then(navigate('/rooms'))
+            ).unwrap().then(() => navigate('/rooms'))
     }
 
     if (!fetched && id) return <LinearProgress />
