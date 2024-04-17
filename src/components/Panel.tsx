@@ -9,6 +9,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Panel() {
     const { state } = useAuth()
+
     const navigate = useNavigate()
 
     return (
@@ -22,10 +23,10 @@ export default function Panel() {
                 <NavLink to='/users' className={({ isActive }) => isActive ? 'LinkActive' : ''}><FaRegUser size={26} />Users</NavLink>
             </PanelLinks>
             {state.isAuthenticated && <UserBox>
-                <img width={70} height={70} src="" alt="" />
-                <h3>{state.user!.fullName}</h3>
+                <img width={70} height={70} src={state.user!.photo} alt="" />
+                <h3>{state.user!.name}</h3>
                 <p>{state.user!.email}</p>
-                <button onClick={() => navigate(`/users/${state.user!.fullName.replace(' ', '-')}`)}>Edit</button>
+                <button onClick={() => navigate(`/users/edit/${state.user!.id}`)}>Edit</button>
             </UserBox>}
         </SideBar>
     )
