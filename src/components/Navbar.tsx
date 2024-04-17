@@ -15,7 +15,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ visiblePanel, setVisiblePanel }: NavbarProps) {
-    const { state, dispatch } = useAuth()
+    const { dispatch } = useAuth()
     const { pathname } = useLocation()
     const regexMatch: RegExpMatchArray | string = pathname.match(/\/[^/]+/g) || 'Dashboard'
     const titleName = pathname[1] ? regexMatch[0][1].toUpperCase() + regexMatch[0].slice(2) : 'Dashboard'
@@ -42,7 +42,7 @@ export default function Navbar({ visiblePanel, setVisiblePanel }: NavbarProps) {
                     <FaRegBell size={26} />
                 </NavLink>
                 <NavLink to=''>
-                    {state.isAuthenticated && <PiSignOutBold size={26} onClick={() => dispatch({ type: 'LOGOUT' })} />}
+                    <PiSignOutBold size={26} onClick={() => dispatch({ type: 'LOGOUT' })} />
                 </NavLink>
 
             </NavIcons>
