@@ -2,7 +2,7 @@ import { DashBoard } from '../style/DashBoardStyled'
 import DataTable from '../components/DataTable'
 import { ChangeEvent, SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
-import { bookingsData } from '../features/bookings/bookingsSlice';
+import { bookingsData, clearBookingById } from '../features/bookings/bookingsSlice';
 import { deleteBookingById, fetchBookings } from '../features/bookings/bookingsThunk';
 import { LinearProgress } from '@mui/material';
 import { ButtonActive } from '../style/ButtonStyled';
@@ -144,6 +144,7 @@ export default function Bookings() {
     }
 
     useEffect(() => {
+        dispatch(clearBookingById())
         initialFetch()
     }, [])
 

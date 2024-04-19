@@ -6,7 +6,11 @@ import type { BookingData, BookingState } from '../../interfaces/Bookings'
 export const bookingsSlice = createSlice({
     name: 'bookings',
     initialState: { data: [], dataById: {} as BookingData, status: 'idle', error: null } as BookingState,
-    reducers: {},
+    reducers: {
+        clearBookingById: (state) => {
+            state.dataById = {} as BookingData
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchBookings.fulfilled, (state, action) => {
@@ -56,3 +60,4 @@ export const bookingByIdData = (state: RootState) => state.bookings.dataById
 export const bookingsStatus = (state: RootState) => state.bookings.status
 export const bookingsError = (state: RootState) => state.bookings.error
 export default bookingsSlice.reducer;
+export const { clearBookingById } = bookingsSlice.actions
