@@ -22,7 +22,7 @@ export const contactsSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(deleteContactById.fulfilled, (state, action) => {
-                state.data = state.data.filter(contact => contact._id !== action.payload)
+                state.data = state.data.filter(contact => contact._id !== action.payload._id)
                 state.status = 'fulfilled'
             })
             .addMatcher(isAnyOf(

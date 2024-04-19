@@ -85,7 +85,6 @@ function Contact() {
     const deleteContact = async (e: SyntheticEvent, contact: ContactData) => {
         e.stopPropagation()
         await dispatch(deleteContactById(contact._id)).unwrap()
-        await dispatch(fetchContacts())
     }
 
     const editContact = async (e: SyntheticEvent, contact: ContactData) => {

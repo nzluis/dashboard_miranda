@@ -62,10 +62,9 @@ function Users() {
         },
     ]
 
-    const deleteUser = (e: SyntheticEvent, user: UserData) => {
+    const deleteUser = async (e: SyntheticEvent, user: UserData) => {
         e.stopPropagation()
-        dispatch(deleteUserById(user._id!)).unwrap()
-        dispatch(fetchUsers())
+        await dispatch(deleteUserById(user._id!)).unwrap()
     }
 
     const editUser = (e: SyntheticEvent, user: UserData) => {

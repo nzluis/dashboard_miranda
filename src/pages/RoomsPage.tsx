@@ -73,10 +73,9 @@ export default function Rooms() {
         },
     ]
 
-    const deleteRoom = (e: SyntheticEvent, room: RoomData) => {
+    const deleteRoom = async (e: SyntheticEvent, room: RoomData) => {
         e.stopPropagation()
-        dispatch(deleteRoomById(room._id!)).unwrap()
-        dispatch(fetchRooms())
+        await dispatch(deleteRoomById(room._id!)).unwrap()
     }
 
     const editRoom = (e: SyntheticEvent, room: RoomData) => {

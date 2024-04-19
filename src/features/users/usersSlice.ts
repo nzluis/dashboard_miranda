@@ -26,7 +26,7 @@ export const usersSlice = createSlice({
                 state.status = 'fulfilled'
             })
             .addCase(deleteUserById.fulfilled, (state, action) => {
-                state.data = state.data.filter(user => user._id !== action.payload)
+                state.data = state.data.filter(user => user._id !== action.payload._id)
                 state.status = 'fulfilled'
             })
             .addMatcher(isAnyOf(
