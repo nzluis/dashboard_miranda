@@ -4,13 +4,12 @@ import { DashBoard } from "../style/DashBoardStyled";
 import { ButtonActive } from "../style/ButtonStyled";
 import { createBooking, fetchBookingById, updateBooking } from "../features/bookings/bookingsThunk";
 import { useNavigate, useParams } from "react-router-dom";
-import { bookingByIdData } from "../features/bookings/bookingsSlice";
+import { bookingByIdData, clearBookingById } from "../features/bookings/bookingsSlice";
 import { LinearProgress } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { RoomData } from "../interfaces/Rooms";
-import { roomByIdData, roomsData } from "../features/rooms/roomsSlice";
-import { fetchRoomById, fetchRooms, updateRoom } from "../features/rooms/roomsThunk";
-import { BookingData } from "../interfaces/Bookings";
+import { roomsData } from "../features/rooms/roomsSlice";
+import { fetchRooms, updateRoom } from "../features/rooms/roomsThunk";
 
 
 export default function FormBookingPage() {
@@ -19,7 +18,6 @@ export default function FormBookingPage() {
     const [fetched, setFetched] = useState(false)
     const booking = useAppSelector(bookingByIdData)
     const rooms = useAppSelector(roomsData)
-    const roomToEdit = useAppSelector(roomByIdData)
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         order_date: '',
@@ -32,11 +30,12 @@ export default function FormBookingPage() {
         status: 'In Progress'
     })
     const [roomType, setRoomType] = useState('Single Bed')
-    const availableRooms = useMemo(() => {
-        const alreadyAvailableRooms = rooms.filter(room => room.status === 'Available' && room.room_type === roomType)
-        return roomType === roomToEdit?.room_type ? [...alreadyAvailableRooms, roomToEdit] : alreadyAvailableRooms
-    }, [rooms, roomType, roomToEdit])
     const [roomNumber, setRoomNumber] = useState('')
+    const availableRooms = useMemo(() => {
+        const alreadyAvailableRooms = rooms.filter((room: RoomData) => room.status === 'Available' && room.room_type === roomType)
+        if (JSON.stringify(booking) !== '{}') return roomType === booking?.room.room_type ? [...alreadyAvailableRooms, booking?.room] : alreadyAvailableRooms
+        return alreadyAvailableRooms
+    }, [rooms, roomType])
 
     const initialFetchAlways = async () => {
         await dispatch(fetchRooms()).unwrap()
@@ -45,20 +44,14 @@ export default function FormBookingPage() {
     const initialFetchForEdit = async () => {
         await dispatch(fetchBookingById(id!)).unwrap()
     }
-
     useEffect(() => {
         initialFetchAlways()
         if (id) initialFetchForEdit()
         else setFetched(true)
     }, [])
 
-    const fetchRoom = async (data: BookingData) => {
-        await dispatch(fetchRoomById(data.room._id!)).unwrap()
-    }
-
     useEffect(() => {
         if (id && booking && booking.check_in) {
-            fetchRoom(booking)
             setFormData({
                 ...booking,
                 check_in: new Date(Number(booking.check_in)).toISOString().slice(0, 10),
@@ -68,10 +61,10 @@ export default function FormBookingPage() {
             setRoomNumber(booking.room.room_number)
             setFetched(true)
         }
-    }, [booking, roomToEdit])
+    }, [booking])
 
     useEffect(() => {
-        setRoomNumber(availableRooms.length !== 0 ? availableRooms[0]!.room_number : '')
+        if (roomNumber === '') setRoomNumber(availableRooms.length !== 0 ? availableRooms[0]!.room_number : '')
     }, [roomType])
 
     function handleChange(e: ChangeEvent<any>) {
@@ -81,15 +74,7 @@ export default function FormBookingPage() {
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        const selectedRoom = rooms.find(room => room.room_number === roomNumber)
-        await dispatch(updateRoom({
-            ...selectedRoom!,
-            status: 'Booked'
-        }))
-        if (selectedRoom?.room_number !== roomToEdit?.room_number) await dispatch(updateRoom({
-            ...roomToEdit!,
-            status: 'Available'
-        }))
+        const selectedRoom = rooms.find((room: RoomData) => room.room_number === roomNumber)
         !id ?
             await dispatch(
                 createBooking({
@@ -99,7 +84,7 @@ export default function FormBookingPage() {
                     check_in: new Date(formData.check_in).getTime().toString(),
                     check_out: new Date(formData.check_out).getTime().toString()
                 })
-            ).unwrap().then(() => navigate('/bookings'))
+            ).unwrap()
             :
             await dispatch(
                 updateBooking({
@@ -108,7 +93,17 @@ export default function FormBookingPage() {
                     check_in: new Date(formData.check_in).getTime().toString(),
                     check_out: new Date(formData.check_out).getTime().toString()
                 })
-            ).unwrap().then(() => navigate('/bookings'))
+            ).unwrap()
+        if (booking && booking.room && selectedRoom?.room_number !== booking!.room.room_number)
+            await dispatch(updateRoom({
+                ...booking!.room,
+                status: 'Available'
+            }))
+        await dispatch(updateRoom({
+            ...selectedRoom!,
+            status: 'Booked'
+        })).then(() => navigate('/bookings'))
+
     }
 
     if (!fetched && id) return <LinearProgress />
