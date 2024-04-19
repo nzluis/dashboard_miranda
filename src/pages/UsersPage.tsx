@@ -8,7 +8,7 @@ import { Tab, TabsContainer } from '../style/TopMenuStyled';
 import { SelectOrder } from '../style/TopMenuStyled';
 import { TopMenu } from '../style/TopMenuStyled';
 import { ButtonsContainer } from '../style/TopMenuStyled';
-import usePaginate from '../../hooks/usePaginate';
+import usePaginate from '../hooks/usePaginate';
 import { usersData } from '../features/users/usersSlice';
 import { LinearProgress } from '@mui/material';
 import { deleteUserById, fetchUsers } from '../features/users/usersThunk';

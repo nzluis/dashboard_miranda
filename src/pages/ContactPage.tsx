@@ -3,7 +3,7 @@ import DataTable from "../components/DataTable"
 import { SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '../components/ModalComponent';
 import { contactsData } from '../features/contacts/contactsSlice';
-import usePaginate from '../../hooks/usePaginate';
+import usePaginate from '../hooks/usePaginate';
 import { deleteContactById, fetchContacts, updateContact } from '../features/contacts/contactsThunk';
 import { Tab, TabsContainer, TopMenu } from '../style/TopMenuStyled';
 import { Box, CircularProgress, LinearProgress } from '@mui/material';

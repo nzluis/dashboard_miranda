@@ -11,7 +11,7 @@ import { Tab, TabsContainer } from '../style/TopMenuStyled';
 import { SelectOrder } from '../style/TopMenuStyled';
 import { TopMenu } from '../style/TopMenuStyled';
 import { ButtonsContainer } from '../style/TopMenuStyled';
-import usePaginate from '../../hooks/usePaginate';
+import usePaginate from '../hooks/usePaginate';
 import Pagination from '../components/Pagination';
 import { BookingData } from '../interfaces/Bookings';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
