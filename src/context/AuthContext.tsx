@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react"
-import useReducerWithLocalStorage from "../../hooks/useReducerWithLocalStorage"
+import useReducerWithLocalStorage from "../hooks/useReducerWithLocalStorage"
 import { AuthAction, AuthContextInterface, AuthProps, AuthState } from "../interfaces/Auth"
 
 const AuthContext = createContext<AuthContextInterface>({ state: { isAuthenticated: false, user: null }, dispatch: () => { } })
